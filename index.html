@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.49">
+  <meta name="description" content="AccuraCity est un jeu visant à positionner correctement des villes de France sur un fond de carte.">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Olivier Genest">
+  <title>AccuraCity – Localisez les villes de France</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="accuracity.js" defer></script>
+  <script src="citydata.js" defer></script>
+  <script src="dailydata.js" defer></script>
+</head>
+<body>
+
+<div id="map">
+	<img id="map-image" src="France_blank_1.svg" alt="Carte de France">
+	<canvas id="myCanvas" width="800" height="800"></canvas>
+</div>
+<img id="logoimg" src="logo2_txt.png"/>
+<div id="target-info"></div>
+<div id="click-coordinates"></div>
+<div id="settings">
+Défi du jour<br/>
+<font style="font-size:12pt;">Les mêmes villes pour tous : comparez-vous à vos proches !</font><br/>
+<button id="defi">Défi du jour (20 villes)</button>
+<br/>
+<font style="font-size:12pt;"><em>ou</em></font>
+<br/>
+Pratique libre<br/>
+<font style="font-size:12pt;">Difficulté : </font>
+<select id="diffSelect">
+  <option value="22" selected>Facile : Préfectures de région uniquement (22 villes)</option>
+  <option value="96">Moyen : Préfectures (96 villes)</option>
+  <option value="326">Difficile : Préfectures et sous-préfectures (326 villes)</option>
+</select><br/>
+<font style="font-size:12pt;">Nombre de villes : 
+<input type="radio" id="nbCity10" name="nbCity" value="10" /><label for="nbCity10">10</label>
+<input type="radio" id="nbCity20" name="nbCity" value="20" /><label for="nbCity20">20</label>
+<input type="radio" id="nbCity50" name="nbCity" value="50" /><label for="nbCity50">50</label>
+<input type="radio" id="nbCityAll" name="nbCity" value="999" checked/><label for="nbCityAll">Tout</label>
+	</font>
+<br/>
+<button id="startGameButton">Démarrer</button>
+</div>
+<div id="finish">Partie terminée !</div>
+<div id="score">
+	<table width=400>
+	<tr><td width=150>Dernier score : </td><td id="last-score">-</td></tr>
+	<tr><td>Nombre de parties : </td><td id="nb-score">0</td></tr>
+	<tr><td>Score total : </td><td id="total-score">0</td></tr>
+	<tr><td>Score moyen : </td><td id="average-score">-</td></tr>
+	<tr><td colspan=2><button id="resetScore">Arrêter la partie en cours</button></td></tr>
+	</table>
+	<br/><br/>
+	<font style="font-size:10pt;">
+	Explications concernant le score : 
+	<ul>
+	<li>Plus un score est faible, meilleur il est</li>
+	<li>Le score de chaque essai est égal à :<br/>distance × coeff-difficulté</li>
+	<li>Le coeff-difficulté dépend du type de ville : 4 pour la Capitale, 3 pour une Préfecture de régioon, 2 pour une Préfecture, 1 pour une Sous-préfecture</li>
+	<li>Voici l'échelle d'appréciation d'un score : <br/>[0-50] <font color="limegreen">Impressionnant !</font> – [51-100] <font color="yellowgreen">Excellent !</font> – [101-200] <font color="deepskyblue">Bien !</font> – [201-500] <font color="orange">Acceptable</font> – [501-1000] <font color="orangered">Décevant</font> – [1001-∞] <font color="crimson">Nul !</font></li>
+	<ul>
+	</font>
+</div>
+<div id="credits">Jeu développé par <a href="https://oliviergenest.com/" target="_blank">Olivier Genest</a><br/>Fond de carte CC-BY-SA – Auteur Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)<br/>Jeu de données <a href="https://www.data.gouv.fr/en/datasets/prefectures-et-sous-prefectures-point/?fbclid=IwAR0IvMAaB28fWmJ_DF2KsavOBeM9FqCia3BpbKAuBlboSEz3-U_sZOzy258" target="_blank">DREAL Poitou-Charentes</a><br/>
+<a href="mentions.html" target="_blank">Mentions légales</a></div>
+</body>
+</html>

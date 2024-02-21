@@ -1,0 +1,133 @@
+div {
+	font-family: Arial;
+}
+#map img {
+  width: 100%;
+  height: 100%;
+  border: solid 1px;
+}
+#map {
+	position: relative;
+	width: 800px; /* Largeur de votre image */
+	height: 800px; /* Hauteur de votre image */
+}
+#map-image, #myCanvas {
+	position: absolute;
+	top: 105px;
+	left: 0;
+}
+#logoimg {
+	width:500px;
+	position: absolute;
+	top: 8px;
+	left: 150px;;
+}
+#click-coordinates {
+  position: absolute;
+  top: 165px;
+  left: 850px;
+  width: 400px;
+}
+#settings {
+  border:solid 1px;
+  margin:-10px;
+  padding:10px;
+  position: absolute;
+  top: 355px;
+  left: 35px;
+  font-size:24pt;
+  width: 740px;
+  background-color: white;
+  text-align: center;
+}
+#finish {
+  border:solid 1px;
+  margin:-10px;
+  padding:10px;
+  position: absolute;
+  top: 155px;
+  left: 35px;
+  font-size:24pt;
+  width: 740px;
+  background-color: white;
+  text-align: center;
+  display:none;
+}
+#credits {
+  position: absolute;
+  top: 985px;
+  left: 10px;
+  width: 800px;
+  font-size:10pt;
+}
+#score {
+  position: absolute;
+  top: 205px;
+  left: 850px;
+  width: 500px;
+}
+#target-info {
+  border:solid 1px;
+  margin:-5px;
+  padding:5px;
+  position: absolute;
+  top: 135px;
+  left: 35px;
+  font-size:24pt;
+  width: 740px;
+  background-color: white;
+  text-align: center;
+  display:none; /* On affiche seulement après avoir sélectionné le niveau */
+}
+.click-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%); /* Centrer le point */
+}
+.target-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: green;
+  border-radius: 50%;
+  transform: translate(-50%, -50%); /* Centrer le point */
+}
+.target-text {
+  position: absolute;
+  font-size: 10pt;
+}
+.distance-text {
+  position: absolute;
+  font-size: 10pt;
+}
+
+button {
+  background-color: #4444AA;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 819px) { /* Pour les écrans de moins de 820px de large */
+	#credits {
+	  top: 1450px;
+	  width: 800px;
+	}
+	#score {
+	  top: 1005px;
+	  left: 10px;
+	  width: 800px;
+	}
+	#click-coordinates {
+	  position: absolute;
+	  top: 935px;
+	  left: 10px;
+	  width: 800px;
+	}
+}
