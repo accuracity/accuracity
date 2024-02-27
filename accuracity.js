@@ -26,6 +26,7 @@ let diffText = ""
 
 let scoreArray = [];
 let clicHistory = [];
+let textToCopy = "";
 
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
 const topLeftGPS = { latitude: 52, longitude: -6 };
@@ -185,7 +186,9 @@ function selectRandomCity(csvContent, numberOfLinesToConsider) {
 function stopGame()
 {
 	targetInfo.style.display = "none"; //On cache le champ qui indique la cible
-	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore) + `<br/><button onclick="generateAndOpenImage()">Afficher un récap</button>`;
+	//On stocke le recap dans la chaine pour la copie éventuelle
+	textToCopy = `Aujourd'hui j'ai fait `+totalScore+` – Moyenne `+averageScore+` à Accuracity ! – https://accura.city/`;
+	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore) + `<br/><button onclick="generateAndOpenImage()">Afficher un récap</button> <button id="copyButton" onclick="copyScoreToClipboard()">Copier mon score</button>`;
 	/*if(numberOfLinesToConsider == 20) //Mode défi uniquement
 	{
 		document.getElementById("finish").innerHTML += generateScoreTable();
@@ -592,4 +595,21 @@ function generateAndOpenImage() {
 	}, 'image/png');
 	
 	drawMapClear();
+}
+
+function copyScoreToClipboard() {
+	// Créer un élément de texte temporaire
+	const tempInput = document.createElement('textarea');
+	tempInput.value = textToCopy;
+	document.body.appendChild(tempInput);
+	
+	// Sélectionner le texte
+	tempInput.select();
+	tempInput.setSelectionRange(0, 99999); // Pour les mobiles
+	
+	// Copier le texte dans le presse-papiers
+	document.execCommand('copy');
+	
+	// Supprimer l'élément temporaire
+	document.body.removeChild(tempInput);
 }
