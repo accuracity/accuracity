@@ -1,6 +1,6 @@
 ![Accuracity logo](logo2_txt.png)
 ## Purpose
-**Accuracity** is a game in which the played is asked to locate cities on a map. Then, the distance to real location is computed to define the score. The lower the score, the better it is.
+**Accuracity** is a game in which the player is asked to locate cities on a map. Then, the distance to real location is computed to define the score. The lower the score, the better it is.
 ## Official website
 [https://accura.city/]([url](https://accura.city/))
 ## Technology
