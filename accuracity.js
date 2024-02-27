@@ -21,8 +21,11 @@ let nbScore = 0; // Nombre de parties
 let averageScore = 0; // Score moyen
 let numberOfLinesToConsider = 22; // Le nombre de lignes à considérer (=difficulté) 22=préféectures de région, 96=préfectures, 326=sous-préfectures, 20=défi du jour
 let isDefi = false;
+let defiDate = "";
+let diffText = ""
 
 let scoreArray = [];
+let clicHistory = [];
 
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
 const topLeftGPS = { latitude: 52, longitude: -6 };
@@ -32,6 +35,19 @@ const bottomRightGPS = { latitude: 41, longitude: 10 };
 const width = 800;
 const height = 800;
 const offsetY = 105;
+
+// IMage de fond
+const img = new Image();
+img.src = 'France_blank_1.svg';
+
+img.onload = function() {
+	//drawMapBackground();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Code JavaScript à exécuter une fois que la page est chargée
+    //drawMapBackground();
+});
 
 defi.onclick = function() {
 	startGame(true); //Défi
@@ -88,70 +104,15 @@ if(gameOngoing)
 	//Stocker le score
 	scoreArray.push(lastScore);
 	
-	// Supprimer l'ancien point
-	if (clickPoint) {
-	  clickPoint.remove();
-	}
-
-	// Créer et afficher le nouveau point cliqué
-	clickPoint = document.createElement('div');
-	clickPoint.className = 'click-point';
-	clickPoint.style.left = `${x}px`;
-	clickPoint.style.top = `${y}px`;
-	map.appendChild(clickPoint);
+	//Stocker l'essai
+	clicHistory.push([x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName]);
 	
-	// Supprimer l'ancienne cible
-	if (targetPoint) {
-	  targetPoint.remove();
-	}
+	//Effacer la carte avant d'afficher le prochain point
+	drawMapClear();
 	
-	// Créer et afficher la cible
-	targetPoint = document.createElement('div');
-	targetPoint.className = 'target-point';
-	targetPoint.style.left = `${imageCoordinates.x}px`;
-	targetPoint.style.top = `${offsetY + imageCoordinates.y}px`;
-	map.appendChild(targetPoint);
-	
-	// Supprimer l'ancienne légende de la cible
-	if (targetText) {
-	  targetText.remove();
-	}
-	
-	// Créer et afficher la légende de la cible
-	targetText = document.createElement('div');
-	targetText.className = 'target-text';
-	targetText.innerHTML = randomCity.cityName;
-	targetText.style.left = `${imageCoordinates.x + 10}px`;
-	targetText.style.top = `${offsetY + imageCoordinates.y - 5}px`;
-	map.appendChild(targetText);
-	
-	// Supprimer l'ancienne légende de la distance
-	if (distanceText) {
-	  distanceText.remove();
-	}
-	
-	// Créer et afficher la légende de la distance
-	distanceText = document.createElement('div');
-	distanceText.className = 'distance-text';
-	distanceText.innerHTML = distance + `km`
-	distanceText.style.left = `${(targetX + x)/2 + 5}px`;
-	distanceText.style.top = `${(targetY + y)/2 - 10}px`;
-	map.appendChild(distanceText);
-	
-	//Afficher une ligne entre les 2 points
-	// Récupérer le contexte 2D du canvas
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
-	// Effacer le contenu du canvas
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	// Tracer une ligne entre les deux points
-	ctx.beginPath();
-	ctx.moveTo(targetX, targetY - offsetY);
-	ctx.lineTo(x, y - offsetY);
-	ctx.strokeStyle = 'black'; // Couleur de la ligne
-	ctx.lineWidth = 1; // Epaisseur de la ligne
-	ctx.stroke();	
+	//Afficher le clic, la cible & co
+	drawMapClic(x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName);
+	//drawMapClicWithCanvas(x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName);
 	
 	//Mise à jour de la difficulté
 	//var selectElement = document.getElementById("diffSelect");
@@ -224,7 +185,7 @@ function selectRandomCity(csvContent, numberOfLinesToConsider) {
 function stopGame()
 {
 	targetInfo.style.display = "none"; //On cache le champ qui indique la cible
-	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore);
+	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore) + `<br/><button onclick="generateAndOpenImage()">Afficher un récap</button>`;
 	/*if(numberOfLinesToConsider == 20) //Mode défi uniquement
 	{
 		document.getElementById("finish").innerHTML += generateScoreTable();
@@ -232,7 +193,6 @@ function stopGame()
 	document.getElementById("finish").style.display = "block"; //On affiche le bloc de fin
 	document.getElementById("settings").style.display = "block"; //On affiche le bloc de paramétrage
 	gameOngoing = false;
-	scoreArray = []; //On vide le tableau des scores
 }
 
 function startGame(defi)
@@ -246,26 +206,14 @@ function startGame(defi)
 	scoreTotal.innerHTML = `0`;
 	scoreNb.innerHTML = `0`;
 	scoreAverage.innerHTML = `-`;
+	scoreArray = []; //On vide le tableau des scores
+	clicHistory = []; //On vide l'historique des clics
 	
 	//Cacher le bloc de fin
 	document.getElementById("finish").style.display = "none";
 	
 	//Effacer les restes de la précédente parties
-	if (clickPoint) {
-	  clickPoint.remove();
-	}
-	if (targetPoint) {
-	  targetPoint.remove();
-	}
-	if (distanceText) {
-	  distanceText.remove();
-	}
-	if (targetText) {
-	  targetText.remove();
-	}
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawMapClear();
 	
 	if(defi)
 	{
@@ -282,6 +230,11 @@ function startGame(defi)
 		numberOfLinesToConsider = selectElement.value;
 		//Création de la liste mélangée
 		citiesList = selectRandomCities(csvContent, numberOfLinesToConsider);
+		//Enregistrement de la difficulté
+			//22=préféectures de région, 96=préfectures, 326=sous-préfectures
+		if (numberOfLinesToConsider == 22) diffText = "Facile (Préfectures de région uniquement)";
+		else if (numberOfLinesToConsider == 96) diffText = "Moyen (Préfectures)";
+		else if (numberOfLinesToConsider == 326) diffText = "Difficile (Préfectures et sous-préfectures)";
 		//Troncage de la liste
 		//  Récupérer tous les éléments radio avec le nom "nbCity"
 		const radios = document.getElementsByName('nbCity');
@@ -347,6 +300,15 @@ function getEvaluation(avgScore) {
 	else if(avgScore <= 500) return `<font color="orange">Acceptable</font>`;
 	else if(avgScore <= 1000) return `<font color="orangered">Décevant</font>`;
 	else return `<font color="crimson">Nul !</font>`;
+}
+
+function getEvaluationText(avgScore) {
+	if(avgScore <= 50) return `Impressionnant !`;
+	else if(avgScore <= 100) return `Excellent !`;
+	else if(avgScore <= 200) return `Bien !`;
+	else if(avgScore <= 500) return `Acceptable`;
+	else if(avgScore <= 1000) return `Décevant`;
+	else return `Nul !`;
 }
 
 function getEvaluationColor(avgScore) {
@@ -421,7 +383,10 @@ function getCityListForToday() {
 function getCurrentDate() {
 	// Chaine contenant la date à Paris
 	const dateString = new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"});
-
+	
+	//Stocker la date
+	defiDate = dateString.substring(0, 10);
+	
 	// Extraire les composants de la date
 	const parts = dateString.split(' ')[0].split('/');
 	const day = parts[0];
@@ -430,4 +395,201 @@ function getCurrentDate() {
 
 	// Former la nouvelle chaîne de date au format "AAAA-MM-JJ"
 	return `${year}-${month}-${day}`;
+}
+
+function drawMapClear() {
+	// Supprimer l'ancien point
+	if (clickPoint) {
+	  clickPoint.remove();
+	}
+
+	// Supprimer l'ancienne cible
+	if (targetPoint) {
+	  targetPoint.remove();
+	}
+	
+	// Supprimer l'ancienne légende de la cible
+	if (targetText) {
+	  targetText.remove();
+	}
+	
+	// Supprimer l'ancienne légende de la distance
+	if (distanceText) {
+	  distanceText.remove();
+	}
+	
+	// Récupérer le contexte 2D du canvas
+	const canvas = document.getElementById('myCanvas');
+	const ctx = canvas.getContext('2d');
+
+	// Effacer le contenu du canvas
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawMapClic(x,y,targetX,targetY,distance,cityName) {
+	// Créer et afficher le nouveau point cliqué
+	clickPoint = document.createElement('div');
+	clickPoint.className = 'click-point';
+	clickPoint.style.left = `${x}px`;
+	clickPoint.style.top = `${y}px`;
+	map.appendChild(clickPoint);
+	
+	// Créer et afficher la cible
+	targetPoint = document.createElement('div');
+	targetPoint.className = 'target-point';
+	targetPoint.style.left = `${targetX}px`;
+	targetPoint.style.top = `${offsetY + targetY}px`;
+	map.appendChild(targetPoint);
+	
+	// Créer et afficher la légende de la cible
+	targetText = document.createElement('div');
+	targetText.className = 'target-text';
+	targetText.innerHTML = randomCity.cityName;
+	targetText.style.left = `${targetX + 10}px`;
+	targetText.style.top = `${offsetY + targetY - 5}px`;
+	map.appendChild(targetText);
+	
+	// Créer et afficher la légende de la distance
+	distanceText = document.createElement('div');
+	distanceText.className = 'distance-text';
+	distanceText.innerHTML = distance + `km`
+	distanceText.style.left = `${(targetX + x)/2 + 5}px`;
+	distanceText.style.top = `${(offsetY + targetY + y)/2 - 10}px`;
+	map.appendChild(distanceText);
+	
+	//Afficher une ligne entre les 2 points
+	// Récupérer le contexte 2D du canvas
+	const canvas = document.getElementById('myCanvas');
+	const ctx = canvas.getContext('2d');
+
+	// Tracer une ligne entre les deux points
+	ctx.beginPath();
+	ctx.moveTo(targetX, targetY);
+	ctx.lineTo(x, y - offsetY);
+	ctx.strokeStyle = 'black'; // Couleur de la ligne
+	ctx.lineWidth = 1; // Epaisseur de la ligne
+	ctx.stroke();	
+}
+
+function drawMapClicWithCanvas(x, y, targetX, targetY, distance, cityName) {
+    // Récupérer le canvas et son contexte
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Dessiner le point cliqué
+    ctx.beginPath();
+    ctx.arc(x, y - offsetY, 4, 0, Math.PI * 2);
+    ctx.fillStyle = 'red'; // Couleur du point cliqué
+    ctx.fill();
+
+    // Dessiner la cible
+    ctx.beginPath();
+    ctx.arc(targetX, targetY, 4, 0, Math.PI * 2);
+    ctx.fillStyle = 'green'; // Couleur de la cible
+    ctx.fill();
+
+    // Dessiner le texte de la cible
+    ctx.fillStyle = 'black'; // Couleur du texte
+    ctx.font = '12px Arial';
+    ctx.fillText(cityName, targetX + 5, targetY - 5);
+
+    // Dessiner le texte de la distance
+    ctx.fillText(distance + 'km', (targetX + x) / 2 + 5, (targetY + y  - offsetY) / 2 - 5);
+
+    // Dessiner la ligne entre les deux points
+    ctx.beginPath();
+    ctx.moveTo(targetX, targetY);
+    ctx.lineTo(x, y - offsetY);
+    ctx.strokeStyle = 'black'; // Couleur de la ligne
+    ctx.lineWidth = 1; // Epaisseur de la ligne
+    ctx.stroke();
+}
+
+function drawMapBackground() {
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Dessinez l'image sur tout le canvas
+}
+
+function generateAndDownloadImage() {
+	// Récupérer le canvas et son contexte
+	const canvas = document.getElementById('myCanvas');
+	const ctx = canvas.getContext('2d');
+
+	//On efface la carte
+	drawMapClear();
+	
+	//On dessine le fond
+	drawMapBackground();
+	
+	//On affiche tous les points 
+	for (const element of clicHistory) {
+		drawMapClicWithCanvas(element[0],element[1],element[2],element[3],element[4],element[5]);
+	}
+
+	// Convertir le contenu du canvas en URL de données au format PNG
+	const dataURL = canvas.toDataURL('image/png');
+
+	// Créer un élément <a> pour télécharger l'image
+	const downloadLink = document.createElement('a');
+	downloadLink.href = dataURL;
+	downloadLink.download = 'image.png';
+	document.body.appendChild(downloadLink);
+
+	// Cliquer sur le lien de téléchargement
+	downloadLink.click();
+
+	// Supprimer l'élément <a> après le téléchargement
+	document.body.removeChild(downloadLink);
+	
+}
+
+function generateAndOpenImage() {
+    // Récupérer le canvas
+    const canvas = document.getElementById('myCanvas');
+	const ctx = canvas.getContext('2d');
+	
+	//On efface la carte
+	drawMapClear();
+	
+	//On dessine le fond
+	drawMapBackground();
+	
+	//On affiche tous les points 
+	for (const element of clicHistory) {
+		drawMapClicWithCanvas(element[0],element[1],element[2],element[3],element[4],element[5]);
+	}
+	
+	
+	//Ecrire la date et le score total
+	// Définir la police et la taille du texte
+	ctx.font = '20px Arial';
+	ctx.fillStyle = 'black';
+	if(isDefi)
+	{
+		// Dessiner le texte sur le canvas
+		ctx.fillText(`Défi du `+defiDate, 10, 30);
+	}
+	else
+	{
+		ctx.fillText(`Pratique libre – Difficulté : `+diffText, 10, 30);
+	}
+	ctx.fillText(`Score : `+totalScore+` – Moyenne : `+averageScore+` – `+getEvaluationText(averageScore),10,60);
+    
+	// Convertir le contenu du canvas en Blob (format PNG)
+	canvas.toBlob(function(blob) {
+		// Créer une URL à partir du Blob
+		const url = URL.createObjectURL(blob);
+		
+		// Ouvrir l'image dans un nouvel onglet
+		const imageWindow = window.open(url, '_blank');
+		
+		// Si la fenêtre est bloquée par le navigateur, informer l'utilisateur
+		if (!imageWindow || imageWindow.closed || typeof imageWindow.closed == 'undefined') {
+			alert("La fenêtre pop-up est bloquée. Veuillez autoriser les pop-ups pour voir l'image.");
+		}
+	}, 'image/png');
+	
+	drawMapClear();
 }
