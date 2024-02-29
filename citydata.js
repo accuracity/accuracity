@@ -312,7 +312,7 @@ Montmorillon;86165;86;Sous-préfecture;46.42517679;0.871194035
 Rochechouart;87126;87;Sous-préfecture;45.83187019;0.829548168
 Bellac;87011;87;Sous-préfecture;46.12418553;1.053743984
 Neufchâteau;88321;88;Sous-préfecture;48.35792123;5.692157108
-Daint-Dié-des-Vosges;88413;88;Sous-préfecture;48.286133;6.944302686
+Saint-Dié-des-Vosges;88413;88;Sous-préfecture;48.286133;6.944302686
 Sens;89387;89;Sous-préfecture;48.19759268;3.28305706
 Avallon;89025;89;Sous-préfecture;47.48956375;3.907089244
 Etampes;91223;91;Sous-préfecture;48.43413157;2.157503591
