@@ -27,6 +27,8 @@ let diffText = ""
 let scoreArray = [];
 let clicHistory = [];
 let textToCopy = "";
+let top3 = [];
+let flop3 = [];
 
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
 const topLeftGPS = { latitude: 52, longitude: -6 };
@@ -185,10 +187,22 @@ function selectRandomCity(csvContent, numberOfLinesToConsider) {
 
 function stopGame()
 {
+	let textTop3 = "";
+	let textFlop3 = "";
+	//On calcule le top3 et le flop3
+	if(clicHistory.length > 3)
+	{
+		computeTop3Flop3();
+		console.log(top3);
+		console.log(flop3);
+		textTop3 = `\nTop 3 : `+top3[0][0]+` (`+top3[0][1]+`km), `+top3[1][0]+` (`+top3[1][1]+`km), `+top3[2][0]+` (`+top3[2][1]+`km)`;
+		textFlop3 = `\nFlop 3 : `+flop3[2][0]+` (`+flop3[2][1]+`km), `+flop3[1][0]+` (`+flop3[1][1]+`km), `+flop3[0][0]+` (`+flop3[0][1]+`km)`;
+	}
+
 	targetInfo.style.display = "none"; //On cache le champ qui indique la cible
 	//On stocke le recap dans la chaine pour la copie éventuelle
-	textToCopy = `Aujourd'hui j'ai fait `+totalScore+` – Moyenne `+averageScore+` à Accuracity ! – https://accura.city/`;
-	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore) + `<br/><button onclick="generateAndOpenImage()">Afficher un récap</button> <button id="copyButton" onclick="copyScoreToClipboard()">Copier mon score</button>`;
+	textToCopy = `Aujourd'hui j'ai fait `+totalScore+` – Moyenne `+averageScore+` à Accuracity ! – https://accura.city/`+textTop3+textFlop3;
+	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore) + `<br/>`+(textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">`+ textTop3 + `<br/>` + textFlop3 + `<br/></div>` : ``)+`<button onclick="generateAndOpenImage()">Afficher un récap</button> <button id="copyButton" onclick="copyScoreToClipboard()">Copier mon score</button>`;
 	/*if(numberOfLinesToConsider == 20) //Mode défi uniquement
 	{
 		document.getElementById("finish").innerHTML += generateScoreTable();
@@ -211,6 +225,8 @@ function startGame(defi)
 	scoreAverage.innerHTML = `-`;
 	scoreArray = []; //On vide le tableau des scores
 	clicHistory = []; //On vide l'historique des clics
+	top3 = []; //On vide le top 3
+	flop3 = []; //On vide le flop 3
 	
 	//Cacher le bloc de fin
 	document.getElementById("finish").style.display = "none";
@@ -612,4 +628,20 @@ function copyScoreToClipboard() {
 	
 	// Supprimer l'élément temporaire
 	document.body.removeChild(tempInput);
+}
+
+function computeTop3Flop3()
+{
+	//Créer un tableau à trier
+	const sortedScore = [];
+	for (const element of clicHistory) {
+		sortedScore.push([element[5],element[4]]);
+	}
+	
+    // Trier le tableau en fonction de la valeur de distance
+    sortedScore.sort((a, b) => a[1] - b[1]);
+
+    // Extraire les 3 premiers et les 3 derniers éléments
+    top3 = sortedScore.slice(0, 3);
+    flop3 = sortedScore.slice(-3);
 }
