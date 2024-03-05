@@ -247,7 +247,7 @@ Clermont;60157;60;Sous-préfecture;49.37958179;2.412685442
 Mortagne-au-perche;61293;61;Sous-préfecture;48.5215422;0.548463278
 Argentan;61006;61;Sous-préfecture;48.7455798;-0.021988132
 Saint-Omer;62765;62;Sous-préfecture;50.75033139;2.257588622
-Montreuil;62588;62;Sous-préfecture;50.46534839;1.764986324
+Montreuil-sur-Mer;62588;62;Sous-préfecture;50.46534839;1.764986324
 Béthune;62119;62;Sous-préfecture;50.52696755;2.644112137
 Lens;62498;62;Sous-préfecture;50.43099667;2.831083953
 Calais;62193;62;Sous-préfecture;50.94679152;1.86436746
