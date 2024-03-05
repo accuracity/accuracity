@@ -30,6 +30,8 @@ let textToCopy = "";
 let top3 = [];
 let flop3 = [];
 
+let lang = "en";
+
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
 const topLeftGPS = { latitude: 52, longitude: -6 };
 const topRightGPS = { latitude: 52, longitude: 10 };
@@ -49,7 +51,7 @@ img.onload = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Code JavaScript à exécuter une fois que la page est chargée
-    //drawMapBackground();
+    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtScoreExplanations", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame");
 });
 
 defi.onclick = function() {
@@ -87,7 +89,7 @@ if(gameOngoing)
 	
 	//Calcul et affichage de la distance
 	const distance = Math.trunc(calculateDistance(gpsCoordinates.latitude, gpsCoordinates.longitude, randomCity.latitude, randomCity.longitude));
-	clickCoordinates.innerHTML = `Distance de `+randomCity.cityName+` (`+randomCity.department+`, `+randomCity.type+`): ` + distance +`km`;
+	clickCoordinates.innerHTML = i18n("distanceFrom", lang, randomCity.cityName, randomCity.department, randomCity.type, distance);
 	
 	//Calcul du score
 	coeff = 0;
@@ -138,7 +140,7 @@ if(gameOngoing)
 	{
 		randomCity = citiesList[citiesIt];
 		console.log(randomCity);
-		targetInfo.innerHTML = `Nouvelle ville à positionner : <b>` + randomCity.cityName + `</b>`;
+		targetInfo.innerHTML = i18n("newTarget", lang, randomCity.cityName);
 	}
 }
 });
@@ -195,14 +197,16 @@ function stopGame()
 		computeTop3Flop3();
 		console.log(top3);
 		console.log(flop3);
-		textTop3 = `\nTop 3 : `+top3[0][0]+` (`+top3[0][1]+`km), `+top3[1][0]+` (`+top3[1][1]+`km), `+top3[2][0]+` (`+top3[2][1]+`km)`;
-		textFlop3 = `\nFlop 3 : `+flop3[2][0]+` (`+flop3[2][1]+`km), `+flop3[1][0]+` (`+flop3[1][1]+`km), `+flop3[0][0]+` (`+flop3[0][1]+`km)`;
+		textTop3 = `\n`+i18n("txtTop3", lang, top3[0][0], top3[0][1], top3[1][0], top3[1][1], top3[2][0], top3[2][1]);
+		textFlop3 = `\n`+i18n("txtFlop3", lang, flop3[0][0], flop3[0][1], flop3[1][0], flop3[1][1], flop3[2][0], flop3[2][1]);
+		console.log(textTop3);
+		console.log(textFlop3);
 	}
 
 	targetInfo.style.display = "none"; //On cache le champ qui indique la cible
 	//On stocke le recap dans la chaine pour la copie éventuelle
-	textToCopy = `Aujourd'hui j'ai fait `+totalScore+` – Moyenne `+averageScore+` à Accuracity ! – https://accura.city/`+textTop3+textFlop3;
-	document.getElementById("finish").innerHTML = `Partie terminée !<br/>Score : ` + totalScore + `<br/>Moyenne : ` + averageScore + ` – `+ getEvaluation(averageScore) + `<br/>`+(textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">`+ textTop3 + `<br/>` + textFlop3 + `<br/></div>` : ``)+`<button onclick="generateAndOpenImage()">Afficher un récap</button> <button id="copyButton" onclick="copyScoreToClipboard()">Copier mon score</button>`;
+	textToCopy = i18n("txtScoreCopy",lang,totalScore, averageScore, textTop3, textFlop3);
+	document.getElementById("finish").innerHTML = i18n("scoreSummary", lang, totalScore, averageScore, getEvaluation(averageScore)) + `<br/>`+(textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">`+ textTop3 + `<br/>` + textFlop3 + `<br/></div>` : ``)+`<button onclick="generateAndOpenImage()">`+i18n("txtButtonShowRecap", lang)+`</button> <button id="copyButton" onclick="copyScoreToClipboard()">`+i18n("txtButtonCopyMyScore",lang)+`</button>`;
 	/*if(numberOfLinesToConsider == 20) //Mode défi uniquement
 	{
 		document.getElementById("finish").innerHTML += generateScoreTable();
@@ -251,9 +255,9 @@ function startGame(defi)
 		citiesList = selectRandomCities(csvContent, numberOfLinesToConsider);
 		//Enregistrement de la difficulté
 			//22=préféectures de région, 96=préfectures, 326=sous-préfectures
-		if (numberOfLinesToConsider == 22) diffText = "Facile (Préfectures de région uniquement)";
-		else if (numberOfLinesToConsider == 96) diffText = "Moyen (Préfectures)";
-		else if (numberOfLinesToConsider == 326) diffText = "Difficile (Préfectures et sous-préfectures)";
+		if (numberOfLinesToConsider == 22) diffText = i18n("txtEasy2", lang);
+		else if (numberOfLinesToConsider == 96) diffText = i18n("txtMedium2", lang);
+		else if (numberOfLinesToConsider == 326) diffText = i18n("txtHard2", lang);
 		//Troncage de la liste
 		//  Récupérer tous les éléments radio avec le nom "nbCity"
 		const radios = document.getElementsByName('nbCity');
@@ -273,7 +277,7 @@ function startGame(defi)
 	randomCity = citiesList[0];
 	console.log(randomCity);
 	targetInfo.style.display = "block"; //On affiche le champ qui indique la cible
-	targetInfo.innerHTML = `Ville à positionner : <b>` + randomCity.cityName + `</b>`;
+	targetInfo.innerHTML = targetInfo.innerHTML = i18n("newTarget", lang, randomCity.cityName);
 	document.getElementById("settings").style.display = "none"; //On cache le paramétrage
 	
 	gameOngoing = true;
@@ -313,21 +317,16 @@ function selectRandomCities(csvContent, numberOfLinesToConsider) {
 }
 
 function getEvaluation(avgScore) {
-	if(avgScore <= 50) return `<font color="limegreen">Impressionnant !</font>`;
-	else if(avgScore <= 100) return `<font color="yellowgreen">Excellent !</font>`;
-	else if(avgScore <= 200) return `<font color="deepskyblue">Bien !</font>`;
-	else if(avgScore <= 500) return `<font color="orange">Acceptable</font>`;
-	else if(avgScore <= 1000) return `<font color="orangered">Décevant</font>`;
-	else return `<font color="crimson">Nul !</font>`;
+	return `<font color="`+getEvaluationColor(avgScore)+`">`+getEvaluationText(avgScore)+`</font>`;
 }
 
 function getEvaluationText(avgScore) {
-	if(avgScore <= 50) return `Impressionnant !`;
-	else if(avgScore <= 100) return `Excellent !`;
-	else if(avgScore <= 200) return `Bien !`;
-	else if(avgScore <= 500) return `Acceptable`;
-	else if(avgScore <= 1000) return `Décevant`;
-	else return `Nul !`;
+	if(avgScore <= 50) return i18n("scoreImpressive",lang);
+	else if(avgScore <= 100) return i18n("scoreExcellent",lang);
+	else if(avgScore <= 200) return i18n("scoreGood",lang);
+	else if(avgScore <= 500) return i18n("scoreAcceptable",lang);
+	else if(avgScore <= 1000) return i18n("scoreDisappointing",lang);
+	else return i18n("scoreNil",lang);
 }
 
 function getEvaluationColor(avgScore) {
@@ -588,13 +587,13 @@ function generateAndOpenImage() {
 	if(isDefi)
 	{
 		// Dessiner le texte sur le canvas
-		ctx.fillText(`Défi du `+defiDate, 10, 30);
+		ctx.fillText(i18n("txtRecapChallenge",lang,defiDate), 10, 30);
 	}
 	else
 	{
-		ctx.fillText(`Pratique libre – Difficulté : `+diffText, 10, 30);
+		ctx.fillText(i18n("txtRecapFreePractice",lang,diffText), 10, 30);
 	}
-	ctx.fillText(`Score : `+totalScore+` – Moyenne : `+averageScore+` – `+getEvaluationText(averageScore),10,60);
+	ctx.fillText(i18n("txtRecapScore",lang,totalScore,averageScore,getEvaluationText(averageScore)),10,60);
     
 	// Convertir le contenu du canvas en Blob (format PNG)
 	canvas.toBlob(function(blob) {
@@ -606,7 +605,7 @@ function generateAndOpenImage() {
 		
 		// Si la fenêtre est bloquée par le navigateur, informer l'utilisateur
 		if (!imageWindow || imageWindow.closed || typeof imageWindow.closed == 'undefined') {
-			alert("La fenêtre pop-up est bloquée. Veuillez autoriser les pop-ups pour voir l'image.");
+			alert(i18n("popupAlert",lang));
 		}
 	}, 'image/png');
 	
