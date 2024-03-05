@@ -32,6 +32,25 @@ let flop3 = [];
 
 let lang = "en";
 
+// Obtenez l'URL actuelle de la page
+const urlParams = new URLSearchParams(window.location.search);
+
+// Vérifiez si le paramètre "lang" est présent dans l'URL
+if (urlParams.has('lang')) {
+    // Obtenez la valeur du paramètre "lang"
+    const urlLang = urlParams.get('lang');
+    if(urlLang == "fr" || urlLang == "en") 
+	{
+		lang=urlLang;
+	}
+	else
+	{
+		console.log('Unknown language => en');
+	}
+} else {
+    console.log('No language specified in the url => en');
+}
+
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
 const topLeftGPS = { latitude: 52, longitude: -6 };
 const topRightGPS = { latitude: 52, longitude: 10 };
