@@ -31,6 +31,7 @@ let top3 = [];
 let flop3 = [];
 
 let lang = "en";
+let currentMap = maps["us"];
 
 // Obtenez l'URL actuelle de la page
 const urlParams = new URLSearchParams(window.location.search);
@@ -51,18 +52,34 @@ if (urlParams.has('lang')) {
     console.log('No language specified in the url => en');
 }
 
+// Vérifiez si le paramètre "map" est présent dans l'URL
+if (urlParams.has('map')) {
+    // Obtenez la valeur du paramètre "map"
+    const urlMap = urlParams.get('map');
+    if(urlMap == "fr" || urlMap == "us" || urlMap == "eu") 
+	{
+		currentMap=maps[urlMap];
+	}
+	else
+	{
+		console.log('Unknown map => us');
+	}
+} else {
+    console.log('No map specified in the url => us');
+}
+
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
-const topLeftGPS = { latitude: 52, longitude: -6 };
-const topRightGPS = { latitude: 52, longitude: 10 };
-const bottomLeftGPS = { latitude: 41, longitude: -6 };
-const bottomRightGPS = { latitude: 41, longitude: 10 };
-const width = 800;
-const height = 800;
+const topLeftGPS = currentMap.topLeftGPS;
+const topRightGPS = currentMap.topRightGPS;
+const bottomLeftGPS = currentMap.bottomLeftGPS;
+const bottomRightGPS = currentMap.bottomRightGPS;
+const width = currentMap.width;
+const height = currentMap.height;
 const offsetY = 105;
 
 // IMage de fond
 const img = new Image();
-img.src = 'France_blank_1.svg';
+img.src = currentMap.img;
 
 img.onload = function() {
 	//drawMapBackground();
@@ -70,7 +87,78 @@ img.onload = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Code JavaScript à exécuter une fois que la page est chargée
-    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtScoreExplanations", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame");
+    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr");
+	
+	document.getElementById("map-image").src = currentMap.img;
+	document.getElementById("map").style.height = currentMap.height+"px";//not sufficient, to be fixed
+	document.getElementById("map").style.width = currentMap.width+"px";
+		
+	const styleSheets = document.styleSheets;
+
+	//Pour chaque feuille de style
+	for (let i = 0; i < styleSheets.length; i++) {
+		const styleSheet = styleSheets[i];
+
+		// Vérifiez si la règle de style est une règle @media
+		if (styleSheet.media && styleSheet.media.mediaText === 'screen and (max-width: 819px)') {
+			// Parcourir les règles de style dans la feuille de style
+			const rules = styleSheet.cssRules || styleSheet.rules;
+			for (let j = 0; j < rules.length; j++) {
+				const rule = rules[j];
+				// Vérifiez si la règle cible l'élément "credits"
+				if (rule.selectorText === '#credits') {
+					// Modifier le top de la règle
+					rule.style.top = (currentMap.height + 650)+"px"; // Nouvelle valeur
+				}
+				// Vérifiez si la règle cible l'élément "credits"
+				if (rule.selectorText === '#score') {
+					// Modifier le top de la règle
+					rule.style.top = (currentMap.height + 205)+"px"; // Nouvelle valeur
+				}
+				// Vérifiez si la règle cible l'élément "click-coordinates"
+				if (rule.selectorText === '#click-coordinates') {
+					// Modifier le top de la règle
+					rule.style.top = (currentMap.height + 135)+"px"; // Nouvelle valeur
+				}
+			}
+		}
+		
+        // Recherche de la règle CSS correspondant à l'élément avec l'identifiant "credits"
+		const rules2 = styleSheet.cssRules || styleSheet.rules;
+        for (let k = 0; k < rules2.length; k++) {
+            const rule = rules2[k];
+            if (rule.selectorText === '#credits') {
+                rule.style.top = Math.max(700, currentMap.height + 185)+"px";
+                break;
+            }
+        }
+	}
+	
+	document.getElementById("myCanvas").height = currentMap.height;
+	document.getElementById("myCanvas").width = currentMap.width;
+	
+	document.getElementById("txtEasy").value=currentMap.categories.easy.totalCount;
+	document.getElementById("txtEasy").innerHTML=currentMap.categories.easy.difficulty;
+	document.getElementById("txtMedium").value=currentMap.categories.medium.totalCount;
+	document.getElementById("txtMedium").innerHTML=currentMap.categories.medium.difficulty;
+	document.getElementById("txtHard").value=currentMap.categories.hard.totalCount;
+	document.getElementById("txtHard").innerHTML=currentMap.categories.hard.difficulty;
+	
+	document.getElementById("txtScoreExplanations").innerHTML=i18n("txtScoreExplanations", lang, currentMap.categories.veryeasy.name, currentMap.categories.easy.name, currentMap.categories.medium.name, currentMap.categories.hard.name, generateScale());
+	
+	document.getElementById("txtCreditsMap").innerHTML=i18n("txtCreditsMap", lang, currentMap.credits.map);
+	document.getElementById("txtCreditsDataset").innerHTML=i18n("txtCreditsDataset", lang, currentMap.credits.dataset);
+
+	
+	//topLeft
+	//console.log(xyToGPS(0, 0-145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
+	//bottomLeft
+	//console.log(xyToGPS(0, 436+145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
+	//topRight
+	//console.log(xyToGPS(800, 0-145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
+	//bottomRight
+	//console.log(xyToGPS(800, 436+145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
+
 });
 
 defi.onclick = function() {
@@ -95,27 +183,27 @@ if(gameOngoing)
 	console.log(`Clic - X `+x+` / Y `+y);
 
 	// Calcul des coordonnées GPS du point cliqué
-	const gpsCoordinates = xyToGPS(x, y - offsetY, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
+	const gpsCoordinates = xyToGPS(currentMap.projection, x, y - offsetY, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 	console.log(`Clic - Long `+gpsCoordinates.longitude+` / Lat `+gpsCoordinates.latitude);
 
   
 	//Positionnement de la cible
 	console.log(`Target - Long `+randomCity.longitude+` / Lat `+randomCity.latitude);
-	const imageCoordinates = gpsToXY(randomCity.latitude, randomCity.longitude, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
+	const imageCoordinates = gpsToXY(currentMap.projection, randomCity.latitude, randomCity.longitude, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 	const targetX = imageCoordinates.x;
 	const targetY = offsetY + imageCoordinates.y;
 	console.log(`Target - X `+imageCoordinates.x+` / Y `+imageCoordinates.y);
 	
 	//Calcul et affichage de la distance
 	const distance = Math.trunc(calculateDistance(gpsCoordinates.latitude, gpsCoordinates.longitude, randomCity.latitude, randomCity.longitude));
-	clickCoordinates.innerHTML = i18n("distanceFrom", lang, randomCity.cityName, randomCity.department, randomCity.type, distance);
+	clickCoordinates.innerHTML = i18n("distanceFrom", lang, randomCity.cityName, randomCity.department, currentMap.categories[randomCity.type]?.name, distance);
 	
 	//Calcul du score
-	coeff = 0;
-	if(randomCity.type == `Capitale`) coeff = 4;
-	if(randomCity.type == `Préfecture de région`) coeff = 3;
-	if(randomCity.type == `Préfecture`) coeff = 2;
-	if(randomCity.type == `Sous-préfecture`) coeff = 1;
+	coeff = coeff = currentMap.categories[randomCity.type]?.coeff;
+	//if(randomCity.type == "veryeasy") coeff = currentMap.categories.veryeasy.coeff;
+	//if(randomCity.type == "easy") coeff = currentMap.categories.easy.coeff;
+	//if(randomCity.type == "medium") coeff = currentMap.categories.medium.coeff;
+	//if(randomCity.type == "hard") coeff = currentMap.categories.hard.coeff;
 	lastScore = distance * coeff;
 	totalScore = totalScore + lastScore;
 	nbScore = nbScore + 1;
@@ -271,12 +359,12 @@ function startGame(defi)
 		var selectElement = document.getElementById("diffSelect");
 		numberOfLinesToConsider = selectElement.value;
 		//Création de la liste mélangée
-		citiesList = selectRandomCities(csvContent, numberOfLinesToConsider);
+		citiesList = selectRandomCities(currentMap.csv, numberOfLinesToConsider);
 		//Enregistrement de la difficulté
 			//22=préféectures de région, 96=préfectures, 326=sous-préfectures
-		if (numberOfLinesToConsider == 22) diffText = i18n("txtEasy2", lang);
-		else if (numberOfLinesToConsider == 96) diffText = i18n("txtMedium2", lang);
-		else if (numberOfLinesToConsider == 326) diffText = i18n("txtHard2", lang);
+		if (numberOfLinesToConsider == currentMap.categories.easy.totalCount) diffText = i18n("txtEasy2", lang, currentMap.categories.easy.difficulty);
+		else if (numberOfLinesToConsider == currentMap.categories.medium.totalCount) diffText = i18n("txtMedium2", lang, currentMap.categories.medium.difficulty);
+		else if (numberOfLinesToConsider == currentMap.categories.hard.totalCount) diffText = i18n("txtHard2", lang, currentMap.categories.hard.difficulty);
 		//Troncage de la liste
 		//  Récupérer tous les éléments radio avec le nom "nbCity"
 		const radios = document.getElementsByName('nbCity');
@@ -340,20 +428,20 @@ function getEvaluation(avgScore) {
 }
 
 function getEvaluationText(avgScore) {
-	if(avgScore <= 50) return i18n("scoreImpressive",lang);
-	else if(avgScore <= 100) return i18n("scoreExcellent",lang);
-	else if(avgScore <= 200) return i18n("scoreGood",lang);
-	else if(avgScore <= 500) return i18n("scoreAcceptable",lang);
-	else if(avgScore <= 1000) return i18n("scoreDisappointing",lang);
+	if(avgScore <= currentMap.scoreThresholds.impressive) return i18n("scoreImpressive",lang);
+	else if(avgScore <= currentMap.scoreThresholds.excellent) return i18n("scoreExcellent",lang);
+	else if(avgScore <= currentMap.scoreThresholds.good) return i18n("scoreGood",lang);
+	else if(avgScore <= currentMap.scoreThresholds.acceptable) return i18n("scoreAcceptable",lang);
+	else if(avgScore <= currentMap.scoreThresholds.disappointing) return i18n("scoreDisappointing",lang);
 	else return i18n("scoreNil",lang);
 }
 
 function getEvaluationColor(avgScore) {
-	if(avgScore <= 50) return `limegreen`;
-	else if(avgScore <= 100) return `yellowgreen`;
-	else if(avgScore <= 200) return `deepskyblue`;
-	else if(avgScore <= 500) return `orange`;
-	else if(avgScore <= 1000) return `orangered`;
+	if(avgScore <= currentMap.scoreThresholds.impressive) return `limegreen`;
+	else if(avgScore <= currentMap.scoreThresholds.excellent) return `yellowgreen`;
+	else if(avgScore <= currentMap.scoreThresholds.good) return `deepskyblue`;
+	else if(avgScore <= currentMap.scoreThresholds.acceptable) return `orange`;
+	else if(avgScore <= currentMap.scoreThresholds.disappointing) return `orangered`;
 	else return `crimson`;
 }
 
@@ -375,31 +463,80 @@ function mercatorToLat(mercator) {
 	return (Math.atan(Math.exp(mercator * Math.PI / 180)) * 360 / Math.PI) - 90;
 }
 
-function gpsToXY(latitude, longitude, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS) {
-	const xRatio = (longitude - topLeftGPS.longitude) / (topRightGPS.longitude - topLeftGPS.longitude);
+function gpsToXY(projection, latitude, longitude, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS) {
+	if(projection == "mercator")
+	{
+		const xRatio = (longitude - topLeftGPS.longitude) / (topRightGPS.longitude - topLeftGPS.longitude);
 
-	// Convertir la latitude en coordonnées y sur l'image (projection Mercator)
-	const mercN = latToMercator(latitude);
-	const mercTopLeft = latToMercator(topLeftGPS.latitude);
-	const mercBottomLeft = latToMercator(bottomLeftGPS.latitude);
-	const mercatorHeight = mercTopLeft - mercBottomLeft;
-	const yRatio = (mercTopLeft - mercN) / mercatorHeight;
+		// Convertir la latitude en coordonnées y sur l'image (projection Mercator)
+		const mercN = latToMercator(latitude);
+		const mercTopLeft = latToMercator(topLeftGPS.latitude);
+		const mercBottomLeft = latToMercator(bottomLeftGPS.latitude);
+		const mercatorHeight = mercTopLeft - mercBottomLeft;
+		const yRatio = (mercTopLeft - mercN) / mercatorHeight;
 
-	const x = xRatio * width;
-	const y = yRatio * height;
+		const x = xRatio * width;
+		const y = yRatio * height;
 
-	return { x, y };
+		return { x, y };
+	}
+	else if(projection == "laea")
+	{
+		//Projection parameters
+        const sourceProjection = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs +type=crs';
+        const destProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'; // Projection WGS84
+
+        //Min & Max of the map
+		const x_min = 2555000;
+		const x_max = 7405000;
+		const y_min = 1350000;
+		const y_max = 5500000;
+		const ratio_h = (y_max-y_min)/height;
+		const ratio_w = (x_max-x_min)/width;
+		
+        //Compute transformation
+        var transform = proj4(sourceProjection, destProjection);
+		var result = transform.inverse([longitude, latitude]);
+
+		var x = (result[0] - x_min) / ratio_w;
+		var y = (y_max - result[1]) / ratio_h;
+		return {x, y};
+	}
 }
 
-function xyToGPS(x, y, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS) {
-	const xRatio = x / width;
-	const yRatio = y / height; 
+function xyToGPS(projection, x, y, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS) {
+	if(projection == "mercator")
+	{
+		const xRatio = x / width;
+		const yRatio = y / height; 
 
-	const longitude = topLeftGPS.longitude + xRatio * (topRightGPS.longitude - topLeftGPS.longitude);
-	const mercN = latToMercator(topLeftGPS.latitude) - yRatio * (latToMercator(topLeftGPS.latitude) - latToMercator(bottomLeftGPS.latitude));
-	const latitude = mercatorToLat(mercN);
+		const longitude = topLeftGPS.longitude + xRatio * (topRightGPS.longitude - topLeftGPS.longitude);
+		const mercN = latToMercator(topLeftGPS.latitude) - yRatio * (latToMercator(topLeftGPS.latitude) - latToMercator(bottomLeftGPS.latitude));
+		const latitude = mercatorToLat(mercN);
 
-	return { latitude, longitude };
+		return { latitude, longitude };
+	}
+	else if(projection == "laea")
+	{
+		//Projection parameters
+        const sourceProjection = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs +type=crs';
+        const destProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'; // Projection WGS84
+
+        //Min & Max of the map
+		const x_min = 2555000;
+		const x_max = 7405000;
+		const y_min = 1350000;
+		const y_max = 5500000;
+		const ratio_h = (y_max-y_min)/height;
+		const ratio_w = (x_max-x_min)/width;
+		
+		
+		//Compute transformation
+        var transform = proj4(sourceProjection, destProjection);
+		var result = transform.forward([(x_min + ratio_w * x), (y_max - ratio_h * y)]);
+
+		return {latitude: result[1], longitude: result[0]};
+	}
 }
 
 // Fonction pour récupérer la liste du jour
@@ -408,9 +545,9 @@ function getCityListForToday() {
 	const todayDate = getCurrentDate();
 	console.log(todayDate);
 	// Vérifier si la liste des villes pour la date courante existe dans la collection
-	if (cityListsByDate.hasOwnProperty(todayDate)) {
+	if (currentMap.daily.hasOwnProperty(todayDate)) {
 		// Renvoyer la liste des villes associée à la date courante
-		return cityListsByDate[todayDate];
+		return currentMap.daily[todayDate];
 	} else {
 		// Si aucune liste n'est trouvée pour la date courante, renvoyer une liste vide ou une liste par défaut
 		return [];
@@ -662,4 +799,19 @@ function computeTop3Flop3()
     // Extraire les 3 premiers et les 3 derniers éléments
     top3 = sortedScore.slice(0, 3);
     flop3 = sortedScore.slice(-3);
+}
+
+function generateScale()
+{
+	let scale = "";
+	let lastThreshold = -1;
+	for (const key in currentMap.scoreThresholds) {
+		if (currentMap.scoreThresholds.hasOwnProperty(key)) {
+			const value = currentMap.scoreThresholds[key];
+			scale += `<font color="`+getEvaluationColor(value)+`">[`+(lastThreshold+1)+`-`+value+`] `+getEvaluationText(value)+`</font> – `;	
+			lastThreshold = value;
+		}
+	}
+	scale += `<font color="`+getEvaluationColor(lastThreshold+1)+`">[`+(lastThreshold+1)+`+] `+getEvaluationText(lastThreshold+1)+`</font>`;
+	return scale;
 }
