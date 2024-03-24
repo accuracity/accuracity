@@ -31,7 +31,7 @@ let top3 = [];
 let flop3 = [];
 
 let lang = "en";
-let currentMap = maps["us"];
+let currentMap = maps["fr"];
 
 // Obtenez l'URL actuelle de la page
 const urlParams = new URLSearchParams(window.location.search);
@@ -62,10 +62,10 @@ if (urlParams.has('map')) {
 	}
 	else
 	{
-		console.log('Unknown map => us');
+		console.log('Unknown map => fr');
 	}
 } else {
-    console.log('No map specified in the url => us');
+    console.log('No map specified in the url => fr');
 }
 
   // Coordonnées GPS des 4 coins de l'image (à remplacer par les coordonnées réelles)
@@ -87,11 +87,14 @@ img.onload = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Code JavaScript à exécuter une fois que la page est chargée
-    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr");
+    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change");
 	
 	document.getElementById("map-image").src = currentMap.img;
 	document.getElementById("map").style.height = currentMap.height+"px";//not sufficient, to be fixed
 	document.getElementById("map").style.width = currentMap.width+"px";
+	
+	if(lang == "fr") document.getElementById("change").style.left = "654px";
+	else if(lang == "en") document.getElementById("change").style.left = "666px";
 		
 	const styleSheets = document.styleSheets;
 
@@ -133,6 +136,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 	}
+	
+	document.title = i18n("txtTitle",lang);
 	
 	document.getElementById("myCanvas").height = currentMap.height;
 	document.getElementById("myCanvas").width = currentMap.width;
@@ -312,7 +317,7 @@ function stopGame()
 
 	targetInfo.style.display = "none"; //On cache le champ qui indique la cible
 	//On stocke le recap dans la chaine pour la copie éventuelle
-	textToCopy = i18n("txtScoreCopy",lang,totalScore, averageScore, textTop3, textFlop3);
+	textToCopy = i18n("txtScoreCopy",lang,totalScore, averageScore, currentMap.name, textTop3, textFlop3);
 	document.getElementById("finish").innerHTML = i18n("scoreSummary", lang, totalScore, averageScore, getEvaluation(averageScore)) + `<br/>`+(textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">`+ textTop3 + `<br/>` + textFlop3 + `<br/></div>` : ``)+`<button onclick="generateAndOpenImage()">`+i18n("txtButtonShowRecap", lang)+`</button> <button id="copyButton" onclick="copyScoreToClipboard()">`+i18n("txtButtonCopyMyScore",lang)+`</button>`;
 	/*if(numberOfLinesToConsider == 20) //Mode défi uniquement
 	{

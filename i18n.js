@@ -21,7 +21,7 @@ const translations = {
 		txtEasy2: "Easy (%1)",
 		txtMedium2: "Medium (%1)",
 		txtHard2: "Hard (%1)",
-		txtScoreCopy: "Today I scored %1 – Average %2 at Accuracity ! – https://accura.city/%3%4",
+		txtScoreCopy: "Today I scored %1 – Average %2 at Accuracity %3 ! – https://accura.city/%4%5",
 		txtTop3: "Top 3: %1 (%2km), %3 (%4km), %5 (%6km)",
 		txtFlop3: "Flop 3: %1 (%2km), %3 (%4km), %5 (%6km)",
 		scoreSummary: "Game over!<br/>Score : %1<br/>Average : %2 – %3",
@@ -43,7 +43,9 @@ const translations = {
 		txtLegalMentions: "Legal information",
 		txtCreditsGame: "Game developed by Olivier Genest",
 		distanceFrom: "Distance from %1 (%2, %3): %4km",
-		txtOr: "or"
+		txtOr: "or",
+		txtTitle: "AccuraCity – Locate cities on a map",
+		change: "Change map / language"
     },
     fr: {
 		txtChallengeTitle: "Défi du jour",
@@ -66,7 +68,7 @@ const translations = {
 		txtEasy2: "Facile (%1)",
 		txtMedium2: "Moyen (%1)",
 		txtHard2: "Difficile (%1)",
-		txtScoreCopy: "Aujourd'hui j'ai fait %1 – Moyenne %2 à Accuracity ! – https://accura.city/%3%4",
+		txtScoreCopy: "Aujourd'hui j'ai fait %1 – Moyenne %2 à Accuracity %3 ! – https://accura.city/%4%5",
 		txtTop3: "Top 3 : %1 (%2km), %3 (%4km), %5 (%6km)",
 		txtFlop3: "Flop 3 : %1 (%2km), %3 (%4km), %5 (%6km)",
 		scoreSummary: "Partie terminée !<br/>Score : %1<br/>Moyenne : %2 – %3",
@@ -88,7 +90,9 @@ const translations = {
 		txtLegalMentions: "Mentions légales",
 		txtCreditsGame: "Jeu développé par Olivier Genest",
 		distanceFrom: "Distance de %1 (%2, %3) : %4km",
-		txtOr: "ou"
+		txtOr: "ou",
+		txtTitle: "AccuraCity – Localisez les villes sur une carte",
+		change: "Changer de carte / langue"
     }
 };
 

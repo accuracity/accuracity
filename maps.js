@@ -1,5 +1,6 @@
 const maps = {
 	fr: {
+		name: "France",
 		img: 'France_blank_1.svg',
 		projection: 'mercator',
 		topLeftGPS: { latitude: 52, longitude: -6 },
@@ -29,6 +30,7 @@ const maps = {
 		}
 	},
 	us: {
+		name: "USA",
 		img: 'USA-Mercator-offset.svg',
 		projection: 'mercator',
 		topLeftGPS: {latitude: 56, longitude: -125.13},
@@ -66,6 +68,7 @@ const maps = {
 		}
 	},
 	eu: {
+		name: "Europe",
 		img: 'Europe_laea_location_map.svg',
 		//img: 'Europe_relief_laea_location_map.jpg',
 		projection: 'laea',
@@ -91,7 +94,7 @@ const maps = {
 		},
 		daily: cityListsByDateEU,
 		credits: {
-			map: `CC-BY-SA – Alexrk2 (Wikimedia Commons user: <a href="https://commons.m.wikimedia.org/wiki/User:Alexrk2" target="_blank">Alexrk2</a>`,
+			map: `CC-BY-SA – Alexrk2 (Wikimedia Commons user: <a href="https://commons.m.wikimedia.org/wiki/User:Alexrk2" target="_blank">Alexrk2</a>)`,
 			dataset: `<a href="https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/table/?disjunctive.cou_name_en&sort=population&refine.timezone=Europe" target="_blank">GeoNames</a>`
 		}
 	},
