@@ -6,7 +6,8 @@
 ## Technology
 **Accuracity** is developed using HTML, CSS and JavaScript. The game is fully executed on client side. No storage is required. No cookies are used.
 ## Current features
-- Locate cities of France
+- Locate cities of France, Europe or USA
+- Languages: French and English
 - Two game modes: Daily challenge or Practice
 ## Contribution
 In case you want to suggest changes or contribute, please add issues to this repository.
