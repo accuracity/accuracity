@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.49">
+  <meta name="description" content="AccuraCity – Locate cities on a map / Localisez des villes sur une carte">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Olivier Genest">
+  <title>AccuraCity – Locate cities on a map / Localisez des villes sur une carte</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <script src="citydata.js" defer></script>
+  <script src="citydataUS.js" defer></script>
+  <script src="citydataEU.js" defer></script>
+  <script src="dailydata.js" defer></script>
+  <script src="dailydataUS.js" defer></script>
+  <script src="dailydataEU.js" defer></script>
+  <script src="i18n.js" defer></script>
+  <script src="maps.js" defer></script>
+  <script src="accuracity.js" defer></script>
+  <script src="proj4.js"></script>
+</head>
+<body>
+
+<div id="map">
+	<img id="map-image" src="blank.png" alt="Map">
+	<canvas id="myCanvas" width="800" height="800"></canvas>
+</div>
+<a href="index.html"><img id="logoimg" src="logo2_txt.png"/><div id = "change">Change map / language</div></a>
+<div id="target-info"></div>
+<div id="click-coordinates"></div>
+<div id="settings">
+<span id="txtChallengeTitle">Défi du jour</span><br/>
+<font style="font-size:12pt;" id="txtChallenge">Les mêmes villes pour tous : comparez-vous à vos proches !</font><br/>
+<button id="defi">Défi du jour (20 villes)</button>
+<br/>
+<font style="font-size:12pt;"><em><span id="txtOr">ou</span></em></font>
+<br/>
+<span id="txtFreePracticeTitle">Pratique libre</span><br/>
+<font style="font-size:12pt;">Difficulté : </font>
+<select id="diffSelect">
+  <option id="txtEasy" value="22" selected>Facile : Préfectures de région uniquement (22 villes)</option>
+  <option id="txtMedium" value="96">Moyen : Préfectures (96 villes)</option>
+  <option id="txtHard" value="326">Difficile : Préfectures et sous-préfectures (326 villes)</option>
+</select><br/>
+<font style="font-size:12pt;"><span id="txtNbCitiesTitle">Nombre de villes :</span> 
+<input type="radio" id="nbCity10" name="nbCity" value="10" /><label for="nbCity10">10</label>
+<input type="radio" id="nbCity20" name="nbCity" value="20" /><label for="nbCity20">20</label>
+<input type="radio" id="nbCity50" name="nbCity" value="50" /><label for="nbCity50">50</label>
+<input type="radio" id="nbCityAll" name="nbCity" value="999" checked/><label for="nbCityAll"><span id="txtCitiesAll">Toutes</span></label>
+	</font>
+<br/>
+<button id="startGameButton">Démarrer</button>
+</div>
+<div id="finish">Partie terminée !</div>
+<div id="score">
+	<table width=400>
+	<tr><td width=150 id="txtLastScore">Dernier score : </td><td id="last-score">-</td></tr>
+	<tr><td id="txtNumberOfGames">Nombre de parties : </td><td id="nb-score">0</td></tr>
+	<tr><td id="txtTotalScore">Score total : </td><td id="total-score">0</td></tr>
+	<tr><td id="txtAverageScore">Score moyen : </td><td id="average-score">-</td></tr>
+	<tr><td colspan=2><button id="resetScore">Arrêter la partie en cours</button></td></tr>
+	</table>
+	<br/><br/>
+	<font style="font-size:10pt;">
+	<span id="txtScoreExplanations">
+	Explications concernant le score : 
+	<ul>
+	<li>Plus un score est faible, meilleur il est</li>
+	<li>Le score de chaque essai est égal à :<br/>distance × coeff-difficulté</li>
+	<li>Le coeff-difficulté dépend du type de ville : 4 pour la Capitale, 3 pour une Préfecture de région, 2 pour une Préfecture, 1 pour une Sous-préfecture</li>
+	<li>Voici l'échelle d'appréciation d'un score : <br/><font color="limegreen">[0-50] Impressionnant !</font> – <font color="yellowgreen">[51-100] Excellent !</font> – <font color="deepskyblue">[101-200] Bien !</font> – <br/><font color="orange">[201-500] Acceptable</font> – <font color="orangered">[501-1000] Décevant</font> – <font color="crimson">[1001+] Nul !</font></li>
+	</ul>
+	</span>
+	</font>
+</div>
+<div id="credits"><span id="txtCreditsGame">Jeu développé par Olivier Genest</span> (<a href="https://github.com/accuracity/accuracity" target="_blank">github</a>)<br/><span id="txtCreditsMap">Fond de carte CC-BY-SA – Auteur Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)</span><br/><span id="txtCreditsDataset">Jeu de données <a href="https://datastory-datactivist.opendatasoft.com/explore/dataset/dreal/information/" target="_blank">DREAL Poitou-Charentes</a></span><br/>
+<a href="mentions.html" target="_blank"><span id="txtLegalMentions">Mentions légales</span></a></div>
+</body>
+</html>
