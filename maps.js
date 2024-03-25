@@ -11,9 +11,9 @@ const maps = {
 		height: 800,
 		categories: {
 			veryeasy: { name: "Capitale", difficulty: "", coeff: 4, count: 1, totalCount: 1},
-			easy: {name: "Préfecture de région", difficulty: "Préfetures de région (22)", coeff: 3, count: 21, totalCount: 22},
-			medium: {name: "Préfecture", difficulty: "Préfetures (74)", coeff: 2, count: 74, totalCount: 96},
-			hard: {name: "Sous-préfecture", difficulty: "Préfetures & sous-préfectures (22)", coeff: 1, count: 230, totalCount: 326}
+			easy: {name: "Préfecture de région", difficulty: "Préfectures de région (22)", coeff: 3, count: 21, totalCount: 22},
+			medium: {name: "Préfecture", difficulty: "Préfectures (74)", coeff: 2, count: 74, totalCount: 96},
+			hard: {name: "Sous-préfecture", difficulty: "Préfectures & sous-préfectures (22)", coeff: 1, count: 230, totalCount: 326}
 		},
 		csv: csvFR,
 		scoreThresholds: {
@@ -27,7 +27,8 @@ const maps = {
 		credits: {
 			map: `CC-BY-SA – Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)`,
 			dataset: `<a href="https://datastory-datactivist.opendatasoft.com/explore/dataset/dreal/information/" target="_blank">DREAL Poitou-Charentes</a>`
-		}
+		},
+		giveDetails: false
 	},
 	us: {
 		name: "USA",
@@ -65,7 +66,8 @@ const maps = {
 		credits: {
 			map: `<a href="https://themapsmith.github.io/site/bootstrap/" target="_blank">Mapsmith</a>)`,
 			dataset: `<a href="https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population" target="_blank">Wikipedia</a>`
-		}
+		},
+		giveDetails: true
 	},
 	eu: {
 		name: "Europe",
@@ -96,6 +98,7 @@ const maps = {
 		credits: {
 			map: `CC-BY-SA – Alexrk2 (Wikimedia Commons user: <a href="https://commons.m.wikimedia.org/wiki/User:Alexrk2" target="_blank">Alexrk2</a>)`,
 			dataset: `<a href="https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/table/?disjunctive.cou_name_en&sort=population&refine.timezone=Europe" target="_blank">GeoNames</a>`
-		}
+		},
+		giveDetails: false
 	},
 }

@@ -87,7 +87,7 @@ img.onload = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Code JavaScript à exécuter une fois que la page est chargée
-    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change");
+    applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change", "txtDifficulty");
 	
 	document.getElementById("map-image").src = currentMap.img;
 	document.getElementById("map").style.height = currentMap.height+"px";//not sufficient, to be fixed
@@ -252,7 +252,9 @@ if(gameOngoing)
 	{
 		randomCity = citiesList[citiesIt];
 		console.log(randomCity);
-		targetInfo.innerHTML = i18n("newTarget", lang, randomCity.cityName);
+		var cityName = randomCity.cityName;
+		if(currentMap.giveDetails) cityName += ` (` + randomCity.department + `)`;
+		targetInfo.innerHTML = i18n("newTarget", lang, cityName);
 	}
 }
 });
@@ -389,7 +391,9 @@ function startGame(defi)
 	randomCity = citiesList[0];
 	console.log(randomCity);
 	targetInfo.style.display = "block"; //On affiche le champ qui indique la cible
-	targetInfo.innerHTML = targetInfo.innerHTML = i18n("newTarget", lang, randomCity.cityName);
+	var cityName = randomCity.cityName;
+	if(currentMap.giveDetails) cityName += ` (` + randomCity.department + `)`;
+	targetInfo.innerHTML = targetInfo.innerHTML = i18n("newTarget", lang, cityName);
 	document.getElementById("settings").style.display = "none"; //On cache le paramétrage
 	
 	gameOngoing = true;

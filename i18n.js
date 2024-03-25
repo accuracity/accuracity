@@ -45,7 +45,8 @@ const translations = {
 		distanceFrom: "Distance from %1 (%2, %3): %4km",
 		txtOr: "or",
 		txtTitle: "AccuraCity – Locate cities on a map",
-		change: "Change map / language"
+		change: "Change map / language",
+		txtDifficulty: "Difficulty:"
     },
     fr: {
 		txtChallengeTitle: "Défi du jour",
@@ -92,7 +93,8 @@ const translations = {
 		distanceFrom: "Distance de %1 (%2, %3) : %4km",
 		txtOr: "ou",
 		txtTitle: "AccuraCity – Localisez les villes sur une carte",
-		change: "Changer de carte / langue"
+		change: "Changer de carte / langue",
+		txtDifficulty: "Difficulté :"
     }
 };
 
