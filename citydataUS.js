@@ -65,7 +65,7 @@ San Diego;CA;CA;hard;32.81;-117.14
 Dallas;TX;TX;hard;32.79;-96.77
 San Jose;CA;CA;hard;37.30;-121.81
 Fort Worth;TX;TX;hard;32.78;-97.35
-San Francisco;CA;CA;hard;37.73;-123.03
+San Francisco;CA;CA;hard;37.78;-122.43
 El Paso;TX;TX;hard;31.85;-106.43
 Memphis;TN;TN;hard;35.11;-89.97
 Tucson;AZ;AZ;hard;32.15;-110.87
