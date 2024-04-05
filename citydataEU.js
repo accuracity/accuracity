@@ -1,6 +1,5 @@
 	//Données de base
 	const csvEU = `Brussels;Belgium;Belgium;veryeasy;50.85045;4.34878
-Istanbul;Turkey;Turkey;easy;41.01384;28.94966
 Andorra la Vella;Andorra;Andorra;easy;42.50779;1.52109
 Reykjavik;Iceland;Iceland;easy;64.13548;-21.89541
 Vaduz;Liechtenstein;Liechtenstein;easy;47.14151;9.52154
@@ -45,6 +44,7 @@ Tallinn;Estonia;Estonia;easy;59.43696;24.75353
 Ljubljana;Slovenia;Slovenia;easy;46.05108;14.50513
 Podgorica;Montenegro;Montenegro;easy;42.44111;19.26361
 Bern;Switzerland;Switzerland;easy;46.94809;7.44744
+Istanbul;Turkey;Turkey;medium;41.01384;28.94966
 Saint Petersburg;Russian Federation;Russian Federation;medium;59.93863;30.31413
 Sintra;Portugal;Portugal;medium;38.798;-9.386
 Hamburg;Germany;Germany;medium;53.55073;9.99302
