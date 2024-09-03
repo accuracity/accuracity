@@ -40,7 +40,7 @@ const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('lang')) {
     // Obtenez la valeur du paramètre "lang"
     const urlLang = urlParams.get('lang');
-    if(urlLang == "fr" || urlLang == "en") 
+    if(urlLang == "fr" || urlLang == "en")
 	{
 		lang=urlLang;
 	}
@@ -56,7 +56,7 @@ if (urlParams.has('lang')) {
 if (urlParams.has('map')) {
     // Obtenez la valeur du paramètre "map"
     const urlMap = urlParams.get('map');
-    if(urlMap == "fr" || urlMap == "us" || urlMap == "eu") 
+    if(urlMap == "fr" || urlMap == "us" || urlMap == "eu")
 	{
 		currentMap=maps[urlMap];
 	}
@@ -88,14 +88,14 @@ img.onload = function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Code JavaScript à exécuter une fois que la page est chargée
     applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change", "txtDifficulty");
-	
+
 	document.getElementById("map-image").src = currentMap.img;
 	document.getElementById("map").style.height = currentMap.height+"px";//not sufficient, to be fixed
 	document.getElementById("map").style.width = currentMap.width+"px";
-	
+
 	if(lang == "fr") document.getElementById("change").style.left = "654px";
 	else if(lang == "en") document.getElementById("change").style.left = "666px";
-		
+
 	const styleSheets = document.styleSheets;
 
 	//Pour chaque feuille de style
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				}
 			}
 		}
-		
+
         // Recherche de la règle CSS correspondant à l'élément avec l'identifiant "credits"
 		const rules2 = styleSheet.cssRules || styleSheet.rules;
         for (let k = 0; k < rules2.length; k++) {
@@ -136,25 +136,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 	}
-	
+
 	document.title = i18n("txtTitle",lang);
-	
+
 	document.getElementById("myCanvas").height = currentMap.height;
 	document.getElementById("myCanvas").width = currentMap.width;
-	
+
 	document.getElementById("txtEasy").value=currentMap.categories.easy.totalCount;
 	document.getElementById("txtEasy").innerHTML=currentMap.categories.easy.difficulty;
 	document.getElementById("txtMedium").value=currentMap.categories.medium.totalCount;
 	document.getElementById("txtMedium").innerHTML=currentMap.categories.medium.difficulty;
 	document.getElementById("txtHard").value=currentMap.categories.hard.totalCount;
 	document.getElementById("txtHard").innerHTML=currentMap.categories.hard.difficulty;
-	
+
 	document.getElementById("txtScoreExplanations").innerHTML=i18n("txtScoreExplanations", lang, currentMap.categories.veryeasy.name, currentMap.categories.easy.name, currentMap.categories.medium.name, currentMap.categories.hard.name, generateScale());
-	
+
 	document.getElementById("txtCreditsMap").innerHTML=i18n("txtCreditsMap", lang, currentMap.credits.map);
 	document.getElementById("txtCreditsDataset").innerHTML=i18n("txtCreditsDataset", lang, currentMap.credits.dataset);
 
-	
+
 	//topLeft
 	//console.log(xyToGPS(0, 0-145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
 	//bottomLeft
@@ -191,18 +191,18 @@ if(gameOngoing)
 	const gpsCoordinates = xyToGPS(currentMap.projection, x, y - offsetY, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 	console.log(`Clic - Long `+gpsCoordinates.longitude+` / Lat `+gpsCoordinates.latitude);
 
-  
+
 	//Positionnement de la cible
 	console.log(`Target - Long `+randomCity.longitude+` / Lat `+randomCity.latitude);
 	const imageCoordinates = gpsToXY(currentMap.projection, randomCity.latitude, randomCity.longitude, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 	const targetX = imageCoordinates.x;
 	const targetY = offsetY + imageCoordinates.y;
 	console.log(`Target - X `+imageCoordinates.x+` / Y `+imageCoordinates.y);
-	
+
 	//Calcul et affichage de la distance
 	const distance = Math.trunc(calculateDistance(gpsCoordinates.latitude, gpsCoordinates.longitude, randomCity.latitude, randomCity.longitude));
 	clickCoordinates.innerHTML = i18n("distanceFrom", lang, randomCity.cityName, randomCity.department, currentMap.categories[randomCity.type]?.name, distance);
-	
+
 	//Calcul du score
 	coeff = coeff = currentMap.categories[randomCity.type]?.coeff;
 	//if(randomCity.type == "veryeasy") coeff = currentMap.categories.veryeasy.coeff;
@@ -217,20 +217,20 @@ if(gameOngoing)
 	scoreNb.innerHTML = nbScore + `/` + numberOfLinesToConsider;
 	averageScore = Math.trunc(totalScore / nbScore);
 	scoreAverage.innerHTML = averageScore + ` – `+ getEvaluation(averageScore);
-	
+
 	//Stocker le score
 	scoreArray.push(lastScore);
-	
+
 	//Stocker l'essai
 	clicHistory.push([x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName]);
-	
+
 	//Effacer la carte avant d'afficher le prochain point
 	drawMapClear();
-	
+
 	//Afficher le clic, la cible & co
 	drawMapClic(x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName);
 	//drawMapClicWithCanvas(x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName);
-	
+
 	//Mise à jour de la difficulté
 	//var selectElement = document.getElementById("diffSelect");
 	//numberOfLinesToConsider = selectElement.value;
@@ -246,7 +246,7 @@ if(gameOngoing)
 		setTimeout(function() {
 			stopGame();
 		}, 800); // 800 millisecondes
-		
+
 	}
 	else
 	{
@@ -280,23 +280,23 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 function selectRandomCity(csvContent, numberOfLinesToConsider) {
   // Séparer les lignes du fichier CSV
   const lines = csvContent.split('\n');
-  
+
   // Sélectionner les X premières lignes
   const selectedLines = lines.slice(0, numberOfLinesToConsider);
-  
+
   // Choisir une ligne au hasard parmi les X premières lignes
   const randomLine = selectedLines[Math.floor(Math.random() * selectedLines.length)];
-  
+
   // Séparer les valeurs de la ligne sélectionnée
   const values = randomLine.split(';');
-  
+
   // Extraire les informations nécessaires
   const cityName = values[0];
   const department = values[2];
   const type = values[3];
   const longitude = parseFloat(values[5]); // Convertir en nombre
   const latitude = parseFloat(values[4]); // Convertir en nombre
-  
+
   // Retourner les informations sélectionnées
   return { cityName, department, type, longitude, latitude };
 }
@@ -345,13 +345,13 @@ function startGame(defi)
 	clicHistory = []; //On vide l'historique des clics
 	top3 = []; //On vide le top 3
 	flop3 = []; //On vide le flop 3
-	
+
 	//Cacher le bloc de fin
 	document.getElementById("finish").style.display = "none";
-	
+
 	//Effacer les restes de la précédente parties
 	drawMapClear();
-	
+
 	if(defi)
 	{
 		isDefi = true;
@@ -386,7 +386,7 @@ function startGame(defi)
 			}
 		}
 	}
-	
+
 	citiesIt = 0;
 	randomCity = citiesList[0];
 	console.log(randomCity);
@@ -395,7 +395,7 @@ function startGame(defi)
 	if(currentMap.giveDetails) cityName += ` (` + randomCity.department + `)`;
 	targetInfo.innerHTML = targetInfo.innerHTML = i18n("newTarget", lang, cityName);
 	document.getElementById("settings").style.display = "none"; //On cache le paramétrage
-	
+
 	gameOngoing = true;
 }
 
@@ -411,10 +411,10 @@ function shuffleArray(array) {
 function selectRandomCities(csvContent, numberOfLinesToConsider) {
 	// Séparer les lignes du fichier CSV
 	const lines = csvContent.split('\n');
-	
+
 	// Sélectionner les X premières lignes
 	const selectedLines = lines.slice(0, numberOfLinesToConsider);
-	
+
 	// Créer une liste des villes
 	const cities = selectedLines.map(line => {
 		const values = line.split(';');
@@ -425,10 +425,10 @@ function selectRandomCities(csvContent, numberOfLinesToConsider) {
 		const latitude = parseFloat(values[4]);
 		return { cityName, department, type, longitude, latitude };
 	});
-	
+
 	// Mélanger aléatoirement la liste des villes
 	const shuffledCities = shuffleArray(cities);
-	
+
 	return shuffledCities;
 }
 
@@ -502,7 +502,7 @@ function gpsToXY(projection, latitude, longitude, width, height, topLeftGPS, top
 		const y_max = 5500000;
 		const ratio_h = (y_max-y_min)/height;
 		const ratio_w = (x_max-x_min)/width;
-		
+
         //Compute transformation
         var transform = proj4(sourceProjection, destProjection);
 		var result = transform.inverse([longitude, latitude]);
@@ -517,7 +517,7 @@ function xyToGPS(projection, x, y, width, height, topLeftGPS, topRightGPS, botto
 	if(projection == "mercator")
 	{
 		const xRatio = x / width;
-		const yRatio = y / height; 
+		const yRatio = y / height;
 
 		const longitude = topLeftGPS.longitude + xRatio * (topRightGPS.longitude - topLeftGPS.longitude);
 		const mercN = latToMercator(topLeftGPS.latitude) - yRatio * (latToMercator(topLeftGPS.latitude) - latToMercator(bottomLeftGPS.latitude));
@@ -538,8 +538,8 @@ function xyToGPS(projection, x, y, width, height, topLeftGPS, topRightGPS, botto
 		const y_max = 5500000;
 		const ratio_h = (y_max-y_min)/height;
 		const ratio_w = (x_max-x_min)/width;
-		
-		
+
+
 		//Compute transformation
         var transform = proj4(sourceProjection, destProjection);
 		var result = transform.forward([(x_min + ratio_w * x), (y_max - ratio_h * y)]);
@@ -566,10 +566,10 @@ function getCityListForToday() {
 function getCurrentDate() {
 	// Chaine contenant la date à Paris
 	const dateString = new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"});
-	
+
 	//Stocker la date
 	defiDate = dateString.substring(0, 10);
-	
+
 	// Extraire les composants de la date
 	const parts = dateString.split(' ')[0].split('/');
 	const day = parts[0];
@@ -590,17 +590,17 @@ function drawMapClear() {
 	if (targetPoint) {
 	  targetPoint.remove();
 	}
-	
+
 	// Supprimer l'ancienne légende de la cible
 	if (targetText) {
 	  targetText.remove();
 	}
-	
+
 	// Supprimer l'ancienne légende de la distance
 	if (distanceText) {
 	  distanceText.remove();
 	}
-	
+
 	// Récupérer le contexte 2D du canvas
 	const canvas = document.getElementById('myCanvas');
 	const ctx = canvas.getContext('2d');
@@ -616,14 +616,14 @@ function drawMapClic(x,y,targetX,targetY,distance,cityName) {
 	clickPoint.style.left = `${x}px`;
 	clickPoint.style.top = `${y}px`;
 	map.appendChild(clickPoint);
-	
+
 	// Créer et afficher la cible
 	targetPoint = document.createElement('div');
 	targetPoint.className = 'target-point';
 	targetPoint.style.left = `${targetX}px`;
 	targetPoint.style.top = `${offsetY + targetY}px`;
 	map.appendChild(targetPoint);
-	
+
 	// Créer et afficher la légende de la cible
 	targetText = document.createElement('div');
 	targetText.className = 'target-text';
@@ -631,7 +631,7 @@ function drawMapClic(x,y,targetX,targetY,distance,cityName) {
 	targetText.style.left = `${targetX + 10}px`;
 	targetText.style.top = `${offsetY + targetY - 5}px`;
 	map.appendChild(targetText);
-	
+
 	// Créer et afficher la légende de la distance
 	distanceText = document.createElement('div');
 	distanceText.className = 'distance-text';
@@ -639,7 +639,7 @@ function drawMapClic(x,y,targetX,targetY,distance,cityName) {
 	distanceText.style.left = `${(targetX + x)/2 + 5}px`;
 	distanceText.style.top = `${(offsetY + targetY + y)/2 - 10}px`;
 	map.appendChild(distanceText);
-	
+
 	//Afficher une ligne entre les 2 points
 	// Récupérer le contexte 2D du canvas
 	const canvas = document.getElementById('myCanvas');
@@ -651,7 +651,7 @@ function drawMapClic(x,y,targetX,targetY,distance,cityName) {
 	ctx.lineTo(x, y - offsetY);
 	ctx.strokeStyle = 'black'; // Couleur de la ligne
 	ctx.lineWidth = 1; // Epaisseur de la ligne
-	ctx.stroke();	
+	ctx.stroke();
 }
 
 function drawMapClicWithCanvas(x, y, targetX, targetY, distance, cityName) {
@@ -702,11 +702,11 @@ function generateAndDownloadImage() {
 
 	//On efface la carte
 	drawMapClear();
-	
+
 	//On dessine le fond
 	drawMapBackground();
-	
-	//On affiche tous les points 
+
+	//On affiche tous les points
 	for (const element of clicHistory) {
 		drawMapClicWithCanvas(element[0],element[1],element[2],element[3],element[4],element[5]);
 	}
@@ -725,26 +725,26 @@ function generateAndDownloadImage() {
 
 	// Supprimer l'élément <a> après le téléchargement
 	document.body.removeChild(downloadLink);
-	
+
 }
 
 function generateAndOpenImage() {
     // Récupérer le canvas
     const canvas = document.getElementById('myCanvas');
 	const ctx = canvas.getContext('2d');
-	
+
 	//On efface la carte
 	drawMapClear();
-	
+
 	//On dessine le fond
 	drawMapBackground();
-	
-	//On affiche tous les points 
+
+	//On affiche tous les points
 	for (const element of clicHistory) {
 		drawMapClicWithCanvas(element[0],element[1],element[2],element[3],element[4],element[5]);
 	}
-	
-	
+
+
 	//Ecrire la date et le score total
 	// Définir la police et la taille du texte
 	ctx.font = '20px Arial';
@@ -759,21 +759,21 @@ function generateAndOpenImage() {
 		ctx.fillText(i18n("txtRecapFreePractice",lang,diffText), 10, 30);
 	}
 	ctx.fillText(i18n("txtRecapScore",lang,totalScore,averageScore,getEvaluationText(averageScore)),10,60);
-    
+
 	// Convertir le contenu du canvas en Blob (format PNG)
 	canvas.toBlob(function(blob) {
 		// Créer une URL à partir du Blob
 		const url = URL.createObjectURL(blob);
-		
+
 		// Ouvrir l'image dans un nouvel onglet
 		const imageWindow = window.open(url, '_blank');
-		
+
 		// Si la fenêtre est bloquée par le navigateur, informer l'utilisateur
 		if (!imageWindow || imageWindow.closed || typeof imageWindow.closed == 'undefined') {
 			alert(i18n("popupAlert",lang));
 		}
 	}, 'image/png');
-	
+
 	drawMapClear();
 }
 
@@ -782,14 +782,14 @@ function copyScoreToClipboard() {
 	const tempInput = document.createElement('textarea');
 	tempInput.value = textToCopy;
 	document.body.appendChild(tempInput);
-	
+
 	// Sélectionner le texte
 	tempInput.select();
 	tempInput.setSelectionRange(0, 99999); // Pour les mobiles
-	
+
 	// Copier le texte dans le presse-papiers
 	document.execCommand('copy');
-	
+
 	// Supprimer l'élément temporaire
 	document.body.removeChild(tempInput);
 }
@@ -801,7 +801,7 @@ function computeTop3Flop3()
 	for (const element of clicHistory) {
 		sortedScore.push([element[5],element[4]]);
 	}
-	
+
     // Trier le tableau en fonction de la valeur de distance
     sortedScore.sort((a, b) => a[1] - b[1]);
 
@@ -817,7 +817,7 @@ function generateScale()
 	for (const key in currentMap.scoreThresholds) {
 		if (currentMap.scoreThresholds.hasOwnProperty(key)) {
 			const value = currentMap.scoreThresholds[key];
-			scale += `<font color="`+getEvaluationColor(value)+`">[`+(lastThreshold+1)+`-`+value+`] `+getEvaluationText(value)+`</font> – `;	
+			scale += `<font color="`+getEvaluationColor(value)+`">[`+(lastThreshold+1)+`-`+value+`] `+getEvaluationText(value)+`</font> – `;
 			lastThreshold = value;
 		}
 	}

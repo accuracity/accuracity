@@ -19,7 +19,7 @@ const maps = {
 		scoreThresholds: {
 			impressive: 50,
 			excellent: 100,
-			good: 200, 
+			good: 200,
 			acceptable: 500,
 			disappointing: 1000
 		},
@@ -58,7 +58,7 @@ const maps = {
 		scoreThresholds: {
 			impressive: 100,
 			excellent: 200,
-			good: 500, 
+			good: 500,
 			acceptable: 1000,
 			disappointing: 2000
 		},
@@ -76,7 +76,7 @@ const maps = {
 		projection: 'laea',
 		topLeftGPS: { latitude: 72.9617, longitude: -8.9067 },
 		topRightGPS: { latitude: 72.9617, longitude: 58.9174 },
-		bottomLeftGPS: { latitude: 33.2307, longitude: -8.9067 }, 
+		bottomLeftGPS: { latitude: 33.2307, longitude: -8.9067 },
 		bottomRightGPS: { latitude: 33.2307, longitude: 58.9174 },
 		width: 800,
 		height: 684,
@@ -90,7 +90,7 @@ const maps = {
 		scoreThresholds: {
 			impressive: 100,
 			excellent: 200,
-			good: 500, 
+			good: 500,
 			acceptable: 1000,
 			disappointing: 2000
 		},
