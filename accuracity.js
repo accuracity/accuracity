@@ -36,6 +36,64 @@ let currentMap = maps["fr"];
 // Obtenez l'URL actuelle de la page
 const urlParams = new URLSearchParams(window.location.search);
 
+// a Hash function
+function cyrb128(str) {
+	let h1 = 1779033703, h2 = 3144134277,
+		h3 = 1013904242, h4 = 2773480762;
+	for (let i = 0, k; i < str.length; i++) {
+		k = str.charCodeAt(i);
+		h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
+		h2 = h3 ^ Math.imul(h2 ^ k, 2869860233);
+		h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
+		h4 = h1 ^ Math.imul(h4 ^ k, 2716044179);
+	}
+	h1 = Math.imul(h3 ^ (h1 >>> 18), 597399067);
+	h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
+	h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
+	h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
+	h1 ^= (h2 ^ h3 ^ h4)
+	return h1>>>0;
+}
+
+// hash string to a 32bit integer
+String.prototype.hashCode = function () {
+	return cyrb128(this);
+}
+
+
+class RandGen {
+	// Linear congruential generator
+
+	constructor(seed) {
+		this.current = seed;
+		this.a = 75;
+		this.c = 74;
+		this.m = 2**16 + 1;
+	}
+
+	getRandInt() {
+		this.current = ((this.a, this.current) + this.c) % this.m;
+		return this.current;
+	}
+
+	// return pseudo random integer between 0 and k-1
+	getRandMax(k) {
+		return Math.abs(this.getRandInt()) % k;
+	}
+}
+
+function getPseudoRandomSubarray(arr, size, seed) {
+	let rndg = new RandGen(seed);
+	var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
+	while (i-- > min) {
+		index = Math.floor(rndg.getRandMax(i + 1));
+		temp = shuffled[index];
+		shuffled[index] = shuffled[i];
+		shuffled[i] = temp;
+	}
+	return shuffled.slice(min);
+}
+
 // Vérifiez si le paramètre "lang" est présent dans l'URL
 if (urlParams.has('lang')) {
     // Obtenez la valeur du paramètre "lang"
@@ -356,8 +414,8 @@ function startGame(defi)
 	{
 		isDefi = true;
 		//Création et lancement du défi
-		citiesList = getCityListForToday();
 		numberOfLinesToConsider = 20;
+		citiesList = selectTodaysCities(currentMap.csv, numberOfLinesToConsider)
 	}
 	else
 	{
@@ -549,18 +607,22 @@ function xyToGPS(projection, x, y, width, height, topLeftGPS, topRightGPS, botto
 }
 
 // Fonction pour récupérer la liste du jour
-function getCityListForToday() {
-	// Obtenir la date courante au format "YYYY-MM-DD"
-	const todayDate = getCurrentDate();
-	console.log(todayDate);
-	// Vérifier si la liste des villes pour la date courante existe dans la collection
-	if (currentMap.daily.hasOwnProperty(todayDate)) {
-		// Renvoyer la liste des villes associée à la date courante
-		return currentMap.daily[todayDate];
-	} else {
-		// Si aucune liste n'est trouvée pour la date courante, renvoyer une liste vide ou une liste par défaut
-		return [];
-	}
+function selectTodaysCities(csvContent, numberOfLinesToConsider) {
+	const lines = csvContent.split('\n');
+
+	// Créer une liste des villes
+	const cities = lines.map(line => {
+		const values = line.split(';');
+		const cityName = values[0];
+		const department = values[2];
+		const type = values[3];
+		const longitude = parseFloat(values[5]);
+		const latitude = parseFloat(values[4]);
+		return { cityName, department, type, longitude, latitude };
+	});
+
+	let seed = getCurrentDate().hashCode();
+	return getPseudoRandomSubarray(cities, numberOfLinesToConsider, seed);
 }
 
 function getCurrentDate() {
