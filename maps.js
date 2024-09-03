@@ -23,7 +23,6 @@ const maps = {
 			acceptable: 500,
 			disappointing: 1000
 		},
-		daily: cityListsByDateFR,
 		credits: {
 			map: `CC-BY-SA – Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)`,
 			dataset: `<a href="https://datastory-datactivist.opendatasoft.com/explore/dataset/dreal/information/" target="_blank">DREAL Poitou-Charentes</a>`
@@ -62,7 +61,6 @@ const maps = {
 			acceptable: 1000,
 			disappointing: 2000
 		},
-		daily: cityListsByDateUS,
 		credits: {
 			map: `<a href="https://themapsmith.github.io/site/bootstrap/" target="_blank">Mapsmith</a>)`,
 			dataset: `<a href="https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population" target="_blank">Wikipedia</a>`
@@ -94,7 +92,6 @@ const maps = {
 			acceptable: 1000,
 			disappointing: 2000
 		},
-		daily: cityListsByDateEU,
 		credits: {
 			map: `CC-BY-SA – Alexrk2 (Wikimedia Commons user: <a href="https://commons.m.wikimedia.org/wiki/User:Alexrk2" target="_blank">Alexrk2</a>)`,
 			dataset: `<a href="https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/table/?disjunctive.cou_name_en&sort=population&refine.timezone=Europe" target="_blank">GeoNames</a>`
