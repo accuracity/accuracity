@@ -19,7 +19,7 @@ let lastScore = 0; //Score du dernier clic
 let totalScore = 0; //Score total
 let nbScore = 0; // Nombre de parties
 let averageScore = 0; // Score moyen
-let numberOfLinesToConsider = 22; // Le nombre de lignes à considérer (=difficulté) 22=préféectures de région, 96=préfectures, 326=sous-préfectures, 20=défi du jour
+let numberOfLinesToConsider = 22; // Le nombre de lignes à considérer (=difficulté) 22=préféectures de région, 96=préfectures, 320=sous-préfectures, 20=défi du jour
 let isDefi = false;
 let defiDate = "";
 let diffText = ""
@@ -368,7 +368,7 @@ function startGame(defi)
 		//Création de la liste mélangée
 		citiesList = selectRandomCities(currentMap.csv, numberOfLinesToConsider);
 		//Enregistrement de la difficulté
-			//22=préféectures de région, 96=préfectures, 326=sous-préfectures
+			//22=préféectures de région, 96=préfectures, 320=sous-préfectures
 		if (numberOfLinesToConsider == currentMap.categories.easy.totalCount) diffText = i18n("txtEasy2", lang, currentMap.categories.easy.difficulty);
 		else if (numberOfLinesToConsider == currentMap.categories.medium.totalCount) diffText = i18n("txtMedium2", lang, currentMap.categories.medium.difficulty);
 		else if (numberOfLinesToConsider == currentMap.categories.hard.totalCount) diffText = i18n("txtHard2", lang, currentMap.categories.hard.difficulty);
