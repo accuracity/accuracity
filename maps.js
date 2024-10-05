@@ -84,7 +84,7 @@ const maps = {
 			veryeasy: { name: "EU Capital", difficulty: "", coeff: 4, count: 1, totalCount: 1},
 			easy: {name: "Capital", difficulty: "Capitals (45)", coeff: 3, count: 44, totalCount: 45},
 			medium: {name: "Largest cities", difficulty: "Largest cities (87)", coeff: 2, count: 42, totalCount: 87},
-			hard: {name: "Other cities", difficulty: "Top 256 largest cities", coeff: 1, count: 169, totalCount: 256}
+			hard: {name: "Other cities", difficulty: "Top 233 largest cities", coeff: 1, count: 146, totalCount: 233}
 		},
 		csv: csvEU,
 		scoreThresholds: {
