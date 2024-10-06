@@ -98,8 +98,7 @@ Seville;Spain;Spain;hard;37.38283;-5.97317
 Glasgow;United Kingdom;United Kingdom;hard;55.86515;-4.25763
 Düsseldorf;Germany;Germany;hard;51.22172;6.77616
 Kryvyy Rih;Ukraine;Ukraine;hard;47.90572;33.39404
-Großzschocher;Germany;Germany;hard;51.30147;12.32322
-Kleinzschocher;Germany;Germany;hard;51.31568;12.31979
+Leipzig;Germany;Germany;hard;51.33962;12.37129
 Essen;Germany;Germany;hard;51.45657;7.01228
 Gothenburg;Sweden;Sweden;hard;57.70716;11.96679
 Sheffield;United Kingdom;United Kingdom;hard;53.38297;-1.4659
@@ -127,7 +126,6 @@ Bilbao;Spain;Spain;hard;43.26271;-2.92528
 Vitebsk;Belarus;Belarus;hard;55.1904;30.2049
 Zürich;Switzerland;Switzerland;hard;47.36667;8.55
 Alicante;Spain;Spain;hard;38.34517;-0.48149
-Marne La Vallée;France;France;hard;48.83584;2.64241
 Constanta;Romania;Romania;hard;44.18073;28.63432
 Thessaloniki;Greece;Greece;hard;40.64361;22.93086
 Katowice;Poland;Poland;hard;50.25841;19.02754
@@ -140,7 +138,6 @@ Galati;Romania;Romania;hard;45.43687;28.05028
 Bergen;Norway;Norway;hard;60.39299;5.32415
 Aarhus;Denmark;Denmark;hard;56.15674;10.21076
 Ostrava;Czech Republic;Czech Republic;hard;49.83465;18.28204
-South Dublin;Ireland;Ireland;hard;53.29026;-6.34151
 Strasbourg;France;France;hard;48.58392;7.74553
 Gent;Belgium;Belgium;hard;51.05;3.71667
 Bordeaux;France;France;hard;44.84044;-0.5805
@@ -160,7 +157,6 @@ Oulu;Finland;Finland;hard;65.01236;25.46816
 Eindhoven;Netherlands;Netherlands;hard;51.44083;5.47778
 Linz;Austria;Austria;hard;48.30639;14.28611
 Debrecen;Hungary;Hungary;hard;47.53167;21.62444
-Favoriten;Austria;Austria;hard;48.16116;16.38233
 Charleroi;Belgium;Belgium;hard;50.41136;4.44448
 Tilburg;Netherlands;Netherlands;hard;51.55551;5.0913
 Burgas;Bulgaria;Bulgaria;hard;42.50606;27.46781
@@ -168,11 +164,9 @@ Turku;Finland;Finland;hard;60.45148;22.26869
 Liège;Belgium;Belgium;hard;50.63373;5.56749
 Cork;Ireland;Ireland;hard;51.89797;-8.47061
 Vantaa;Finland;Finland;hard;60.29414;25.04099
-Donaustadt;Austria;Austria;hard;48.2333;16.46002
 Genève;Switzerland;Switzerland;hard;46.20222;6.14569
 Odense;Denmark;Denmark;hard;55.39594;10.38831
 Baranovichi;Belarus;Belarus;hard;53.13253;26.00774
-Amadora;Portugal;Portugal;hard;38.75382;-9.23083
 Uppsala;Sweden;Sweden;hard;59.85882;17.63889
 Almere Stad;Netherlands;Netherlands;hard;52.37025;5.21413
 Klaipeda;Lithuania;Lithuania;hard;55.7068;21.13912
@@ -183,15 +177,11 @@ Breda;Netherlands;Netherlands;hard;51.58656;4.77596
 Linköping;Sweden;Sweden;hard;58.41086;15.62157
 Basel;Switzerland;Switzerland;hard;47.55839;7.57327
 Zenica;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;44.20169;17.90397
-Piraeus;Greece;Greece;hard;37.94203;23.64619
-Floridsdorf;Austria;Austria;hard;48.25;16.4
 Szeged;Hungary;Hungary;hard;46.253;20.14824
-Anderlecht;Belgium;Belgium;hard;50.83619;4.31454
 Nijmegen;Netherlands;Netherlands;hard;51.8425;5.85278
 Salzburg;Austria;Austria;hard;47.79941;13.04399
 Tiraspol;Moldova, Republic of;Moldova, Republic of;hard;46.84274;29.62909
 Örebro;Sweden;Sweden;hard;59.27412;15.2066
-Zemun;Serbia;Serbia;hard;44.8458;20.40116
 Miskolc;Hungary;Hungary;hard;48.10306;20.77806
 Split;Croatia;Croatia;hard;43.50891;16.43915
 Kragujevac;Serbia;Serbia;hard;44.01667;20.91667
@@ -204,21 +194,14 @@ Stara Zagora;Bulgaria;Bulgaria;hard;42.43278;25.64194
 Ruse;Bulgaria;Bulgaria;hard;43.84872;25.9534
 Aalborg;Denmark;Denmark;hard;57.048;9.9187
 Tuzla;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;44.53842;18.66709
-Peristéri;Greece;Greece;hard;38.01539;23.69187
-Sollentuna;Sweden;Sweden;hard;59.42804;17.95093
 Lausanne;Switzerland;Switzerland;hard;46.516;6.63282
-Budapest XI. kerület;Hungary;Hungary;hard;47.47603;19.03605
 Irákleion;Greece;Greece;hard;35.32787;25.14341
-Schaerbeek;Belgium;Belgium;hard;50.86935;4.37737
 Innsbruck;Austria;Austria;hard;47.26266;11.39454
 Pinsk;Belarus;Belarus;hard;52.12153;26.06726
 Umeå;Sweden;Sweden;hard;63.82842;20.25972
-Zugló;Hungary;Hungary;hard;47.51758;19.10549
 Györ;Hungary;Hungary;hard;47.68333;17.63512
 Västerås;Sweden;Sweden;hard;59.61617;16.55276
-Södermalm;Sweden;Sweden;hard;59.31278;18.07577
 Balti;Moldova, Republic of;Moldova, Republic of;hard;47.76314;27.92932
-Budapest III. kerület;Hungary;Hungary;hard;47.54157;19.04501
 Durrës;Albania;Albania;hard;41.32355;19.45469
 Kuopio;Finland;Finland;hard;62.89238;27.67703
 Braga;Portugal;Portugal;hard;41.55032;-8.42005
@@ -233,26 +216,20 @@ Bender;Moldova, Republic of;Moldova, Republic of;hard;46.83156;29.47769
 Rijeka;Croatia;Croatia;hard;45.32673;14.44241
 Mitrovicë;Kosovo;Kosovo;hard;42.88333;20.86667
 Coimbra;Portugal;Portugal;hard;40.20564;-8.41955
-Ottakring;Austria;Austria;hard;48.21667;16.3
 Mostar;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;43.34333;17.80806
-Queluz;Portugal;Portugal;hard;38.75657;-9.25451
 Drammen;Norway;Norway;hard;59.74389;10.20449
 Liberec;Czech Republic;Czech Republic;hard;50.76711;15.05619
-Simmering;Austria;Austria;hard;48.18333;16.43333
 Leuven;Belgium;Belgium;hard;50.87959;4.70093
 Pleven;Bulgaria;Bulgaria;hard;43.41667;24.61667
 Elbasan;Albania;Albania;hard;41.1125;20.08222
-Kallithéa;Greece;Greece;hard;37.95;23.7
 Subotica;Serbia;Serbia;hard;46.1;19.66667
 Olomouc;Czech Republic;Czech Republic;hard;49.59552;17.25175
 Šiauliai;Lithuania;Lithuania;hard;55.93333;23.31667
 Acharnés;Greece;Greece;hard;38.08333;23.73333
 Maribor;Slovenia;Slovenia;hard;46.55472;15.64667
-Frederiksberg;Denmark;Denmark;hard;55.67938;12.53463
 Leskovac;Serbia;Serbia;hard;42.99806;21.94611
 Limerick;Ireland;Ireland;hard;52.66472;-8.62306
 Gjakovë;Kosovo;Kosovo;hard;42.38028;20.43083
-Cacém;Portugal;Portugal;hard;38.76698;-9.29793
 Ceské Budejovice;Czech Republic;Czech Republic;hard;48.97447;14.47434
 Kristiansand;Norway;Norway;hard;58.14671;7.9956
 `;
