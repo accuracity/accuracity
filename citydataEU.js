@@ -1,5 +1,5 @@
-	//Données de base
-	const csvEU = `Brussels;Belgium;Belgium;veryeasy;50.85045;4.34878
+//Données de base
+const csvEU = `Brussels;Belgium;Belgium;veryeasy;50.85045;4.34878
 Andorra la Vella;Andorra;Andorra;easy;42.50779;1.52109
 Reykjavik;Iceland;Iceland;easy;64.13548;-21.89541
 Vaduz;Liechtenstein;Liechtenstein;easy;47.14151;9.52154
@@ -231,5 +231,4 @@ Leskovac;Serbia;Serbia;hard;42.99806;21.94611
 Limerick;Ireland;Ireland;hard;52.66472;-8.62306
 Gjakovë;Kosovo;Kosovo;hard;42.38028;20.43083
 Ceské Budejovice;Czech Republic;Czech Republic;hard;48.97447;14.47434
-Kristiansand;Norway;Norway;hard;58.14671;7.9956
-`;
+Kristiansand;Norway;Norway;hard;58.14671;7.9956`;
