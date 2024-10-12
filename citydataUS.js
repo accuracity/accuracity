@@ -1,5 +1,5 @@
-	//Données de base
-	const csvUS = `Washington;DC;DC;veryeasy;38.90;-77.02
+//Données de base
+const csvUS = `Washington;DC;DC;veryeasy;38.90;-77.02
 Austin;TX;TX;easy;30.30;-97.75
 Sacramento;CA;CA;easy;38.57;-121.47
 Raleigh;NC;NC;easy;35.83;-78.64
@@ -329,5 +329,4 @@ Lynn;MA;MA;hard;42.47;-70.96
 Hesperia;CA;CA;hard;34.40;-117.32
 New Bedford;MA;MA;hard;41.66;-70.94
 Davenport;IA;IA;hard;41.56;-90.60
-Daly City;CA;CA;hard;37.69;-122.47
-`;
+Daly City;CA;CA;hard;37.69;-122.47`;
