@@ -439,7 +439,7 @@ function selectRandomCities(csvContent, numberOfLinesToConsider) {
 }
 
 function getEvaluation(avgScore) {
-	return `<font color="` + getEvaluationColor(avgScore) + `">` + getEvaluationText(avgScore) + `</font>`;
+	return `<span style="color:` + getEvaluationColor(avgScore) + `">` + getEvaluationText(avgScore) + `</span>`
 }
 
 function getEvaluationText(avgScore) {
@@ -772,10 +772,10 @@ function generateScale() {
 	for (const key in currentMap.scoreThresholds) {
 		if (currentMap.scoreThresholds.hasOwnProperty(key)) {
 			const value = currentMap.scoreThresholds[key];
-			scale += `<font color="` + getEvaluationColor(value) + `">[` + (lastThreshold + 1) + `-` + value + `] ` + getEvaluationText(value) + `</font> – `;
+			scale += `<span style="color:` + getEvaluationColor(value) + `">[` + (lastThreshold + 1) + `-` + value + `] ` + getEvaluationText(value) + `</span> – `;
 			lastThreshold = value;
 		}
 	}
-	scale += `<font color="` + getEvaluationColor(lastThreshold + 1) + `">[` + (lastThreshold + 1) + `+] ` + getEvaluationText(lastThreshold + 1) + `</font>`;
+	scale += `<span style="color:` + getEvaluationColor(lastThreshold + 1) + `">[` + (lastThreshold + 1) + `+] ` + getEvaluationText(lastThreshold + 1) + `</span>`;
 	return scale;
 }
