@@ -1,9 +1,9 @@
 // Tableau de traductions
 const translations = {
-    en: {
+	en: {
 		txtChallengeTitle: "Challenge of the day",
-        txtChallenge: "The same cities for all: compare yourself to your nearest and dearest!",
-        defi: "Challenge of the day (20 cities)",
+		txtChallenge: "The same cities for all: compare yourself to your nearest and dearest!",
+		defi: "Challenge of the day (20 cities)",
 		txtFreePracticeTitle: "Free practice",
 		txtEasy: "Easy: Préfectures de région only (22 cities)",
 		txtMedium: "Medium: Préfectures (96 cities)",
@@ -47,11 +47,11 @@ const translations = {
 		txtTitle: "AccuraCity – Locate cities on a map",
 		change: "Change map / language",
 		txtDifficulty: "Difficulty:"
-    },
-    fr: {
+	},
+	fr: {
 		txtChallengeTitle: "Défi du jour",
-        txtChallenge: "Les mêmes villes pour tous : comparez-vous à vos proches !",
-        defi: "Défi du jour (20 villes)",
+		txtChallenge: "Les mêmes villes pour tous : comparez-vous à vos proches !",
+		defi: "Défi du jour (20 villes)",
 		txtFreePracticeTitle: "Pratique libre",
 		txtEasy: "Facile : Préfectures de région uniquement (22 villes)",
 		txtMedium: "Moyen : Préfectures (96 villes)",
@@ -95,36 +95,36 @@ const translations = {
 		txtTitle: "AccuraCity – Localisez les villes sur une carte",
 		change: "Changer de carte / langue",
 		txtDifficulty: "Difficulté :"
-    }
+	}
 };
 
 // Fonction pour récupérer une traduction
 function translate(key, language) {
-    // Vérifie si la langue est prise en charge
-    if (!translations[language]) {
-        console.error(`La langue "${language}" n'est pas prise en charge.`);
-        return "";
-    }
+	// Vérifie si la langue est prise en charge
+	if (!translations[language]) {
+		console.error(`La langue "${language}" n'est pas prise en charge.`);
+		return "";
+	}
 
-    // Vérifie si la clé de traduction existe dans la langue spécifiée
-    if (!translations[language][key]) {
-        console.error(`La clé "${key}" n'existe pas pour la langue "${language}".`);
-        return "";
-    }
+	// Vérifie si la clé de traduction existe dans la langue spécifiée
+	if (!translations[language][key]) {
+		console.error(`La clé "${key}" n'existe pas pour la langue "${language}".`);
+		return "";
+	}
 
-    // Retourne la traduction correspondante
-    return translations[language][key];
+	// Retourne la traduction correspondante
+	return translations[language][key];
 }
 
 function i18n(key, language, ...values) {
-	return dynamicReplace(translate(key,language),...values);
+	return dynamicReplace(translate(key, language), ...values);
 }
 
 function dynamicReplace(sentence, ...args) {
-  return sentence.replace(/%(\d+)/g, (match, index) => {
-    const argIndex = parseInt(index, 10) - 1;
-    return args[argIndex] !== undefined ? args[argIndex] : match;
-  });
+	return sentence.replace(/%(\d+)/g, (match, index) => {
+		const argIndex = parseInt(index, 10) - 1;
+		return args[argIndex] !== undefined ? args[argIndex] : match;
+	});
 }
 
 function applyI18nToHtml(language, ...ids) {
