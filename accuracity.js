@@ -15,14 +15,14 @@ let randomCity = null;
 let citiesList = null;
 let gameOngoing = false;
 let citiesIt = 0;
-let lastScore = 0; //Score du dernier clic
-let totalScore = 0; //Score total
+let lastScore = 0; // Score du dernier clic
+let totalScore = 0; // Score total
 let nbScore = 0; // Nombre de parties
 let averageScore = 0; // Score moyen
 let numberOfLinesToConsider = 22; // Le nombre de lignes à considérer (=difficulté) 22=préféectures de région, 96=préfectures, 320=sous-préfectures, 20=défi du jour
 let isDefi = false;
 let defiDate = "";
-let diffText = ""
+let diffText = "";
 
 let scoreArray = [];
 let clicHistory = [];
@@ -131,20 +131,16 @@ const width = currentMap.width;
 const height = currentMap.height;
 const offsetY = 105;
 
-// IMage de fond
+// Image de fond
 const img = new Image();
 img.src = currentMap.img;
-
-img.onload = function () {
-	//drawMapBackground();
-}
 
 document.addEventListener('DOMContentLoaded', function () {
 	// Code JavaScript à exécuter une fois que la page est chargée
 	applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change", "txtDifficulty");
 
 	document.getElementById("map-image").src = currentMap.img;
-	document.getElementById("map").style.height = currentMap.height + "px";//not sufficient, to be fixed
+	document.getElementById("map").style.height = currentMap.height + "px"; // not sufficient, to be fixed
 	document.getElementById("map").style.width = currentMap.width + "px";
 
 	if (lang == "fr") document.getElementById("change").style.left = "654px";
@@ -152,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	const styleSheets = document.styleSheets;
 
-	//Pour chaque feuille de style
+	// Pour chaque feuille de style
 	for (let i = 0; i < styleSheets.length; i++) {
 		const styleSheet = styleSheets[i];
 
@@ -207,29 +203,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	document.getElementById("txtCreditsMap").innerHTML = i18n("txtCreditsMap", lang, currentMap.credits.map);
 	document.getElementById("txtCreditsDataset").innerHTML = i18n("txtCreditsDataset", lang, currentMap.credits.dataset);
-
-
-	//topLeft
-	//console.log(xyToGPS(0, 0-145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
-	//bottomLeft
-	//console.log(xyToGPS(0, 436+145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
-	//topRight
-	//console.log(xyToGPS(800, 0-145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
-	//bottomRight
-	//console.log(xyToGPS(800, 436+145, 800, 436, currentMap.topLeftGPS, currentMap.topRightGPS, currentMap.bottomLeftGPS, currentMap.bottomRightGPS));
-
 });
 
 defi.onclick = function () {
-	startGame(true); //Défi
+	startGame(true); // Défi
 };
 
 startGameButton.onclick = function () {
-	startGame(false); //Pratique libre
+	startGame(false); // Pratique libre
 };
 
 scoreReset.onclick = function () {
-	//Terminé
+	// Terminé
 	stopGame();
 };
 
@@ -244,24 +229,17 @@ map.addEventListener('click', function (event) {
 		const gpsCoordinates = xyToGPS(currentMap.projection, x, y - offsetY, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 		console.log(`Clic - Long ` + gpsCoordinates.longitude + ` / Lat ` + gpsCoordinates.latitude);
 
-
-		//Positionnement de la cible
+		// Positionnement de la cible
 		console.log(`Target - Long ` + randomCity.longitude + ` / Lat ` + randomCity.latitude);
 		const imageCoordinates = gpsToXY(currentMap.projection, randomCity.latitude, randomCity.longitude, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
-		const targetX = imageCoordinates.x;
-		const targetY = offsetY + imageCoordinates.y;
 		console.log(`Target - X ` + imageCoordinates.x + ` / Y ` + imageCoordinates.y);
 
-		//Calcul et affichage de la distance
+		// Calcul et affichage de la distance
 		const distance = Math.trunc(calculateDistance(gpsCoordinates.latitude, gpsCoordinates.longitude, randomCity.latitude, randomCity.longitude));
 		clickCoordinates.innerHTML = i18n("distanceFrom", lang, randomCity.cityName, randomCity.department, currentMap.categories[randomCity.type]?.name, distance);
 
-		//Calcul du score
-		coeff = coeff = currentMap.categories[randomCity.type]?.coeff;
-		//if(randomCity.type == "veryeasy") coeff = currentMap.categories.veryeasy.coeff;
-		//if(randomCity.type == "easy") coeff = currentMap.categories.easy.coeff;
-		//if(randomCity.type == "medium") coeff = currentMap.categories.medium.coeff;
-		//if(randomCity.type == "hard") coeff = currentMap.categories.hard.coeff;
+		// Calcul du score
+		coeff = currentMap.categories[randomCity.type]?.coeff;
 		lastScore = distance * coeff;
 		totalScore = totalScore + lastScore;
 		nbScore = nbScore + 1;
@@ -271,30 +249,24 @@ map.addEventListener('click', function (event) {
 		averageScore = Math.trunc(totalScore / nbScore);
 		scoreAverage.innerHTML = averageScore + ` – ` + getEvaluation(averageScore);
 
-		//Stocker le score
+		// Stocker le score
 		scoreArray.push(lastScore);
 
-		//Stocker l'essai
+		// Stocker l'essai
 		clicHistory.push([x, y, imageCoordinates.x, imageCoordinates.y, distance, randomCity.cityName]);
 
-		//Effacer la carte avant d'afficher le prochain point
+		// Effacer la carte avant d'afficher le prochain point
 		drawMapClear();
 
-		//Afficher le clic, la cible & co
+		// Afficher le clic, la cible & co
 		drawMapClic(x, y, imageCoordinates.x, imageCoordinates.y, distance, randomCity.cityName);
-		//drawMapClicWithCanvas(x,y,imageCoordinates.x,imageCoordinates.y,distance,randomCity.cityName);
 
-		//Mise à jour de la difficulté
-		//var selectElement = document.getElementById("diffSelect");
-		//numberOfLinesToConsider = selectElement.value;
-
-		//On passe à la prochaine cible
+		// On passe à la prochaine cible
 		citiesIt = citiesIt + 1;
 		if (citiesIt >= numberOfLinesToConsider) {
-			//Terminé
-			//On bloque l'exécution
+			// Terminé, On bloque l'exécution
 			gameOngoing = false;
-			//On affiche le score final & co au bout de 1 seconde pour laisser le temps de voir le dernier clic
+			// On affiche le score final & co au bout de 1 seconde pour laisser le temps de voir le dernier clic
 			setTimeout(function () {
 				stopGame();
 			}, 800); // 800 millisecondes
@@ -355,7 +327,7 @@ function selectRandomCity(csvContent, numberOfLinesToConsider) {
 function stopGame() {
 	let textTop3 = "";
 	let textFlop3 = "";
-	//On calcule le top3 et le flop3
+	// On calcule le top3 et le flop3
 	if (clicHistory.length > 3) {
 		computeTop3Flop3();
 		console.log(top3);
@@ -366,21 +338,17 @@ function stopGame() {
 		console.log(textFlop3);
 	}
 
-	targetInfo.style.display = "none"; //On cache le champ qui indique la cible
-	//On stocke le recap dans la chaine pour la copie éventuelle
+	targetInfo.style.display = "none"; // On cache le champ qui indique la cible
+	// On stocke le recap dans la chaine pour la copie éventuelle
 	textToCopy = i18n("txtScoreCopy", lang, totalScore, averageScore, currentMap.name, textTop3, textFlop3);
 	document.getElementById("finish").innerHTML = i18n("scoreSummary", lang, totalScore, averageScore, getEvaluation(averageScore)) + `<br/>` + (textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">` + textTop3 + `<br/>` + textFlop3 + `<br/></div>` : ``) + `<button onclick="generateAndOpenImage()">` + i18n("txtButtonShowRecap", lang) + `</button> <button id="copyButton" onclick="copyScoreToClipboard()">` + i18n("txtButtonCopyMyScore", lang) + `</button>`;
-	/*if(numberOfLinesToConsider == 20) //Mode défi uniquement
-	{
-		document.getElementById("finish").innerHTML += generateScoreTable();
-	}*/
-	document.getElementById("finish").style.display = "block"; //On affiche le bloc de fin
-	document.getElementById("settings").style.display = "block"; //On affiche le bloc de paramétrage
+	document.getElementById("finish").style.display = "block"; // On affiche le bloc de fin
+	document.getElementById("settings").style.display = "block"; // On affiche le bloc de paramétrage
 	gameOngoing = false;
 }
 
 function startGame(defi) {
-	//Reset score
+	// Reset score
 	lastScore = 0;
 	totalScore = 0;
 	nbScore = 0;
@@ -389,44 +357,44 @@ function startGame(defi) {
 	scoreTotal.innerHTML = `0`;
 	scoreNb.innerHTML = `0`;
 	scoreAverage.innerHTML = `-`;
-	scoreArray = []; //On vide le tableau des scores
-	clicHistory = []; //On vide l'historique des clics
+	scoreArray = []; // On vide le tableau des scores
+	clicHistory = []; // On vide l'historique des clics
 	top3 = []; //On vide le top 3
 	flop3 = []; //On vide le flop 3
 
-	//Cacher le bloc de fin
+	// Cacher le bloc de fin
 	document.getElementById("finish").style.display = "none";
 
-	//Effacer les restes de la précédente parties
+	// Effacer les restes de la précédente parties
 	drawMapClear();
 
 	if (defi) {
 		isDefi = true;
-		//Création et lancement du défi
+		// Création et lancement du défi
 		numberOfLinesToConsider = 20;
 		citiesList = selectTodaysCities(currentMap.csv, numberOfLinesToConsider)
 	}
 	else {
 		isDefi = false;
-		//Prise en compte du paramétrage
+		// Prise en compte du paramétrage
 		var selectElement = document.getElementById("diffSelect");
 		numberOfLinesToConsider = selectElement.value;
-		//Création de la liste mélangée
+		// Création de la liste mélangée
 		citiesList = selectRandomCities(currentMap.csv, numberOfLinesToConsider);
-		//Enregistrement de la difficulté
-		//22=préféectures de région, 96=préfectures, 320=sous-préfectures
+		// Enregistrement de la difficulté
+		// 22=préféectures de région, 96=préfectures, 320=sous-préfectures
 		if (numberOfLinesToConsider == currentMap.categories.easy.totalCount) diffText = i18n("txtEasy2", lang, currentMap.categories.easy.difficulty);
 		else if (numberOfLinesToConsider == currentMap.categories.medium.totalCount) diffText = i18n("txtMedium2", lang, currentMap.categories.medium.difficulty);
 		else if (numberOfLinesToConsider == currentMap.categories.hard.totalCount) diffText = i18n("txtHard2", lang, currentMap.categories.hard.difficulty);
-		//Troncage de la liste
-		//  Récupérer tous les éléments radio avec le nom "nbCity"
+		// Troncage de la liste
+		// Récupérer tous les éléments radio avec le nom "nbCity"
 		const radios = document.getElementsByName('nbCity');
-		//  Parcourir tous les éléments radio
-		for (let i = 0; i < radios.length; i++) {
+		// Parcourir tous les éléments radio
+		for (let radio of radios) {
 			// Vérifier si l'élément radio est cochée
-			if (radios[i].checked) {
+			if (radio.checked) {
 				// Récupérer la valeur de l'élément radio cochée
-				const valeurCochee = radios[i].value;
+				const valeurCochee = radio.value;
 				if (valeurCochee < numberOfLinesToConsider) numberOfLinesToConsider = valeurCochee;
 				break; // Sortir de la boucle une fois que la valeur a été trouvée
 			}
@@ -436,11 +404,11 @@ function startGame(defi) {
 	citiesIt = 0;
 	randomCity = citiesList[0];
 	console.log(randomCity);
-	targetInfo.style.display = "block"; //On affiche le champ qui indique la cible
+	targetInfo.style.display = "block"; // On affiche le champ qui indique la cible
 	var cityName = randomCity.cityName;
 	if (currentMap.giveDetails) cityName += ` (` + randomCity.department + `)`;
 	targetInfo.innerHTML = targetInfo.innerHTML = i18n("newTarget", lang, cityName);
-	document.getElementById("settings").style.display = "none"; //On cache le paramétrage
+	document.getElementById("settings").style.display = "none"; // On cache le paramétrage
 
 	gameOngoing = true;
 }
@@ -500,15 +468,6 @@ function getEvaluationColor(avgScore) {
 	else return `crimson`;
 }
 
-function generateScoreTable() {
-	let table = `<table style="padding:1; border-spacing:0;font-size:8pt;"><tr>`;
-	for (let i = 0; i < scoreArray.length; i++) {
-		table += `<td style="border:1px solid; padding:1; border-spacing:0; background-color:` + getEvaluationColor(scoreArray[i]) + `">` + scoreArray[i] + `</td>`;
-	}
-	table += `</tr></table>`;
-	return table;
-}
-
 function latToMercator(latitude) {
 	return Math.log(Math.tan((90 + latitude) * Math.PI / 360)) / (Math.PI / 180);
 }
@@ -534,11 +493,11 @@ function gpsToXY(projection, latitude, longitude, width, height, topLeftGPS, top
 		return { x, y };
 	}
 	else if (projection == "laea") {
-		//Projection parameters
+		// Projection parameters
 		const sourceProjection = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs +type=crs';
 		const destProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'; // Projection WGS84
 
-		//Min & Max of the map
+		// Min & Max of the map
 		const x_min = 2555000;
 		const x_max = 7405000;
 		const y_min = 1350000;
@@ -546,7 +505,7 @@ function gpsToXY(projection, latitude, longitude, width, height, topLeftGPS, top
 		const ratio_h = (y_max - y_min) / height;
 		const ratio_w = (x_max - x_min) / width;
 
-		//Compute transformation
+		// Compute transformation
 		var transform = proj4(sourceProjection, destProjection);
 		var result = transform.inverse([longitude, latitude]);
 
@@ -565,14 +524,14 @@ function xyToGPS(projection, x, y, width, height, topLeftGPS, topRightGPS, botto
 		const mercN = latToMercator(topLeftGPS.latitude) - yRatio * (latToMercator(topLeftGPS.latitude) - latToMercator(bottomLeftGPS.latitude));
 		const latitude = mercatorToLat(mercN);
 
-		return { latitude, longitude };
+		return { latitude: latitude, longitude: longitude };
 	}
 	else if (projection == "laea") {
-		//Projection parameters
+		// Projection parameters
 		const sourceProjection = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs +type=crs';
 		const destProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'; // Projection WGS84
 
-		//Min & Max of the map
+		// Min & Max of the map
 		const x_min = 2555000;
 		const x_max = 7405000;
 		const y_min = 1350000;
@@ -580,8 +539,7 @@ function xyToGPS(projection, x, y, width, height, topLeftGPS, topRightGPS, botto
 		const ratio_h = (y_max - y_min) / height;
 		const ratio_w = (x_max - x_min) / width;
 
-
-		//Compute transformation
+		// Compute transformation
 		var transform = proj4(sourceProjection, destProjection);
 		var result = transform.forward([(x_min + ratio_w * x), (y_max - ratio_h * y)]);
 
@@ -612,7 +570,7 @@ function getCurrentDate() {
 	// Chaine contenant la date à Paris
 	const dateString = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
 
-	//Stocker la date
+	// Stocker la date
 	defiDate = dateString.substring(0, 10);
 
 	// Extraire les composants de la date
@@ -685,7 +643,7 @@ function drawMapClic(x, y, targetX, targetY, distance, cityName) {
 	distanceText.style.top = `${(offsetY + targetY + y) / 2 - 10}px`;
 	map.appendChild(distanceText);
 
-	//Afficher une ligne entre les 2 points
+	// Afficher une ligne entre les 2 points
 	// Récupérer le contexte 2D du canvas
 	const canvas = document.getElementById('myCanvas');
 	const ctx = canvas.getContext('2d');
@@ -740,57 +698,23 @@ function drawMapBackground() {
 	ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Dessinez l'image sur tout le canvas
 }
 
-function generateAndDownloadImage() {
-	// Récupérer le canvas et son contexte
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
-	//On efface la carte
-	drawMapClear();
-
-	//On dessine le fond
-	drawMapBackground();
-
-	//On affiche tous les points
-	for (const element of clicHistory) {
-		drawMapClicWithCanvas(element[0], element[1], element[2], element[3], element[4], element[5]);
-	}
-
-	// Convertir le contenu du canvas en URL de données au format PNG
-	const dataURL = canvas.toDataURL('image/png');
-
-	// Créer un élément <a> pour télécharger l'image
-	const downloadLink = document.createElement('a');
-	downloadLink.href = dataURL;
-	downloadLink.download = 'image.png';
-	document.body.appendChild(downloadLink);
-
-	// Cliquer sur le lien de téléchargement
-	downloadLink.click();
-
-	// Supprimer l'élément <a> après le téléchargement
-	document.body.removeChild(downloadLink);
-
-}
-
 function generateAndOpenImage() {
 	// Récupérer le canvas
 	const canvas = document.getElementById('myCanvas');
 	const ctx = canvas.getContext('2d');
 
-	//On efface la carte
+	// On efface la carte
 	drawMapClear();
 
-	//On dessine le fond
+	// On dessine le fond
 	drawMapBackground();
 
-	//On affiche tous les points
+	// On affiche tous les points
 	for (const element of clicHistory) {
 		drawMapClicWithCanvas(element[0], element[1], element[2], element[3], element[4], element[5]);
 	}
 
-
-	//Ecrire la date et le score total
+	// Ecrire la date et le score total
 	// Définir la police et la taille du texte
 	ctx.font = '20px Arial';
 	ctx.fillStyle = 'black';
@@ -838,11 +762,10 @@ function copyScoreToClipboard() {
 }
 
 function computeTop3Flop3() {
-	//Créer un tableau à trier
-	const sortedScore = [];
-	for (const element of clicHistory) {
-		sortedScore.push([element[5], element[4]]);
-	}
+	// Créer un tableau à trier
+	const sortedScore = clicHistory.map(
+		element => [element[5], element[4]]
+	);
 
 	// Trier le tableau en fonction de la valeur de distance
 	sortedScore.sort((a, b) => a[1] - b[1]);

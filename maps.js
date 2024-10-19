@@ -37,14 +37,6 @@ const maps = {
 		bottomLeftGPS: { latitude: 14.24809715729971, longitude: -125.13 },
 		topRightGPS: { latitude: 56, longitude: -66.63 },
 		bottomRightGPS: { latitude: 14.24809715729971, longitude: -66.63 },
-		//topLeftGPS: {latitude: 55.94483880124804, longitude: -125},
-		//bottomLeftGPS: {latitude: 14.24809715729971, longitude: -125},
-		//topRightGPS: {latitude: 55.94483880124804, longitude: -66.5},
-		//bottomRightGPS: {latitude: 14.24809715729971, longitude: -66.5},
-		//topLeftGPS: { latitude: 49.5, longitude: -125 },
-		//topRightGPS: { latitude: 49.5, longitude: -66.5 },
-		//bottomLeftGPS: { latitude: 24.3, longitude: -125 },
-		//bottomRightGPS: { latitude: 24.3, longitude: -66.5 },
 		width: 800,
 		height: 726,
 		categories: {
@@ -70,7 +62,6 @@ const maps = {
 	eu: {
 		name: "Europe",
 		img: 'Europe_laea_location_map.svg',
-		//img: 'Europe_relief_laea_location_map.jpg',
 		projection: 'laea',
 		topLeftGPS: { latitude: 72.9617, longitude: -8.9067 },
 		topRightGPS: { latitude: 72.9617, longitude: 58.9174 },
