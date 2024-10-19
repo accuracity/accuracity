@@ -27,8 +27,6 @@ let diffText = "";
 let scoreArray = [];
 let clicHistory = [];
 let textToCopy = "";
-let top3 = [];
-let flop3 = [];
 
 let lang = "en";
 let currentMap = maps["fr"];
@@ -329,13 +327,9 @@ function stopGame() {
 	let textFlop3 = "";
 	// On calcule le top3 et le flop3
 	if (clicHistory.length > 3) {
-		computeTop3Flop3();
-		console.log(top3);
-		console.log(flop3);
+		const [top3, flop3] = computeTop3Flop3();
 		textTop3 = `\n` + i18n("txtTop3", lang, top3[0][0], top3[0][1], top3[1][0], top3[1][1], top3[2][0], top3[2][1]);
 		textFlop3 = `\n` + i18n("txtFlop3", lang, flop3[0][0], flop3[0][1], flop3[1][0], flop3[1][1], flop3[2][0], flop3[2][1]);
-		console.log(textTop3);
-		console.log(textFlop3);
 	}
 
 	targetInfo.style.display = "none"; // On cache le champ qui indique la cible
@@ -357,10 +351,8 @@ function startGame(defi) {
 	scoreTotal.innerHTML = `0`;
 	scoreNb.innerHTML = `0`;
 	scoreAverage.innerHTML = `-`;
-	scoreArray = []; // On vide le tableau des scores
-	clicHistory = []; // On vide l'historique des clics
-	top3 = []; //On vide le top 3
-	flop3 = []; //On vide le flop 3
+	scoreArray = []; //On vide le tableau des scores
+	clicHistory = []; //On vide l'historique des clics
 
 	// Cacher le bloc de fin
 	document.getElementById("finish").style.display = "none";
@@ -771,8 +763,7 @@ function computeTop3Flop3() {
 	sortedScore.sort((a, b) => a[1] - b[1]);
 
 	// Extraire les 3 premiers et les 3 derniers éléments
-	top3 = sortedScore.slice(0, 3);
-	flop3 = sortedScore.slice(-3);
+	return [sortedScore.slice(0, 3), sortedScore.slice(-3)];
 }
 
 function generateScale() {
