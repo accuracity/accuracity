@@ -89,6 +89,10 @@ class RandGen {
 		}
 		return shuffled.slice(min);
 	}
+
+	pseudoRandomShuffleArray(arr) {
+		return this.getPseudoRandomSubarray(arr, arr.length);
+	}
 }
 
 // Vérifiez si le paramètre "lang" est présent dans l'URL
@@ -363,7 +367,7 @@ function startGame(defi) {
 		isDefi = true;
 		// Création et lancement du défi
 		numberOfLinesToConsider = 20;
-		citiesList = selectTodaysCities(currentMap.csv, numberOfLinesToConsider)
+		citiesList = selectTodaysCities(currentMap.csv);
 	}
 	else {
 		isDefi = false;
@@ -553,9 +557,23 @@ function selectTodaysCities(csvContent, numberOfLinesToConsider) {
 		return { cityName, department, type, longitude, latitude };
 	});
 
+	// Arrays for each difficulty category
+	const easy_cities = cities.filter((line) => line.type == "easy" || line.type == "veryeasy");
+	const medium_cities = cities.filter((line) => line.type == "medium");
+	const hard_cities = cities.filter((line) => line.type == "hard");
+
 	let seed = getCurrentDate().hashCode();
 	const rndgen = new RandGen(seed);
-	return rndgen.getPseudoRandomSubarray(cities, numberOfLinesToConsider);
+
+	// select 4, 8 and 8 pseudorandom cities respectively amond easy, medium and hard
+	const selectedCities = [
+		...rndgen.getPseudoRandomSubarray(easy_cities, 4),
+		...rndgen.getPseudoRandomSubarray(medium_cities, 8),
+		...rndgen.getPseudoRandomSubarray(hard_cities, 8)
+	];
+
+	// pseudo-random shuffle the array
+	return rndgen.pseudoRandomShuffleArray(selectedCities);
 }
 
 function getCurrentDate() {
