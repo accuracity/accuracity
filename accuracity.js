@@ -78,18 +78,17 @@ class RandGen {
 	getRandMax(k) {
 		return Math.abs(this.getRandInt()) % k;
 	}
-}
 
-function getPseudoRandomSubarray(arr, size, seed) {
-	let rndg = new RandGen(seed);
-	var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
-	while (i-- > min) {
-		index = Math.floor(rndg.getRandMax(i + 1));
-		temp = shuffled[index];
-		shuffled[index] = shuffled[i];
-		shuffled[i] = temp;
+	getPseudoRandomSubarray(arr, size) {
+		var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
+		while (i-- > min) {
+			index = Math.floor(this.getRandMax(i + 1));
+			temp = shuffled[index];
+			shuffled[index] = shuffled[i];
+			shuffled[i] = temp;
+		}
+		return shuffled.slice(min);
 	}
-	return shuffled.slice(min);
 }
 
 // Vérifiez si le paramètre "lang" est présent dans l'URL
@@ -555,7 +554,8 @@ function selectTodaysCities(csvContent, numberOfLinesToConsider) {
 	});
 
 	let seed = getCurrentDate().hashCode();
-	return getPseudoRandomSubarray(cities, numberOfLinesToConsider, seed);
+	const rndgen = new RandGen(seed);
+	return rndgen.getPseudoRandomSubarray(cities, numberOfLinesToConsider);
 }
 
 function getCurrentDate() {
