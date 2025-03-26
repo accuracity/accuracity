@@ -26,30 +26,30 @@
 	<img id="map-image" src="blank.png" alt="Map">
 	<canvas id="myCanvas" width="800" height="800"></canvas>
 </div>
-<a href="index.html"><img id="logoimg" src="logo2_txt.png"/><div id = "change">Change map / language</div></a>
+<a href="index.html"><img id="logoimg" src="logo2_txt.png"><div id = "change">Change map / language</div></a>
 <div id="target-info"></div>
 <div id="click-coordinates"></div>
 <div id="settings">
-<span id="txtChallengeTitle">Défi du jour</span><br/>
-<span style="font-size:12pt;" id="txtChallenge">Les mêmes villes pour tous : comparez-vous à vos proches !</span><br/>
+<span id="txtChallengeTitle">Défi du jour</span><br>
+<span style="font-size:12pt;" id="txtChallenge">Les mêmes villes pour tous : comparez-vous à vos proches !</span><br>
 <button id="defi">Défi du jour (20 villes)</button>
-<br/>
+<br>
 <span style="font-size:12pt;"><em><span id="txtOr">ou</span></em></span>
-<br/>
-<span id="txtFreePracticeTitle">Pratique libre</span><br/>
+<br>
+<span id="txtFreePracticeTitle">Pratique libre</span><br>
 <span style="font-size:12pt;"><span id="txtDifficulty">Difficulté : </span></span>
 <select id="diffSelect">
   <option id="txtEasy" value="22" selected>Facile : Préfectures de région uniquement (22 villes)</option>
   <option id="txtMedium" value="96">Moyen : Préfectures (96 villes)</option>
   <option id="txtHard" value="320">Difficile : Préfectures et sous-préfectures (320 villes)</option>
-</select><br/>
+</select><br>
 <span style="font-size:12pt;"><span id="txtNbCitiesTitle">Nombre de villes :</span>
-<input type="radio" id="nbCity10" name="nbCity" value="10" /><label for="nbCity10">10</label>
-<input type="radio" id="nbCity20" name="nbCity" value="20" /><label for="nbCity20">20</label>
-<input type="radio" id="nbCity50" name="nbCity" value="50" /><label for="nbCity50">50</label>
-<input type="radio" id="nbCityAll" name="nbCity" value="999" checked/><label for="nbCityAll"><span id="txtCitiesAll">Toutes</span></label>
+<input type="radio" id="nbCity10" name="nbCity" value="10"><label for="nbCity10">10</label>
+<input type="radio" id="nbCity20" name="nbCity" value="20"><label for="nbCity20">20</label>
+<input type="radio" id="nbCity50" name="nbCity" value="50"><label for="nbCity50">50</label>
+<input type="radio" id="nbCityAll" name="nbCity" value="999" checked><label for="nbCityAll"><span id="txtCitiesAll">Toutes</span></label>
 	</span>
-<br/>
+<br>
 <button id="startGameButton">Démarrer</button>
 </div>
 <div id="finish">Partie terminée !</div>
@@ -61,20 +61,20 @@
 	<tr><td id="txtAverageScore">Score moyen : </td><td id="average-score">-</td></tr>
 	<tr><td colspan=2><button id="resetScore">Arrêter la partie en cours</button></td></tr>
 	</table>
-	<br/><br/>
+	<br><br>
 	<span style="font-size:10pt;">
 	<span id="txtScoreExplanations">
 	Explications concernant le score :
 	<ul>
 	<li>Plus un score est faible, meilleur il est</li>
-	<li>Le score de chaque essai est égal à :<br/>distance × coeff-difficulté</li>
+	<li>Le score de chaque essai est égal à :<br>distance × coeff-difficulté</li>
 	<li>Le coeff-difficulté dépend du type de ville : 4 pour la Capitale, 3 pour une Préfecture de région, 2 pour une Préfecture, 1 pour une Sous-préfecture</li>
-	<li>Voici l'échelle d'appréciation d'un score : <br/><span style="color:limegreen">[0-50] Impressionnant !</span> – <span style="color:yellowgreen">[51-100] Excellent !</span> – <span style="color:deepskyblue">[101-200] Bien !</span> – <br/><span style="color:orange">[201-500] Acceptable</span> – <span style="color:orangered">[501-1000] Décevant</span> – <span style="color:crimson">[1001+] Nul !</span></li>
+	<li>Voici l'échelle d'appréciation d'un score : <br><span style="color:limegreen">[0-50] Impressionnant !</span> – <span style="color:yellowgreen">[51-100] Excellent !</span> – <span style="color:deepskyblue">[101-200] Bien !</span> – <br><span style="color:orange">[201-500] Acceptable</span> – <span style="color:orangered">[501-1000] Décevant</span> – <span style="color:crimson">[1001+] Nul !</span></li>
 	</ul>
 	</span>
 	</span>
 </div>
-<div id="credits"><span id="txtCreditsGame">Jeu développé par Olivier Genest</span> (<a href="https://github.com/accuracity/accuracity" target="_blank">github</a>) avec la contribution de <a href="https://github.com/etienneparent" target="_blank">Etienne Parent</a><br/><span id="txtCreditsMap">Fond de carte CC-BY-SA – Auteur Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)</span><br/><span id="txtCreditsDataset">Jeu de données <a href="https://datastory-datactivist.opendatasoft.com/explore/dataset/dreal/information/" target="_blank">DREAL Poitou-Charentes</a></span><br/>
+<div id="credits"><span id="txtCreditsGame">Jeu développé par Olivier Genest</span> (<a href="https://github.com/accuracity/accuracity" target="_blank">github</a>) avec la contribution de <a href="https://github.com/etienneparent" target="_blank">Etienne Parent</a><br><span id="txtCreditsMap">Fond de carte CC-BY-SA – Auteur Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)</span><br><span id="txtCreditsDataset">Jeu de données <a href="https://datastory-datactivist.opendatasoft.com/explore/dataset/dreal/information/" target="_blank">DREAL Poitou-Charentes</a></span><br>
 <a href="mentions.html" target="_blank"><span id="txtLegalMentions">Mentions légales</span></a></div>
 </body>
 </html>

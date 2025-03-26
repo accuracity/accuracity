@@ -338,7 +338,7 @@ function stopGame() {
 	targetInfo.style.display = "none"; // On cache le champ qui indique la cible
 	// On stocke le recap dans la chaine pour la copie éventuelle
 	textToCopy = i18n("txtScoreCopy", lang, totalScore, averageScore, currentMap.name, textTop3, textFlop3);
-	document.getElementById("finish").innerHTML = i18n("scoreSummary", lang, totalScore, averageScore, getEvaluation(averageScore)) + `<br/>` + (textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">` + textTop3 + `<br/>` + textFlop3 + `<br/></div>` : ``) + `<button onclick="generateAndOpenImage()">` + i18n("txtButtonShowRecap", lang) + `</button> <button id="copyButton" onclick="copyScoreToClipboard()">` + i18n("txtButtonCopyMyScore", lang) + `</button>`;
+	document.getElementById("finish").innerHTML = i18n("scoreSummary", lang, totalScore, averageScore, getEvaluation(averageScore)) + `<br>` + (textTop3 != "" ? `<div style="font-size: 10pt;padding:10px;">` + textTop3 + `<br>` + textFlop3 + `<br></div>` : ``) + `<button onclick="generateAndOpenImage()">` + i18n("txtButtonShowRecap", lang) + `</button> <button id="copyButton" onclick="copyScoreToClipboard()">` + i18n("txtButtonCopyMyScore", lang) + `</button>`;
 	document.getElementById("finish").style.display = "block"; // On affiche le bloc de fin
 	document.getElementById("settings").style.display = "block"; // On affiche le bloc de paramétrage
 	gameOngoing = false;
