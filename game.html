@@ -26,7 +26,7 @@
 	<img id="map-image" src="blank.png" alt="Map">
 	<canvas id="myCanvas" width="800" height="800"></canvas>
 </div>
-<a href="index.html"><img id="logoimg" src="logo2_txt.png"><div id = "change">Change map / language</div></a>
+<a href="index.html"><img id="logoimg" src="logo2_txt.png" alt="AccuraCity logo"><div id = "change">Change map / language</div></a>
 <div id="target-info"></div>
 <div id="click-coordinates"></div>
 <div id="settings">
@@ -54,16 +54,15 @@
 </div>
 <div id="finish">Partie terminée !</div>
 <div id="score">
-	<table width=400>
-	<tr><td width=150 id="txtLastScore">Dernier score : </td><td id="last-score">-</td></tr>
+	<table style="width:400px">
+	<tr><td style="width:150px" id="txtLastScore">Dernier score : </td><td id="last-score">-</td></tr>
 	<tr><td id="txtNumberOfGames">Nombre de parties : </td><td id="nb-score">0</td></tr>
 	<tr><td id="txtTotalScore">Score total : </td><td id="total-score">0</td></tr>
 	<tr><td id="txtAverageScore">Score moyen : </td><td id="average-score">-</td></tr>
 	<tr><td colspan=2><button id="resetScore">Arrêter la partie en cours</button></td></tr>
 	</table>
 	<br><br>
-	<span style="font-size:10pt;">
-	<span id="txtScoreExplanations">
+	<div style="font-size:10pt;" id="txtScoreExplanations">
 	Explications concernant le score :
 	<ul>
 	<li>Plus un score est faible, meilleur il est</li>
@@ -71,8 +70,7 @@
 	<li>Le coeff-difficulté dépend du type de ville : 4 pour la Capitale, 3 pour une Préfecture de région, 2 pour une Préfecture, 1 pour une Sous-préfecture</li>
 	<li>Voici l'échelle d'appréciation d'un score : <br><span style="color:limegreen">[0-50] Impressionnant !</span> – <span style="color:yellowgreen">[51-100] Excellent !</span> – <span style="color:deepskyblue">[101-200] Bien !</span> – <br><span style="color:orange">[201-500] Acceptable</span> – <span style="color:orangered">[501-1000] Décevant</span> – <span style="color:crimson">[1001+] Nul !</span></li>
 	</ul>
-	</span>
-	</span>
+	</div>
 </div>
 <div id="credits"><span id="txtCreditsGame">Jeu développé par Olivier Genest</span> (<a href="https://github.com/accuracity/accuracity" target="_blank">github</a>) avec la contribution de <a href="https://github.com/etienneparent" target="_blank">Etienne Parent</a><br><span id="txtCreditsMap">Fond de carte CC-BY-SA – Auteur Eric Gaba (Wikimedia Commons user: <a href="https://commons.wikimedia.org/wiki/User:Sting" target="_blank">Sting</a>)</span><br><span id="txtCreditsDataset">Jeu de données <a href="https://datastory-datactivist.opendatasoft.com/explore/dataset/dreal/information/" target="_blank">DREAL Poitou-Charentes</a></span><br>
 <a href="mentions.html" target="_blank"><span id="txtLegalMentions">Mentions légales</span></a></div>
