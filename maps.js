@@ -10,10 +10,10 @@ const maps = {
 		width: 800,
 		height: 800,
 		categories: {
-			veryeasy: { name: "Capitale", difficulty: "", coeff: 4, count: 1, totalCount: 1},
-			easy: {name: "Préfecture de région", difficulty: "Préfectures de région (22)", coeff: 3, count: 21, totalCount: 22},
-			medium: {name: "Préfecture", difficulty: "Préfectures (96)", coeff: 2, count: 74, totalCount: 96},
-			hard: {name: "Sous-préfecture", difficulty: "Préfectures & sous-préfectures (320)", coeff: 1, count: 224, totalCount: 320}
+			veryeasy: { name: "Capitale", difficulty: "", coeff: 4, count: 1, totalCount: 1 },
+			easy: { name: "Préfecture de région", difficulty: "Préfectures de région (22)", coeff: 3, count: 21, totalCount: 22 },
+			medium: { name: "Préfecture", difficulty: "Préfectures (96)", coeff: 2, count: 74, totalCount: 96 },
+			hard: { name: "Sous-préfecture", difficulty: "Préfectures & sous-préfectures (320)", coeff: 1, count: 224, totalCount: 320 }
 		},
 		csv: csvFR,
 		scoreThresholds: {
@@ -33,25 +33,17 @@ const maps = {
 		name: "USA",
 		img: 'USA-Mercator-offset.svg',
 		projection: 'mercator',
-		topLeftGPS: {latitude: 56, longitude: -125.13},
-		bottomLeftGPS: {latitude: 14.24809715729971, longitude: -125.13},
-		topRightGPS: {latitude: 56, longitude: -66.63},
-		bottomRightGPS: {latitude: 14.24809715729971, longitude: -66.63},
-		//topLeftGPS: {latitude: 55.94483880124804, longitude: -125},
-		//bottomLeftGPS: {latitude: 14.24809715729971, longitude: -125},
-		//topRightGPS: {latitude: 55.94483880124804, longitude: -66.5},
-		//bottomRightGPS: {latitude: 14.24809715729971, longitude: -66.5},
-		//topLeftGPS: { latitude: 49.5, longitude: -125 },
-		//topRightGPS: { latitude: 49.5, longitude: -66.5 },
-		//bottomLeftGPS: { latitude: 24.3, longitude: -125 },
-		//bottomRightGPS: { latitude: 24.3, longitude: -66.5 },
+		topLeftGPS: { latitude: 56, longitude: -125.13 },
+		bottomLeftGPS: { latitude: 14.24809715729971, longitude: -125.13 },
+		topRightGPS: { latitude: 56, longitude: -66.63 },
+		bottomRightGPS: { latitude: 14.24809715729971, longitude: -66.63 },
 		width: 800,
 		height: 726,
 		categories: {
-			veryeasy: { name: "Federal capital", difficulty: "", coeff: 4, count: 1, totalCount: 1},
-			easy: {name: "State capital", difficulty: "State capitals (33)", coeff: 3, count: 31, totalCount: 32},
-			medium: {name: "State largest city", difficulty: "State capitals & State largest cities (61)", coeff: 2, count: 29, totalCount: 61},
-			hard: {name: "Large city", difficulty: "Top 333 largest cities", coeff: 1, count: 270, totalCount: 331}
+			veryeasy: { name: "Federal capital", difficulty: "", coeff: 4, count: 1, totalCount: 1 },
+			easy: { name: "State capital", difficulty: "State capitals (33)", coeff: 3, count: 31, totalCount: 32 },
+			medium: { name: "State largest city", difficulty: "State capitals & State largest cities (61)", coeff: 2, count: 29, totalCount: 61 },
+			hard: { name: "Large city", difficulty: "Top 333 largest cities", coeff: 1, count: 270, totalCount: 331 }
 		},
 		csv: csvUS,
 		scoreThresholds: {
@@ -70,7 +62,6 @@ const maps = {
 	eu: {
 		name: "Europe",
 		img: 'Europe_laea_location_map.svg',
-		//img: 'Europe_relief_laea_location_map.jpg',
 		projection: 'laea',
 		topLeftGPS: { latitude: 72.9617, longitude: -8.9067 },
 		topRightGPS: { latitude: 72.9617, longitude: 58.9174 },
@@ -79,10 +70,10 @@ const maps = {
 		width: 800,
 		height: 684,
 		categories: {
-			veryeasy: { name: "EU Capital", difficulty: "", coeff: 4, count: 1, totalCount: 1},
-			easy: {name: "Capital", difficulty: "Capitals (45)", coeff: 3, count: 44, totalCount: 45},
-			medium: {name: "Largest cities", difficulty: "Largest cities (87)", coeff: 2, count: 42, totalCount: 87},
-			hard: {name: "Other cities", difficulty: "Top 233 largest cities", coeff: 1, count: 146, totalCount: 233}
+			veryeasy: { name: "EU Capital", difficulty: "", coeff: 4, count: 1, totalCount: 1 },
+			easy: { name: "Capital", difficulty: "Capitals (45)", coeff: 3, count: 44, totalCount: 45 },
+			medium: { name: "Largest cities", difficulty: "Largest cities (87)", coeff: 2, count: 42, totalCount: 87 },
+			hard: { name: "Other cities", difficulty: "Top 233 largest cities", coeff: 1, count: 146, totalCount: 233 }
 		},
 		csv: csvEU,
 		scoreThresholds: {
