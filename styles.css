@@ -1,106 +1,99 @@
-div {
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: Arial;
 }
 
-#map img {
+main {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+nav {
   width: 100%;
-  height: 100%;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 1em;
+}
+
+#map img {
   border: solid 1px;
 }
 
 #map {
   position: relative;
-  width: 800px;
-  /* Largeur de votre image */
-  height: 800px;
-  /* Hauteur de votre image */
+  display: flex;
+  flex-direction: column;
 }
 
 #map-image,
 #myCanvas {
   position: absolute;
-  top: 105px;
+  top: 0;
   left: 0;
+}
+
+#map-image {
+  z-index: 0;
+}
+
+#myCanvas {
+  z-index: 1;
 }
 
 #logoimg {
   width: 500px;
-  position: absolute;
-  top: 8px;
-  left: 150px;
-  ;
 }
 
 #change {
   text-align: right;
-  position: absolute;
-  top: 95px;
-  left: 666px;
   font-size: 10pt;
 }
 
 #click-coordinates {
-  position: absolute;
-  top: 165px;
-  left: 850px;
-  width: 400px;
+  padding-bottom: 1em;
+}
+
+#settings,
+#finish,
+#target-info {
+  border: solid 1px;
+  width: 90%;
+  height: fit-content;
+  z-index: 2;
+  background-color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#target-info {
+  margin-top: 10px;
+  font-size: 24pt;
+  display: none;
+  /* On affiche seulement après avoir sélectionné le niveau */
 }
 
 #settings {
-  border: solid 1px;
-  margin: -10px;
-  padding: 10px;
-  position: absolute;
-  top: 375px;
-  left: 35px;
+  margin: auto;
   font-size: 24pt;
-  width: 740px;
-  background-color: white;
-  text-align: center;
 }
 
 #finish {
-  border: solid 1px;
-  margin: -10px;
-  padding: 10px;
-  position: absolute;
-  top: 155px;
-  left: 35px;
+  margin: auto;
   font-size: 20pt;
-  width: 740px;
-  background-color: white;
-  text-align: center;
   display: none;
 }
 
 #credits {
-  position: absolute;
-  top: 985px;
-  left: 10px;
-  width: 800px;
+  margin-top: 1em;
   font-size: 10pt;
 }
 
 #score {
-  position: absolute;
-  top: 205px;
-  left: 850px;
-  width: 500px;
-}
-
-#target-info {
-  border: solid 1px;
-  margin: -5px;
-  padding: 5px;
-  position: absolute;
-  top: 135px;
-  left: 35px;
-  font-size: 24pt;
-  width: 740px;
-  background-color: white;
-  text-align: center;
-  display: none;
-  /* On affiche seulement après avoir sélectionné le niveau */
+  max-width: 40em;
+  margin: 1em;
 }
 
 .click-point {
@@ -144,23 +137,15 @@ button {
 }
 
 @media only screen and (max-width: 819px) {
-
-  /* Pour les écrans de moins de 820px de large */
-  #credits {
-    top: 1450px;
-    width: 800px;
+  main {
+    flex-direction: column;
   }
 
   #score {
-    top: 1005px;
-    left: 10px;
-    width: 800px;
+    width: auto;
   }
 
-  #click-coordinates {
-    position: absolute;
-    top: 935px;
-    left: 10px;
-    width: 800px;
+  #map {
+    flex-basis: auto;
   }
 }

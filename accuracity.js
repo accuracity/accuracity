@@ -1,4 +1,5 @@
 const map = document.getElementById('map');
+const mapImage = document.getElementById('map-image');
 const clickCoordinates = document.getElementById('click-coordinates');
 const scoreLast = document.getElementById('last-score');
 const scoreNb = document.getElementById('nb-score');
@@ -130,7 +131,7 @@ const bottomLeftGPS = currentMap.bottomLeftGPS;
 const bottomRightGPS = currentMap.bottomRightGPS;
 const width = currentMap.width;
 const height = currentMap.height;
-const offsetY = 105;
+var offsetY = 0;
 
 // Image de fond
 const img = new Image();
@@ -140,53 +141,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Code JavaScript à exécuter une fois que la page est chargée
 	applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change", "txtDifficulty");
 
-	document.getElementById("map-image").src = currentMap.img;
-	document.getElementById("map").style.height = currentMap.height + "px"; // not sufficient, to be fixed
-	document.getElementById("map").style.width = currentMap.width + "px";
-
-	if (lang == "fr") document.getElementById("change").style.left = "654px";
-	else if (lang == "en") document.getElementById("change").style.left = "666px";
-
-	const styleSheets = document.styleSheets;
-
-	// Pour chaque feuille de style
-	for (let i = 0; i < styleSheets.length; i++) {
-		const styleSheet = styleSheets[i];
-
-		// Vérifiez si la règle de style est une règle @media
-		if (styleSheet.media && styleSheet.media.mediaText === 'screen and (max-width: 819px)') {
-			// Parcourir les règles de style dans la feuille de style
-			const rules = styleSheet.cssRules || styleSheet.rules;
-			for (let j = 0; j < rules.length; j++) {
-				const rule = rules[j];
-				// Vérifiez si la règle cible l'élément "credits"
-				if (rule.selectorText === '#credits') {
-					// Modifier le top de la règle
-					rule.style.top = (currentMap.height + 650) + "px"; // Nouvelle valeur
-				}
-				// Vérifiez si la règle cible l'élément "credits"
-				if (rule.selectorText === '#score') {
-					// Modifier le top de la règle
-					rule.style.top = (currentMap.height + 205) + "px"; // Nouvelle valeur
-				}
-				// Vérifiez si la règle cible l'élément "click-coordinates"
-				if (rule.selectorText === '#click-coordinates') {
-					// Modifier le top de la règle
-					rule.style.top = (currentMap.height + 135) + "px"; // Nouvelle valeur
-				}
-			}
-		}
-
-		// Recherche de la règle CSS correspondant à l'élément avec l'identifiant "credits"
-		const rules2 = styleSheet.cssRules || styleSheet.rules;
-		for (let k = 0; k < rules2.length; k++) {
-			const rule = rules2[k];
-			if (rule.selectorText === '#credits') {
-				rule.style.top = Math.max(700, currentMap.height + 185) + "px";
-				break;
-			}
-		}
-	}
+	mapImage.src = currentMap.img;
+	map.style.width = currentMap.width + "px";
+	map.style.height = currentMap.height + "px";
+	mapImage.style.height = currentMap.height + "px";
+	mapImage.style.width = currentMap.width + "px";
 
 	document.title = i18n("txtTitle", lang);
 
