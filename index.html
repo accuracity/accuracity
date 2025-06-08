@@ -103,51 +103,51 @@
 			color: #808080;
 		}
 
-		#option-lang-1:checked:checked~.option-lang-1,
-		#option-lang-2:checked:checked~.option-lang-2 {
+		#option-lang-fr:checked:checked~.option-lang-1,
+		#option-lang-en:checked:checked~.option-lang-2 {
 			border-color: #4444AA;
 			background: #4444AA;
 		}
 
-		#option-lang-1:checked:checked~.option-lang-1 .dot,
-		#option-lang-2:checked:checked~.option-lang-2 .dot {
+		#option-lang-fr:checked:checked~.option-lang-1 .dot,
+		#option-lang-en:checked:checked~.option-lang-2 .dot {
 			background: #fff;
 		}
 
-		#option-lang-1:checked:checked~.option-lang-1 .dot::before,
-		#option-lang-2:checked:checked~.option-lang-2 .dot::before {
+		#option-lang-fr:checked:checked~.option-lang-1 .dot::before,
+		#option-lang-en:checked:checked~.option-lang-2 .dot::before {
 			opacity: 1;
 			transform: scale(1);
 		}
 
-		#option-lang-1:checked:checked~.option-lang-1 span,
-		#option-lang-2:checked:checked~.option-lang-2 span {
+		#option-lang-fr:checked:checked~.option-lang-1 span,
+		#option-lang-en:checked:checked~.option-lang-2 span {
 			color: #fff;
 		}
 
-		#option-map-1:checked:checked~.option-map-1,
-		#option-map-2:checked:checked~.option-map-2,
-		#option-map-3:checked:checked~.option-map-3 {
+		#option-map-fr:checked:checked~.option-map-1,
+		#option-map-eu:checked:checked~.option-map-2,
+		#option-map-us:checked:checked~.option-map-3 {
 			border-color: #4444AA;
 			background: #4444AA;
 		}
 
-		#option-map-1:checked:checked~.option-map-1 .dot,
-		#option-map-2:checked:checked~.option-map-2 .dot,
-		#option-map-3:checked:checked~.option-map-3 .dot {
+		#option-map-fr:checked:checked~.option-map-1 .dot,
+		#option-map-eu:checked:checked~.option-map-2 .dot,
+		#option-map-us:checked:checked~.option-map-3 .dot {
 			background: #fff;
 		}
 
-		#option-map-1:checked:checked~.option-map-1 .dot::before,
-		#option-map-2:checked:checked~.option-map-2 .dot::before,
-		#option-map-3:checked:checked~.option-map-3 .dot::before {
+		#option-map-fr:checked:checked~.option-map-1 .dot::before,
+		#option-map-eu:checked:checked~.option-map-2 .dot::before,
+		#option-map-us:checked:checked~.option-map-3 .dot::before {
 			opacity: 1;
 			transform: scale(1);
 		}
 
-		#option-map-1:checked:checked~.option-map-1 span,
-		#option-map-2:checked:checked~.option-map-2 span,
-		#option-map-3:checked:checked~.option-map-3 span {
+		#option-map-fr:checked:checked~.option-map-1 span,
+		#option-map-eu:checked:checked~.option-map-2 span,
+		#option-map-us:checked:checked~.option-map-3 span {
 			color: #fff;
 		}
 
@@ -170,13 +170,13 @@
 				<div style="color:#4444AA; font-weight: bold; font-size: 20pt; margin-bottom: 12px;">Langue / Language
 				</div>
 				<div class="wrapper">
-					<input type="radio" name="lang" id="option-lang-1" value="fr" checked>
-					<input type="radio" name="lang" id="option-lang-2" value="en">
-					<label for="option-lang-1" class="option option-lang-1">
+					<input type="radio" name="lang" id="option-lang-fr" value="fr" checked>
+					<label for="option-lang-fr" class="option option-lang-1">
 						<span class="dot"></span>
 						<span>Français</span>
 					</label>
-					<label for="option-lang-2" class="option option-lang-2">
+					<input type="radio" name="lang" id="option-lang-en" value="en">
+					<label for="option-lang-en" class="option option-lang-2">
 						<span class="dot"></span>
 						<span>English</span>
 					</label>
@@ -185,18 +185,18 @@
 				<br>
 				<div style="color:#4444AA; font-weight: bold; font-size: 20pt; margin-bottom: 12px;">Carte / Map</div>
 				<div class="wrapper">
-					<input type="radio" name="map" id="option-map-1" value="fr" checked>
-					<input type="radio" name="map" id="option-map-2" value="eu">
-					<input type="radio" name="map" id="option-map-3" value="us">
-					<label for="option-map-1" class="option option-map-1">
+					<input type="radio" name="map" id="option-map-fr" value="fr" checked>
+					<label for="option-map-fr" class="option option-map-1">
 						<span class="dot"></span>
 						<span>France</span>
 					</label>
-					<label for="option-map-2" class="option option-map-2">
+					<input type="radio" name="map" id="option-map-eu" value="eu">
+					<label for="option-map-eu" class="option option-map-2">
 						<span class="dot"></span>
 						<span>Europe</span>
 					</label>
-					<label for="option-map-3" class="option option-map-3">
+					<input type="radio" name="map" id="option-map-us" value="us">
+					<label for="option-map-us" class="option option-map-3">
 						<span class="dot"></span>
 						<span>USA</span>
 					</label>
