@@ -46,7 +46,8 @@ const translations = {
 		txtOr: "or",
 		txtTitle: "AccuraCity – Locate cities on a map",
 		change: "Change map / language",
-		txtDifficulty: "Difficulty:"
+		txtDifficulty: "Difficulty:",
+		txtNoScript: "Activate javascript to play AccuraCity !",
 	},
 	fr: {
 		txtChallengeTitle: "Défi du jour",
@@ -94,7 +95,8 @@ const translations = {
 		txtOr: "ou",
 		txtTitle: "AccuraCity – Localisez les villes sur une carte",
 		change: "Changer de carte / langue",
-		txtDifficulty: "Difficulté :"
+		txtDifficulty: "Difficulté :",
+		txtNoScript: "Activez javascript pour jouer À AccuraCity !",
 	}
 };
 
