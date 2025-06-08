@@ -61,7 +61,6 @@ nav {
 #settings,
 #finish,
 #target-info {
-  border: solid 1px;
   width: 90%;
   height: fit-content;
   z-index: 2;
@@ -69,6 +68,9 @@ nav {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 }
 
 #target-info {
@@ -137,6 +139,12 @@ button {
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #35358a;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 @media only screen and (max-width: 1400px) {
