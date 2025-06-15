@@ -260,7 +260,7 @@ map.addEventListener('click', function (event) {
 		drawMapClear();
 
 		// Afficher le clic, la cible & co
-		drawMapClic(x, y, imageCoordinates.x, imageCoordinates.y, distance, randomCity.cityName);
+		drawMapClicOnCanvas(x, y, imageCoordinates.x, imageCoordinates.y, distance, randomCity.cityName);
 
 		// On passe à la prochaine cible
 		citiesIt = citiesIt + 1;
@@ -622,52 +622,7 @@ function drawMapClear() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawMapClic(x, y, targetX, targetY, distance, cityName) {
-	// Créer et afficher le nouveau point cliqué
-	clickPoint = document.createElement('div');
-	clickPoint.className = 'click-point';
-	clickPoint.style.left = `${x}px`;
-	clickPoint.style.top = `${y}px`;
-	map.appendChild(clickPoint);
-
-	// Créer et afficher la cible
-	targetPoint = document.createElement('div');
-	targetPoint.className = 'target-point';
-	targetPoint.style.left = `${targetX}px`;
-	targetPoint.style.top = `${offsetY + targetY}px`;
-	map.appendChild(targetPoint);
-
-	// Créer et afficher la légende de la cible
-	targetText = document.createElement('div');
-	targetText.className = 'target-text';
-	targetText.innerHTML = randomCity.cityName;
-	targetText.style.left = `${targetX + 10}px`;
-	targetText.style.top = `${offsetY + targetY - 5}px`;
-	map.appendChild(targetText);
-
-	// Créer et afficher la légende de la distance
-	distanceText = document.createElement('div');
-	distanceText.className = 'distance-text';
-	distanceText.innerHTML = distance + `km`
-	distanceText.style.left = `${(targetX + x) / 2 + 5}px`;
-	distanceText.style.top = `${(offsetY + targetY + y) / 2 - 10}px`;
-	map.appendChild(distanceText);
-
-	// Afficher une ligne entre les 2 points
-	// Récupérer le contexte 2D du canvas
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
-	// Tracer une ligne entre les deux points
-	ctx.beginPath();
-	ctx.moveTo(targetX, targetY);
-	ctx.lineTo(x, y - offsetY);
-	ctx.strokeStyle = 'black'; // Couleur de la ligne
-	ctx.lineWidth = 1; // Epaisseur de la ligne
-	ctx.stroke();
-}
-
-function drawMapClicWithCanvas(x, y, targetX, targetY, distance, cityName) {
+function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 	// Récupérer le canvas et son contexte
 	const canvas = document.getElementById('myCanvas');
 	const ctx = canvas.getContext('2d');
@@ -687,10 +642,9 @@ function drawMapClicWithCanvas(x, y, targetX, targetY, distance, cityName) {
 	// Dessiner le texte de la cible
 	ctx.fillStyle = 'black'; // Couleur du texte
 	ctx.font = '12px Arial';
-	ctx.fillText(cityName, targetX + 5, targetY - 5);
 
 	// Dessiner le texte de la distance
-	ctx.fillText(distance + 'km', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
+	ctx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
 
 	// Dessiner la ligne entre les deux points
 	ctx.beginPath();
@@ -721,7 +675,7 @@ function generateAndOpenImage() {
 
 	// On affiche tous les points
 	for (const element of clicHistory) {
-		drawMapClicWithCanvas(element[0], element[1], element[2], element[3], element[4], element[5]);
+		drawMapClicOnCanvas(element[0], element[1], element[2], element[3], element[4], element[5]);
 	}
 
 	// Ecrire la date et le score total
