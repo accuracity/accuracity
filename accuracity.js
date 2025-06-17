@@ -1,5 +1,7 @@
 const map = document.getElementById('map');
 const mapImage = document.getElementById('map-image');
+const canvas = document.getElementById('myCanvas');
+const canvasCtx = canvas.getContext('2d');
 const clickCoordinates = document.getElementById('click-coordinates');
 const scoreLast = document.getElementById('last-score');
 const scoreNb = document.getElementById('nb-score');
@@ -149,8 +151,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	document.title = i18n("txtTitle", lang);
 
-	document.getElementById("myCanvas").height = currentMap.height;
-	document.getElementById("myCanvas").width = currentMap.width;
+	canvas.height = currentMap.height;
+	canvas.width = currentMap.width;
 
 	document.getElementById("txtEasy").value = currentMap.categories.easy.totalCount;
 	document.getElementById("txtEasy").innerHTML = currentMap.categories.easy.difficulty;
@@ -573,59 +575,44 @@ function drawMapClear() {
 		distanceText.remove();
 	}
 
-	// Récupérer le contexte 2D du canvas
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
 	// Effacer le contenu du canvas
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
-	// Récupérer le canvas et son contexte
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
 	// Dessiner le point cliqué
-	ctx.beginPath();
-	ctx.arc(x, y - offsetY, 4, 0, Math.PI * 2);
-	ctx.fillStyle = 'red'; // Couleur du point cliqué
-	ctx.fill();
+	canvasCtx.beginPath();
+	canvasCtx.arc(x, y - offsetY, 4, 0, Math.PI * 2);
+	canvasCtx.fillStyle = 'red'; // Couleur du point cliqué
+	canvasCtx.fill();
 
 	// Dessiner la cible
-	ctx.beginPath();
-	ctx.arc(targetX, targetY, 4, 0, Math.PI * 2);
-	ctx.fillStyle = 'green'; // Couleur de la cible
-	ctx.fill();
+	canvasCtx.beginPath();
+	canvasCtx.arc(targetX, targetY, 4, 0, Math.PI * 2);
+	canvasCtx.fillStyle = 'green'; // Couleur de la cible
+	canvasCtx.fill();
 
 	// Dessiner le texte de la cible
-	ctx.fillStyle = 'black'; // Couleur du texte
-	ctx.font = '12px Arial';
+	canvasCtx.fillStyle = 'black'; // Couleur du texte
+	canvasCtx.font = '12px Arial';
 
 	// Dessiner le texte de la distance
-	ctx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
+	canvasCtx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
 
 	// Dessiner la ligne entre les deux points
-	ctx.beginPath();
-	ctx.moveTo(targetX, targetY);
-	ctx.lineTo(x, y - offsetY);
-	ctx.strokeStyle = 'black'; // Couleur de la ligne
-	ctx.lineWidth = 1; // Epaisseur de la ligne
-	ctx.stroke();
+	canvasCtx.beginPath();
+	canvasCtx.moveTo(targetX, targetY);
+	canvasCtx.lineTo(x, y - offsetY);
+	canvasCtx.strokeStyle = 'black'; // Couleur de la ligne
+	canvasCtx.lineWidth = 1; // Epaisseur de la ligne
+	canvasCtx.stroke();
 }
 
 function drawMapBackground() {
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
-	ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Dessinez l'image sur tout le canvas
+	canvasCtx.drawImage(img, 0, 0, canvas.width, canvas.height); // Dessinez l'image sur tout le canvas
 }
 
 function generateAndOpenImage() {
-	// Récupérer le canvas
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
 	// On efface la carte
 	drawMapClear();
 
@@ -639,16 +626,16 @@ function generateAndOpenImage() {
 
 	// Ecrire la date et le score total
 	// Définir la police et la taille du texte
-	ctx.font = '20px Arial';
-	ctx.fillStyle = 'black';
+	canvasCtx.font = '20px Arial';
+	canvasCtx.fillStyle = 'black';
 	if (isDefi) {
 		// Dessiner le texte sur le canvas
-		ctx.fillText(i18n("txtRecapChallenge", lang, defiDate), 10, 30);
+		canvasCtx.fillText(i18n("txtRecapChallenge", lang, defiDate), 10, 30);
 	}
 	else {
-		ctx.fillText(i18n("txtRecapFreePractice", lang, diffText), 10, 30);
+		canvasCtx.fillText(i18n("txtRecapFreePractice", lang, diffText), 10, 30);
 	}
-	ctx.fillText(i18n("txtRecapScore", lang, totalScore, averageScore, getEvaluationText(averageScore)), 10, 60);
+	canvasCtx.fillText(i18n("txtRecapScore", lang, totalScore, averageScore, getEvaluationText(averageScore)), 10, 60);
 
 	// Convertir le contenu du canvas en Blob (format PNG)
 	canvas.toBlob(function (blob) {
