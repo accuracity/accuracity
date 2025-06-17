@@ -180,7 +180,7 @@ scoreReset.onclick = function () {
 	stopGame();
 };
 
-map.addEventListener('click', function (event) {
+canvas.addEventListener('click', function (event) {
 	if (gameOngoing) {
 		const mapRect = map.getBoundingClientRect();
 		const x = event.clientX - mapRect.left;
