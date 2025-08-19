@@ -57,7 +57,7 @@
 			box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 		}
 
-		.wrapper .option {
+		.option {
 			background: #fff;
 			height: 100%;
 			width: 100%;
@@ -72,7 +72,7 @@
 			transition: all 0.3s ease;
 		}
 
-		.wrapper .option .dot {
+		.dot {
 			height: 20px;
 			width: 20px;
 			background: #d9d9d9;
@@ -80,7 +80,7 @@
 			position: relative;
 		}
 
-		.wrapper .option .dot::before {
+		.dot::before {
 			position: absolute;
 			content: "";
 			top: 4px;
@@ -98,56 +98,26 @@
 			display: none;
 		}
 
-		.wrapper .option span {
+		.option-name {
 			font-size: 16px;
 			color: #808080;
 		}
 
-		#option-lang-fr:checked:checked~.option-lang-1,
-		#option-lang-en:checked:checked~.option-lang-2 {
+		input[type="radio"]:checked+.option {
 			border-color: #4444AA;
 			background: #4444AA;
 		}
 
-		#option-lang-fr:checked:checked~.option-lang-1 .dot,
-		#option-lang-en:checked:checked~.option-lang-2 .dot {
+		input[type="radio"]:checked+.option .dot {
 			background: #fff;
 		}
 
-		#option-lang-fr:checked:checked~.option-lang-1 .dot::before,
-		#option-lang-en:checked:checked~.option-lang-2 .dot::before {
+		input[type="radio"]:checked+.option .dot::before {
 			opacity: 1;
 			transform: scale(1);
 		}
 
-		#option-lang-fr:checked:checked~.option-lang-1 span,
-		#option-lang-en:checked:checked~.option-lang-2 span {
-			color: #fff;
-		}
-
-		#option-map-fr:checked:checked~.option-map-1,
-		#option-map-eu:checked:checked~.option-map-2,
-		#option-map-us:checked:checked~.option-map-3 {
-			border-color: #4444AA;
-			background: #4444AA;
-		}
-
-		#option-map-fr:checked:checked~.option-map-1 .dot,
-		#option-map-eu:checked:checked~.option-map-2 .dot,
-		#option-map-us:checked:checked~.option-map-3 .dot {
-			background: #fff;
-		}
-
-		#option-map-fr:checked:checked~.option-map-1 .dot::before,
-		#option-map-eu:checked:checked~.option-map-2 .dot::before,
-		#option-map-us:checked:checked~.option-map-3 .dot::before {
-			opacity: 1;
-			transform: scale(1);
-		}
-
-		#option-map-fr:checked:checked~.option-map-1 span,
-		#option-map-eu:checked:checked~.option-map-2 span,
-		#option-map-us:checked:checked~.option-map-3 span {
+		input[type="radio"]:checked+.option .option-name {
 			color: #fff;
 		}
 
@@ -171,14 +141,14 @@
 				</div>
 				<div class="wrapper">
 					<input type="radio" name="lang" id="option-lang-fr" value="fr" checked>
-					<label for="option-lang-fr" class="option option-lang-1">
+					<label for="option-lang-fr" class="option">
 						<span class="dot"></span>
-						<span>Français</span>
+						<span class="option-name">Français</span>
 					</label>
 					<input type="radio" name="lang" id="option-lang-en" value="en">
-					<label for="option-lang-en" class="option option-lang-2">
+					<label for="option-lang-en" class="option">
 						<span class="dot"></span>
-						<span>English</span>
+						<span class="option-name">English</span>
 					</label>
 				</div>
 				<br>
@@ -186,19 +156,19 @@
 				<div style="color:#4444AA; font-weight: bold; font-size: 20pt; margin-bottom: 12px;">Carte / Map</div>
 				<div class="wrapper">
 					<input type="radio" name="map" id="option-map-fr" value="fr" checked>
-					<label for="option-map-fr" class="option option-map-1">
+					<label for="option-map-fr" class="option">
 						<span class="dot"></span>
-						<span>France</span>
+						<span class="option-name">France</span>
 					</label>
 					<input type="radio" name="map" id="option-map-eu" value="eu">
-					<label for="option-map-eu" class="option option-map-2">
+					<label for="option-map-eu" class="option">
 						<span class="dot"></span>
-						<span>Europe</span>
+						<span class="option-name">Europe</span>
 					</label>
 					<input type="radio" name="map" id="option-map-us" value="us">
-					<label for="option-map-us" class="option option-map-3">
+					<label for="option-map-us" class="option">
 						<span class="dot"></span>
-						<span>USA</span>
+						<span class="option-name">USA</span>
 					</label>
 				</div>
 				<br><br>
