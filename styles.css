@@ -101,36 +101,6 @@ nav {
   margin: 1em;
 }
 
-.click-point {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background-color: red;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  /* Centrer le point */
-}
-
-.target-point {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background-color: green;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  /* Centrer le point */
-}
-
-.target-text {
-  position: absolute;
-  font-size: 10pt;
-}
-
-.distance-text {
-  position: absolute;
-  font-size: 10pt;
-}
-
 button {
   background-color: #4444AA;
   border: none;
