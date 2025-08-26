@@ -17,7 +17,7 @@ nav {
   width: 100%;
   justify-content: center;
   display: flex;
-  margin-bottom: 1em;
+  margin: 1em;
 }
 
 #map img {
@@ -47,6 +47,7 @@ nav {
 
 #logoimg {
   width: 500px;
+  max-width: 90vw;
 }
 
 #change {
