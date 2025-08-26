@@ -14,19 +14,29 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 	<link rel="manifest" href="site.webmanifest">
 	<style>
-		body,
-		html {
+		body {
 			height: 100%;
+			width: 100%;
 			margin: 0;
 			display: flex;
+			flex-direction: column;
+			overflow-x: hidden;
+			font-family: Arial;
 			justify-content: center;
 			align-items: center;
 			font-size: 24px;
 		}
 
-		.container {
+		main {
+			display: flex;
+			justify-content: center;
+		}
+
+		nav {
 			width: 100%;
-			height: 100%;
+			justify-content: center;
+			display: flex;
+			margin: 1em;
 		}
 
 		.centered {
@@ -37,37 +47,46 @@
 			background-color: #4444AA;
 			border: none;
 			color: white;
-			padding: 12px 32px;
-			text-decoration: none;
-			margin: 8px 4px;
 			cursor: pointer;
+			padding: 12px 32px;
+			margin: 8px 4px;
 			font-size: 18px;
 			border-radius: 5px;
 		}
 
+		button:hover {
+			background-color: #35358a;
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		.form-title {
+			color: #4444AA;
+			font-weight: bold;
+			font-size: 20pt;
+			margin-bottom: 12px;
+		}
+
 		.wrapper {
-			display: inline-flex;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(6em, 1fr));
 			background: #fff;
-			height: 50px;
 			width: 500px;
-			align-items: center;
-			justify-content: space-evenly;
+			max-width: 85vw;
+			gap: 12px 12px;
 			border-radius: 5px;
 			padding: 20px 15px;
 			box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+			margin-bottom: 1em;
 		}
 
 		.option {
 			background: #fff;
-			height: 100%;
-			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: space-evenly;
-			margin: 0 10px;
 			border-radius: 5px;
 			cursor: pointer;
-			padding: 0 10px;
+			padding: 15px 10px;
 			border: 2px solid lightgrey;
 			transition: all 0.3s ease;
 		}
@@ -127,55 +146,67 @@
 
 		#logoimg {
 			width: 500px;
+			max-width: 90vw;
 		}
 	</style>
 </head>
 
 <body>
-	<div class="container">
-		<div class="centered">
+	<nav>
+		<a href="index.html">
 			<img id="logoimg" src="logo2_txt.png" alt="AccuraCity logo">
-			<br><br>
-			<form action="game.html" method="get">
-				<div style="color:#4444AA; font-weight: bold; font-size: 20pt; margin-bottom: 12px;">Langue / Language
-				</div>
-				<div class="wrapper">
-					<input type="radio" name="lang" id="option-lang-fr" value="fr" checked>
-					<label for="option-lang-fr" class="option">
-						<span class="dot"></span>
-						<span class="option-name">Français</span>
-					</label>
-					<input type="radio" name="lang" id="option-lang-en" value="en">
-					<label for="option-lang-en" class="option">
-						<span class="dot"></span>
-						<span class="option-name">English</span>
-					</label>
-				</div>
-				<br>
-				<br>
-				<div style="color:#4444AA; font-weight: bold; font-size: 20pt; margin-bottom: 12px;">Carte / Map</div>
-				<div class="wrapper">
-					<input type="radio" name="map" id="option-map-fr" value="fr" checked>
-					<label for="option-map-fr" class="option">
-						<span class="dot"></span>
-						<span class="option-name">France</span>
-					</label>
-					<input type="radio" name="map" id="option-map-eu" value="eu">
-					<label for="option-map-eu" class="option">
-						<span class="dot"></span>
-						<span class="option-name">Europe</span>
-					</label>
-					<input type="radio" name="map" id="option-map-us" value="us">
-					<label for="option-map-us" class="option">
-						<span class="dot"></span>
-						<span class="option-name">USA</span>
-					</label>
-				</div>
-				<br><br>
+		</a>
+	</nav>
+
+	<noscript id="txtNoScript">
+		Activate Javascript to play AccuraCity ! <br>
+		Activez Javascript pour jouer à AccuraCity !
+	</noscript>
+
+	<main>
+		<form class="centered" action="game.html" method="get">
+			<div class="form-title">
+				Langue / Language
+			</div>
+			<div class="wrapper">
+				<input type="radio" name="lang" id="option-lang-fr" value="fr" checked>
+				<label for="option-lang-fr" class="option">
+					<span class="dot"></span>
+					<span class="option-name">Français</span>
+				</label>
+				<input type="radio" name="lang" id="option-lang-en" value="en">
+				<label for="option-lang-en" class="option">
+					<span class="dot"></span>
+					<span class="option-name">English</span>
+				</label>
+			</div>
+
+			<div class="form-title">
+				Carte / Map
+			</div>
+			<div class="wrapper">
+				<input type="radio" name="map" id="option-map-fr" value="fr" checked>
+				<label for="option-map-fr" class="option">
+					<span class="dot"></span>
+					<span class="option-name">France</span>
+				</label>
+				<input type="radio" name="map" id="option-map-eu" value="eu">
+				<label for="option-map-eu" class="option">
+					<span class="dot"></span>
+					<span class="option-name">Europe</span>
+				</label>
+				<input type="radio" name="map" id="option-map-us" value="us">
+				<label for="option-map-us" class="option">
+					<span class="dot"></span>
+					<span class="option-name">USA</span>
+				</label>
+			</div>
+
+			<div>
 				<button type="submit">Go!</button>
-			</form>
-		</div>
-	</div>
+			</div>
+		</form>
+	</main>
 </body>
 
 </html>
