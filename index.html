@@ -54,6 +54,7 @@
 			border-radius: 5px;
 		}
 
+		input[type="radio"]:checked+.option:hover,
 		button:hover {
 			background-color: #35358a;
 			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -125,6 +126,10 @@
 		input[type="radio"]:checked+.option {
 			border-color: #4444AA;
 			background: #4444AA;
+		}
+
+		input[type="radio"]+.option:hover {
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 		}
 
 		input[type="radio"]:checked+.option .dot {
