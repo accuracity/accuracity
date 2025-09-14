@@ -10,6 +10,7 @@ body {
 
 main {
   display: flex;
+  justify-content: center;
   flex: 1 1 auto;
 }
 
@@ -121,6 +122,8 @@ button:hover {
 @media only screen and (max-width: 1400px) {
   main {
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   #score {
