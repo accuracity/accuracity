@@ -580,17 +580,47 @@ function drawMapClear() {
 }
 
 function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
+	// Dessiner la ligne entre les deux points
+	canvasCtx.beginPath();
+	canvasCtx.moveTo(targetX, targetY);
+	canvasCtx.lineTo(x, y - offsetY);
+	canvasCtx.strokeStyle = '#4444AA'; // Couleur de la ligne
+	canvasCtx.strokeStyle = 'black'; // Couleur de la ligne
+	canvasCtx.lineWidth = 0.5; // Epaisseur de la ligne
+	canvasCtx.stroke();
+
 	// Dessiner le point cliqué
 	canvasCtx.beginPath();
-	canvasCtx.arc(x, y - offsetY, 4, 0, Math.PI * 2);
+	canvasCtx.arc(x, y - offsetY, 5, 0, Math.PI * 2);
 	canvasCtx.fillStyle = 'red'; // Couleur du point cliqué
 	canvasCtx.fill();
 
+	// croix rouge sur le point cliqué
+	canvasCtx.beginPath();
+	canvasCtx.moveTo(x - 1.8, y - offsetY - 1.8);
+	canvasCtx.lineTo(x + 1.8, y - offsetY + 1.8);
+	canvasCtx.lineWidth = 1.5;
+	canvasCtx.strokeStyle = "white";
+	canvasCtx.lineCap = "round";
+	canvasCtx.moveTo(x + 1.8, y - offsetY - 1.8);
+	canvasCtx.lineTo(x - 1.8, y - offsetY + 1.8);
+	canvasCtx.stroke();
+
 	// Dessiner la cible
 	canvasCtx.beginPath();
-	canvasCtx.arc(targetX, targetY, 4, 0, Math.PI * 2);
+	canvasCtx.arc(targetX, targetY, 5, 0, Math.PI * 2);
 	canvasCtx.fillStyle = 'green'; // Couleur de la cible
 	canvasCtx.fill();
+
+	// V vert sur la cible
+	canvasCtx.beginPath();
+	canvasCtx.lineWidth = 1.5;
+	canvasCtx.strokeStyle = "white";
+	canvasCtx.lineCap = "round";
+	canvasCtx.moveTo(targetX - 1.8, targetY + 0.2);
+	canvasCtx.lineTo(targetX - 0.3, targetY + 1.5);
+	canvasCtx.lineTo(targetX + 2.0, targetY - 1.2);
+	canvasCtx.stroke();
 
 	// Dessiner le texte de la cible
 	canvasCtx.fillStyle = 'black'; // Couleur du texte
@@ -598,14 +628,6 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 
 	// Dessiner le texte de la distance
 	canvasCtx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
-
-	// Dessiner la ligne entre les deux points
-	canvasCtx.beginPath();
-	canvasCtx.moveTo(targetX, targetY);
-	canvasCtx.lineTo(x, y - offsetY);
-	canvasCtx.strokeStyle = 'black'; // Couleur de la ligne
-	canvasCtx.lineWidth = 1; // Epaisseur de la ligne
-	canvasCtx.stroke();
 }
 
 function drawMapBackground() {
