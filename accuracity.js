@@ -133,7 +133,6 @@ const bottomLeftGPS = currentMap.bottomLeftGPS;
 const bottomRightGPS = currentMap.bottomRightGPS;
 const width = currentMap.width;
 const height = currentMap.height;
-var offsetY = 0;
 
 // Image de fond
 const img = new Image();
@@ -188,7 +187,7 @@ canvas.addEventListener('click', function (event) {
 		console.log(`Clic - X ` + x + ` / Y ` + y);
 
 		// Calcul des coordonnées GPS du point cliqué
-		const gpsCoordinates = xyToGPS(currentMap.projection, x, y - offsetY, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
+		const gpsCoordinates = xyToGPS(currentMap.projection, x, y, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 		console.log(`Clic - Long ` + gpsCoordinates.longitude + ` / Lat ` + gpsCoordinates.latitude);
 
 		// Positionnement de la cible
@@ -583,7 +582,7 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 	// Dessiner la ligne entre les deux points
 	canvasCtx.beginPath();
 	canvasCtx.moveTo(targetX, targetY);
-	canvasCtx.lineTo(x, y - offsetY);
+	canvasCtx.lineTo(x, y);
 	canvasCtx.strokeStyle = '#4444AA'; // Couleur de la ligne
 	canvasCtx.strokeStyle = 'black'; // Couleur de la ligne
 	canvasCtx.lineWidth = 0.5; // Epaisseur de la ligne
@@ -591,19 +590,19 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 
 	// Dessiner le point cliqué
 	canvasCtx.beginPath();
-	canvasCtx.arc(x, y - offsetY, 5, 0, Math.PI * 2);
+	canvasCtx.arc(x, y, 5, 0, Math.PI * 2);
 	canvasCtx.fillStyle = 'red'; // Couleur du point cliqué
 	canvasCtx.fill();
 
 	// croix rouge sur le point cliqué
 	canvasCtx.beginPath();
-	canvasCtx.moveTo(x - 1.8, y - offsetY - 1.8);
-	canvasCtx.lineTo(x + 1.8, y - offsetY + 1.8);
+	canvasCtx.moveTo(x - 1.8, y - 1.8);
+	canvasCtx.lineTo(x + 1.8, y + 1.8);
 	canvasCtx.lineWidth = 1.5;
 	canvasCtx.strokeStyle = "white";
 	canvasCtx.lineCap = "round";
-	canvasCtx.moveTo(x + 1.8, y - offsetY - 1.8);
-	canvasCtx.lineTo(x - 1.8, y - offsetY + 1.8);
+	canvasCtx.moveTo(x + 1.8, y - 1.8);
+	canvasCtx.lineTo(x - 1.8, y + 1.8);
 	canvasCtx.stroke();
 
 	// Dessiner la cible
@@ -627,7 +626,7 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 	canvasCtx.font = '12px Arial';
 
 	// Dessiner le texte de la distance
-	canvasCtx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
+	canvasCtx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y) / 2 - 5);
 }
 
 function drawMapBackground() {
