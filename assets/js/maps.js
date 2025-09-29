@@ -1,7 +1,7 @@
 const maps = {
 	fr: {
 		name: "France",
-		img: 'France_blank_1.svg',
+		img: 'assets/images/maps/France_blank_1.svg',
 		projection: 'mercator',
 		topLeftGPS: { latitude: 52, longitude: -6 },
 		topRightGPS: { latitude: 52, longitude: 10 },
@@ -31,7 +31,7 @@ const maps = {
 	},
 	us: {
 		name: "USA",
-		img: 'USA-Mercator-offset.svg',
+		img: 'assets/images/maps/USA-Mercator-offset.svg',
 		projection: 'mercator',
 		topLeftGPS: { latitude: 56, longitude: -125.13 },
 		bottomLeftGPS: { latitude: 14.24809715729971, longitude: -125.13 },
@@ -61,7 +61,7 @@ const maps = {
 	},
 	eu: {
 		name: "Europe",
-		img: 'Europe_laea_location_map.svg',
+		img: 'assets/images/maps/Europe_laea_location_map.svg',
 		projection: 'laea',
 		topLeftGPS: { latitude: 72.9617, longitude: -8.9067 },
 		topRightGPS: { latitude: 72.9617, longitude: 58.9174 },
