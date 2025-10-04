@@ -29,36 +29,6 @@ const maps = {
 		},
 		giveDetails: false
 	},
-	us: {
-		name: "USA",
-		img: 'assets/images/maps/USA-Mercator-offset.svg',
-		projection: 'mercator',
-		topLeftGPS: { latitude: 56, longitude: -125.13 },
-		bottomLeftGPS: { latitude: 14.24809715729971, longitude: -125.13 },
-		topRightGPS: { latitude: 56, longitude: -66.63 },
-		bottomRightGPS: { latitude: 14.24809715729971, longitude: -66.63 },
-		width: 800,
-		height: 726,
-		categories: {
-			veryeasy: { name: "Federal capital", difficulty: "", coeff: 4, count: 1, totalCount: 1 },
-			easy: { name: "State capital", difficulty: "State capitals (33)", coeff: 3, count: 31, totalCount: 32 },
-			medium: { name: "State largest city", difficulty: "State capitals & State largest cities (61)", coeff: 2, count: 29, totalCount: 61 },
-			hard: { name: "Large city", difficulty: "Top 333 largest cities", coeff: 1, count: 270, totalCount: 331 }
-		},
-		csv: csvUS,
-		scoreThresholds: {
-			impressive: 100,
-			excellent: 200,
-			good: 500,
-			acceptable: 1000,
-			disappointing: 2000
-		},
-		credits: {
-			map: `<a href="https://themapsmith.github.io/site/bootstrap/" target="_blank">Mapsmith</a>)`,
-			dataset: `<a href="https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population" target="_blank">Wikipedia</a>`
-		},
-		giveDetails: true
-	},
 	eu: {
 		name: "Europe",
 		img: 'assets/images/maps/Europe_laea_location_map.svg',
@@ -88,5 +58,35 @@ const maps = {
 			dataset: `<a href="https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/table/?disjunctive.cou_name_en&sort=population&refine.timezone=Europe" target="_blank">GeoNames</a>`
 		},
 		giveDetails: false
+	},
+	us: {
+		name: "USA",
+		img: 'assets/images/maps/USA-Mercator-offset.svg',
+		projection: 'mercator',
+		topLeftGPS: { latitude: 56, longitude: -125.13 },
+		bottomLeftGPS: { latitude: 14.24809715729971, longitude: -125.13 },
+		topRightGPS: { latitude: 56, longitude: -66.63 },
+		bottomRightGPS: { latitude: 14.24809715729971, longitude: -66.63 },
+		width: 800,
+		height: 726,
+		categories: {
+			veryeasy: { name: "Federal capital", difficulty: "", coeff: 4, count: 1, totalCount: 1 },
+			easy: { name: "State capital", difficulty: "State capitals (33)", coeff: 3, count: 31, totalCount: 32 },
+			medium: { name: "State largest city", difficulty: "State capitals & State largest cities (61)", coeff: 2, count: 29, totalCount: 61 },
+			hard: { name: "Large city", difficulty: "Top 333 largest cities", coeff: 1, count: 270, totalCount: 331 }
+		},
+		csv: csvUS,
+		scoreThresholds: {
+			impressive: 100,
+			excellent: 200,
+			good: 500,
+			acceptable: 1000,
+			disappointing: 2000
+		},
+		credits: {
+			map: `<a href="https://themapsmith.github.io/site/bootstrap/" target="_blank">Mapsmith</a>)`,
+			dataset: `<a href="https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population" target="_blank">Wikipedia</a>`
+		},
+		giveDetails: true
 	},
 }

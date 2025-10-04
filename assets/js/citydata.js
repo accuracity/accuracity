@@ -319,3 +319,569 @@ L'Hay-les-roses;94038;94;hard;48.77777065;2.338400126
 Nogent-sur-marne;94052;94;hard;48.83810133;2.483928108
 Argenteuil;95018;95;hard;48.95420864;2.245639765
 Sarcelles;95585;95;hard;48.99150508;2.381690774`;
+
+const csvEU = `Brussels;Belgium;Belgium;veryeasy;50.85045;4.34878
+Andorra la Vella;Andorra;Andorra;easy;42.50779;1.52109
+Reykjavik;Iceland;Iceland;easy;64.13548;-21.89541
+Vaduz;Liechtenstein;Liechtenstein;easy;47.14151;9.52154
+Luxembourg;Luxembourg;Luxembourg;easy;49.54083;6.20083
+Valletta;Malta;Malta;easy;35.89968;14.5148
+Monaco;Monaco;Monaco;easy;43.73976;7.42732
+San Marino;San Marino;San Marino;easy;43.9428779;12.4600933
+Vatican City;Vatican;Vatican;easy;41.90268;12.45414
+Moscow;Russian Federation;Russian Federation;easy;55.75222;37.61556
+London;United Kingdom;United Kingdom;easy;51.50853;-0.12574
+Berlin;Germany;Germany;easy;52.52437;13.41053
+Madrid;Spain;Spain;easy;40.4165;-3.70256
+Kyiv;Ukraine;Ukraine;easy;50.45466;30.5238
+Rome;Italy;Italy;easy;41.89193;12.51133
+Paris;France;France;easy;48.85341;2.3488
+Bucharest;Romania;Romania;easy;44.43225;26.10626
+Minsk;Belarus;Belarus;easy;53.9;27.56667
+Budapest;Hungary;Hungary;easy;47.49835;19.04045
+Warsaw;Poland;Poland;easy;52.22977;21.01178
+Vienna;Austria;Austria;easy;48.20849;16.37208
+Stockholm;Sweden;Sweden;easy;59.32938;18.06871
+Belgrade;Serbia;Serbia;easy;44.80401;20.46513
+Prague;Czech Republic;Czech Republic;easy;50.08804;14.42076
+Copenhagen;Denmark;Denmark;easy;55.67594;12.56553
+Sofia;Bulgaria;Bulgaria;easy;42.69751;23.32415
+Dublin;Ireland;Ireland;easy;53.33306;-6.24889
+Riga;Latvia;Latvia;easy;56.946;24.10589
+Amsterdam;Netherlands;Netherlands;easy;52.37403;4.88969
+Sarajevo;Bosnia and Herzegovina;Bosnia and Herzegovina;easy;43.84864;18.35644
+Athens;Greece;Greece;easy;37.98376;23.72784
+Zagreb;Croatia;Croatia;easy;45.81444;15.97798
+Helsinki;Finland;Finland;easy;60.16952;24.93545
+Chisinau;Moldova, Republic of;Moldova, Republic of;easy;47.00556;28.8575
+Oslo;Norway;Norway;easy;59.91273;10.74609
+Pristina;Kosovo;Kosovo;easy;42.67272;21.16688
+Vilnius;Lithuania;Lithuania;easy;54.68916;25.2798
+Lisbon;Portugal;Portugal;easy;38.71667;-9.13333
+Skopje;Macedonia, The former Yugoslav Rep. of;Macedonia, The former Yugoslav Rep. of;easy;41.99646;21.43141
+Bratislava;Slovakia;Slovakia;easy;48.14816;17.10674
+Tirana;Albania;Albania;easy;41.3275;19.81889
+Tallinn;Estonia;Estonia;easy;59.43696;24.75353
+Ljubljana;Slovenia;Slovenia;easy;46.05108;14.50513
+Podgorica;Montenegro;Montenegro;easy;42.44111;19.26361
+Bern;Switzerland;Switzerland;easy;46.94809;7.44744
+Istanbul;Turkey;Turkey;medium;41.01384;28.94966
+Saint Petersburg;Russian Federation;Russian Federation;medium;59.93863;30.31413
+Sintra;Portugal;Portugal;medium;38.798;-9.386
+Hamburg;Germany;Germany;medium;53.55073;9.99302
+Barcelona;Spain;Spain;medium;41.38879;2.15899
+Kharkiv;Ukraine;Ukraine;medium;49.98081;36.25272
+Milan;Italy;Italy;medium;45.46427;9.18951
+Munich;Germany;Germany;medium;48.13743;11.57549
+Kazan;Russian Federation;Russian Federation;medium;55.78874;49.12214
+Samara;Russian Federation;Russian Federation;medium;53.20007;50.15
+Birmingham;United Kingdom;United Kingdom;medium;52.48142;-1.89983
+Odesa;Ukraine;Ukraine;medium;46.48572;30.74383
+Cologne;Germany;Germany;medium;50.93333;6.95
+Naples;Italy;Italy;medium;40.85216;14.26811
+Marseille;France;France;medium;43.29695;5.38107
+Turin;Italy;Italy;medium;45.07049;7.68682
+Valencia;Spain;Spain;medium;39.47391;-0.37966
+Lódz;Poland;Poland;medium;51.77058;19.47395
+Kraków;Poland;Poland;medium;50.06143;19.93658
+Zaragoza;Spain;Spain;medium;41.65606;-0.87734
+Frankfurt;Germany;Germany;medium;50.11552;8.68417
+Palermo;Italy;Italy;medium;38.1166;13.3636
+Wroclaw;Poland;Poland;medium;51.1;17.03333
+Stuttgart;Germany;Germany;medium;48.78232;9.17702
+Rotterdam;Netherlands;Netherlands;medium;51.9225;4.47917
+Genoa;Italy;Italy;medium;44.40478;8.94439
+Málaga;Spain;Spain;medium;36.72016;-4.42034
+Poznan;Poland;Poland;medium;52.40692;16.92993
+Lyon;France;France;medium;45.74846;4.84671
+Toulouse;France;France;medium;43.60426;1.44367
+The Hague;Netherlands;Netherlands;medium;52.07667;4.29861
+Gdansk;Poland;Poland;medium;54.35227;18.64912
+Brno;Czech Republic;Czech Republic;medium;49.19522;16.60796
+Utrecht;Netherlands;Netherlands;medium;52.09083;5.12222
+Malmö;Sweden;Sweden;medium;55.60587;13.00073
+Plovdiv;Bulgaria;Bulgaria;medium;42.15;24.75
+Nice;France;France;medium;43.70313;7.26608
+Nantes;France;France;medium;47.21725;-1.55336
+Varna;Bulgaria;Bulgaria;medium;43.21667;27.91667
+Graz;Austria;Austria;medium;47.06667;15.45
+Kaunas;Lithuania;Lithuania;medium;54.90272;23.90961
+Espoo;Finland;Finland;medium;60.2052;24.6522
+Voronezh;Russian Federation;Russian Federation;hard;51.67204;39.1843
+Volgograd;Russian Federation;Russian Federation;hard;48.71939;44.50183
+Dnipro;Ukraine;Ukraine;hard;48.46664;35.04066
+Donetsk;Ukraine;Ukraine;hard;48.023;37.80224
+Krasnodar;Russian Federation;Russian Federation;hard;45.04484;38.97603
+Liverpool;United Kingdom;United Kingdom;hard;53.41058;-2.97794
+Lviv;Ukraine;Ukraine;hard;49.83826;24.02324
+Zaporizhzhya;Ukraine;Ukraine;hard;47.85167;35.11714
+Seville;Spain;Spain;hard;37.38283;-5.97317
+Glasgow;United Kingdom;United Kingdom;hard;55.86515;-4.25763
+Düsseldorf;Germany;Germany;hard;51.22172;6.77616
+Kryvyy Rih;Ukraine;Ukraine;hard;47.90572;33.39404
+Leipzig;Germany;Germany;hard;51.33962;12.37129
+Essen;Germany;Germany;hard;51.45657;7.01228
+Gothenburg;Sweden;Sweden;hard;57.70716;11.96679
+Sheffield;United Kingdom;United Kingdom;hard;53.38297;-1.4659
+Sevastopol;Ukraine;Ukraine;hard;44.60795;33.52134
+Antwerp;Belgium;Belgium;hard;51.22047;4.40026
+Homyel';Belarus;Belarus;hard;52.4345;30.9754
+Leeds;United Kingdom;United Kingdom;hard;53.79648;-1.54785
+Edinburgh;United Kingdom;United Kingdom;hard;55.95206;-3.19648
+Mykolayiv;Ukraine;Ukraine;hard;46.97625;31.99296
+Bristol;United Kingdom;United Kingdom;hard;51.45523;-2.59665
+Murcia;Spain;Spain;hard;37.98704;-1.13004
+Cardiff;United Kingdom;United Kingdom;hard;51.48;-3.18
+Palma;Spain;Spain;hard;39.56939;2.65024
+Szczecin;Poland;Poland;hard;53.42894;14.55302
+Manchester;United Kingdom;United Kingdom;hard;53.48095;-2.23743
+Bologna;Italy;Italy;hard;44.49381;11.33875
+Iasi;Romania;Romania;hard;47.16667;27.6
+Hrodna;Belarus;Belarus;hard;53.6884;23.8258
+Mahilyow;Belarus;Belarus;hard;53.9168;30.3449
+Florence;Italy;Italy;hard;43.77925;11.24626
+Bydgoszcz;Poland;Poland;hard;53.1235;18.00762
+Brest;Belarus;Belarus;hard;52.09755;23.68775
+Lublin;Poland;Poland;hard;51.25;22.56667
+Bilbao;Spain;Spain;hard;43.26271;-2.92528
+Vitebsk;Belarus;Belarus;hard;55.1904;30.2049
+Zürich;Switzerland;Switzerland;hard;47.36667;8.55
+Alicante;Spain;Spain;hard;38.34517;-0.48149
+Constanta;Romania;Romania;hard;44.18073;28.63432
+Thessaloniki;Greece;Greece;hard;40.64361;22.93086
+Katowice;Poland;Poland;hard;50.25841;19.02754
+Cluj-Napoca;Romania;Romania;hard;46.76667;23.6
+Bari;Italy;Italy;hard;41.12066;16.86982
+Timisoara;Romania;Romania;hard;45.75372;21.22571
+Catania;Italy;Italy;hard;37.49223;15.07041
+Craiova;Romania;Romania;hard;44.31667;23.8
+Galati;Romania;Romania;hard;45.43687;28.05028
+Bergen;Norway;Norway;hard;60.39299;5.32415
+Aarhus;Denmark;Denmark;hard;56.15674;10.21076
+Ostrava;Czech Republic;Czech Republic;hard;49.83465;18.28204
+Strasbourg;France;France;hard;48.58392;7.74553
+Gent;Belgium;Belgium;hard;51.05;3.71667
+Bordeaux;France;France;hard;44.84044;-0.5805
+Brasov;Romania;Romania;hard;45.64861;25.60613
+Niš;Serbia;Serbia;hard;43.32472;21.90333
+Porto;Portugal;Portugal;hard;41.14961;-8.61099
+Montpellier;France;France;hard;43.61093;3.87635
+Tampere;Finland;Finland;hard;61.49911;23.78712
+Groningen;Netherlands;Netherlands;hard;53.21917;6.56667
+Ploiesti;Romania;Romania;hard;44.95;26.01667
+Košice;Slovakia;Slovakia;hard;48.71395;21.25808
+Banja Luka;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;44.77842;17.19386
+Novi Sad;Serbia;Serbia;hard;45.25167;19.83694
+Trondheim;Norway;Norway;hard;63.43049;10.39506
+Babruysk;Belarus;Belarus;hard;53.1384;29.2214
+Oulu;Finland;Finland;hard;65.01236;25.46816
+Eindhoven;Netherlands;Netherlands;hard;51.44083;5.47778
+Linz;Austria;Austria;hard;48.30639;14.28611
+Debrecen;Hungary;Hungary;hard;47.53167;21.62444
+Charleroi;Belgium;Belgium;hard;50.41136;4.44448
+Tilburg;Netherlands;Netherlands;hard;51.55551;5.0913
+Burgas;Bulgaria;Bulgaria;hard;42.50606;27.46781
+Turku;Finland;Finland;hard;60.45148;22.26869
+Liège;Belgium;Belgium;hard;50.63373;5.56749
+Cork;Ireland;Ireland;hard;51.89797;-8.47061
+Vantaa;Finland;Finland;hard;60.29414;25.04099
+Genève;Switzerland;Switzerland;hard;46.20222;6.14569
+Odense;Denmark;Denmark;hard;55.39594;10.38831
+Baranovichi;Belarus;Belarus;hard;53.13253;26.00774
+Uppsala;Sweden;Sweden;hard;59.85882;17.63889
+Almere Stad;Netherlands;Netherlands;hard;52.37025;5.21413
+Klaipeda;Lithuania;Lithuania;hard;55.7068;21.13912
+Prizren;Kosovo;Kosovo;hard;42.21389;20.73972
+Pilsen;Czech Republic;Czech Republic;hard;49.74747;13.37759
+Pátra;Greece;Greece;hard;38.24444;21.73444
+Breda;Netherlands;Netherlands;hard;51.58656;4.77596
+Linköping;Sweden;Sweden;hard;58.41086;15.62157
+Basel;Switzerland;Switzerland;hard;47.55839;7.57327
+Zenica;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;44.20169;17.90397
+Szeged;Hungary;Hungary;hard;46.253;20.14824
+Nijmegen;Netherlands;Netherlands;hard;51.8425;5.85278
+Salzburg;Austria;Austria;hard;47.79941;13.04399
+Tiraspol;Moldova, Republic of;Moldova, Republic of;hard;46.84274;29.62909
+Örebro;Sweden;Sweden;hard;59.27412;15.2066
+Miskolc;Hungary;Hungary;hard;48.10306;20.77806
+Split;Croatia;Croatia;hard;43.50891;16.43915
+Kragujevac;Serbia;Serbia;hard;44.01667;20.91667
+Lárisa;Greece;Greece;hard;39.63689;22.41761
+Pécs;Hungary;Hungary;hard;46.0725;18.23083
+Barysaw;Belarus;Belarus;hard;54.2279;28.505
+Stavanger;Norway;Norway;hard;58.97005;5.73332
+Jyväskylä;Finland;Finland;hard;62.24147;25.72088
+Stara Zagora;Bulgaria;Bulgaria;hard;42.43278;25.64194
+Ruse;Bulgaria;Bulgaria;hard;43.84872;25.9534
+Aalborg;Denmark;Denmark;hard;57.048;9.9187
+Tuzla;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;44.53842;18.66709
+Lausanne;Switzerland;Switzerland;hard;46.516;6.63282
+Irákleion;Greece;Greece;hard;35.32787;25.14341
+Innsbruck;Austria;Austria;hard;47.26266;11.39454
+Pinsk;Belarus;Belarus;hard;52.12153;26.06726
+Umeå;Sweden;Sweden;hard;63.82842;20.25972
+Györ;Hungary;Hungary;hard;47.68333;17.63512
+Västerås;Sweden;Sweden;hard;59.61617;16.55276
+Balti;Moldova, Republic of;Moldova, Republic of;hard;47.76314;27.92932
+Durrës;Albania;Albania;hard;41.32355;19.45469
+Kuopio;Finland;Finland;hard;62.89238;27.67703
+Braga;Portugal;Portugal;hard;41.55032;-8.42005
+Lahti;Finland;Finland;hard;60.98267;25.66151
+Brugge;Belgium;Belgium;hard;51.20892;3.22424
+Nyíregyháza;Hungary;Hungary;hard;47.95539;21.71671
+Setúbal;Portugal;Portugal;hard;38.5244;-8.8882
+Cacak;Serbia;Serbia;hard;43.89139;20.34972
+Daugavpils;Latvia;Latvia;hard;55.88333;26.53333
+Namur;Belgium;Belgium;hard;50.4669;4.86746
+Bender;Moldova, Republic of;Moldova, Republic of;hard;46.83156;29.47769
+Rijeka;Croatia;Croatia;hard;45.32673;14.44241
+Mitrovicë;Kosovo;Kosovo;hard;42.88333;20.86667
+Coimbra;Portugal;Portugal;hard;40.20564;-8.41955
+Mostar;Bosnia and Herzegovina;Bosnia and Herzegovina;hard;43.34333;17.80806
+Drammen;Norway;Norway;hard;59.74389;10.20449
+Liberec;Czech Republic;Czech Republic;hard;50.76711;15.05619
+Leuven;Belgium;Belgium;hard;50.87959;4.70093
+Pleven;Bulgaria;Bulgaria;hard;43.41667;24.61667
+Elbasan;Albania;Albania;hard;41.1125;20.08222
+Subotica;Serbia;Serbia;hard;46.1;19.66667
+Olomouc;Czech Republic;Czech Republic;hard;49.59552;17.25175
+Šiauliai;Lithuania;Lithuania;hard;55.93333;23.31667
+Acharnés;Greece;Greece;hard;38.08333;23.73333
+Maribor;Slovenia;Slovenia;hard;46.55472;15.64667
+Leskovac;Serbia;Serbia;hard;42.99806;21.94611
+Limerick;Ireland;Ireland;hard;52.66472;-8.62306
+Gjakovë;Kosovo;Kosovo;hard;42.38028;20.43083
+Ceské Budejovice;Czech Republic;Czech Republic;hard;48.97447;14.47434
+Kristiansand;Norway;Norway;hard;58.14671;7.9956`;
+
+const csvUS = `Washington;DC;DC;veryeasy;38.90;-77.02
+Austin;TX;TX;easy;30.30;-97.75
+Sacramento;CA;CA;easy;38.57;-121.47
+Raleigh;NC;NC;easy;35.83;-78.64
+Saint Paul;MN;MN;easy;44.95;-93.10
+Lincoln;NE;NE;easy;40.81;-96.68
+Madison;WI;WI;easy;43.09;-89.43
+Richmond;VA;VA;easy;37.53;-77.48
+Baton Rouge;LA;LA;easy;30.44;-91.13
+Tallahassee;FL;FL;easy;30.46;-84.25
+Montgomery;AL;AL;easy;32.35;-86.27
+Salem;OR;OR;easy;44.92;-123.02
+Columbia;SC;SC;easy;34.04;-80.91
+Topeka;KS;KS;easy;39.03;-95.69
+Hartford;CT;CT;easy;41.77;-72.68
+Springfield;IL;IL;easy;39.79;-89.64
+Lansing;MI;MI;easy;42.71;-84.56
+Albany;NY;NY;easy;42.67;-73.80
+Phoenix;AZ;AZ;easy;33.57;-112.09
+Columbus;OH;OH;easy;39.99;-82.99
+Indianapolis;IN;IN;easy;39.78;-86.15
+Denver;CO;CO;easy;39.76;-104.88
+Oklahoma City;OK;OK;easy;35.47;-97.51
+Nashville;TN;TN;easy;36.17;-86.79
+Boston;MA;MA;easy;42.34;-71.02
+Atlanta;GA;GA;easy;33.76;-84.42
+Boise;ID;ID;easy;43.60;-116.23
+Des Moines;IA;IA;easy;41.57;-93.61
+Salt Lake City;UT;UT;easy;40.78;-111.93
+Little Rock;AR;AR;easy;34.72;-92.36
+Providence;RI;RI;easy;41.82;-71.42
+Jackson;MS;MS;easy;32.32;-90.21
+New York;NY;NY;medium;40.66;-73.94
+Los Angeles;CA;CA;medium;34.02;-118.41
+Chicago;IL;IL;medium;41.84;-87.68
+Houston;TX;TX;medium;29.79;-95.39
+Philadelphia;PA;PA;medium;40.01;-75.13
+Jacksonville;FL;FL;medium;30.34;-81.66
+Charlotte;NC;NC;medium;35.21;-80.83
+Seattle;WA;WA;medium;47.62;-122.35
+Las Vegas;NV;NV;medium;36.23;-115.26
+Portland;OR;OR;medium;45.54;-122.65
+Louisville;KY;KY;medium;38.17;-85.65
+Detroit;MI;MI;medium;42.38;-83.10
+Baltimore;MD;MD;medium;39.30;-76.61
+Milwaukee;WI;WI;medium;43.06;-87.97
+Albuquerque;NM;NM;medium;35.10;-106.65
+Kansas City;MO;MO;medium;39.12;-94.56
+Omaha;NE;NE;medium;41.26;-96.05
+Virginia Beach;VA;VA;medium;36.78;-76.03
+Minneapolis;MN;MN;medium;44.96;-93.27
+Wichita;KS;KS;medium;37.69;-97.35
+New Orleans;LA;LA;medium;30.05;-89.93
+Newark;NJ;NJ;medium;40.72;-74.17
+Huntsville;AL;AL;medium;34.78;-86.53
+Sioux Falls;SD;SD;medium;43.54;-96.73
+Charleston;SC;SC;medium;32.83;-79.97
+Bridgeport;CT;CT;medium;41.19;-73.20
+Fargo;ND;ND;medium;46.86;-96.83
+Billings;MT;MT;medium;45.79;-108.55
+Manchester;NH;NH;medium;42.98;-71.44
+San Antonio;TX;TX;hard;29.46;-98.52
+San Diego;CA;CA;hard;32.81;-117.14
+Dallas;TX;TX;hard;32.79;-96.77
+San Jose;CA;CA;hard;37.30;-121.81
+Fort Worth;TX;TX;hard;32.78;-97.35
+San Francisco;CA;CA;hard;37.78;-122.43
+El Paso;TX;TX;hard;31.85;-106.43
+Memphis;TN;TN;hard;35.11;-89.97
+Tucson;AZ;AZ;hard;32.15;-110.87
+Fresno;CA;CA;hard;36.78;-119.79
+Mesa;AZ;AZ;hard;33.40;-111.72
+Colorado Springs;CO;CO;hard;38.87;-104.76
+Long Beach;CA;CA;hard;33.78;-118.17
+Miami;FL;FL;hard;25.78;-80.21
+Oakland;CA;CA;hard;37.77;-122.23
+Tulsa;OK;OK;hard;36.13;-95.90
+Bakersfield;CA;CA;hard;35.35;-119.04
+Tampa;FL;FL;hard;27.97;-82.47
+Arlington;TX;TX;hard;32.70;-97.12
+Aurora;CO;CO;hard;39.70;-104.72
+Cleveland;OH;OH;hard;41.48;-81.68
+Anaheim;CA;CA;hard;33.86;-117.76
+Henderson;NV;NV;hard;36.01;-115.04
+Stockton;CA;CA;hard;37.98;-121.31
+Riverside;CA;CA;hard;33.94;-117.39
+Lexington;KY;KY;hard;38.04;-84.46
+Corpus Christi;TX;TX;hard;27.75;-97.17
+Orlando;FL;FL;hard;28.41;-81.25
+Irvine;CA;CA;hard;33.68;-117.77
+Cincinnati;OH;OH;hard;39.14;-84.51
+Santa Ana;CA;CA;hard;33.74;-117.88
+Pittsburgh;PA;PA;hard;40.44;-79.98
+Greensboro;NC;NC;hard;36.10;-79.83
+Durham;NC;NC;hard;35.98;-78.90
+Plano;TX;TX;hard;33.05;-96.75
+Jersey City;NJ;NJ;hard;40.71;-74.06
+St. Louis;MO;MO;hard;38.64;-90.24
+Chandler;AZ;AZ;hard;33.28;-111.85
+North Las Vegas;NV;NV;hard;36.28;-115.09
+Chula Vista;CA;CA;hard;32.63;-117.02
+Buffalo;NY;NY;hard;42.89;-78.86
+Gilbert;AZ;AZ;hard;33.31;-111.74
+Reno;NV;NV;hard;39.55;-119.85
+Fort Wayne;IN;IN;hard;41.09;-85.14
+Toledo;OH;OH;hard;41.66;-83.58
+Lubbock;TX;TX;hard;33.57;-101.89
+St. Petersburg;FL;FL;hard;27.77;-82.64
+Laredo;TX;TX;hard;27.56;-99.49
+Irving;TX;TX;hard;32.86;-96.97
+Chesapeake;VA;VA;hard;36.68;-76.30
+Glendale;AZ;AZ;hard;33.53;-112.19
+Winston-Salem;NC;NC;hard;36.10;-80.26
+Scottsdale;AZ;AZ;hard;33.68;-111.86
+Garland;TX;TX;hard;32.91;-96.63
+Norfolk;VA;VA;hard;36.92;-76.24
+Port St. Lucie;FL;FL;hard;27.28;-80.39
+Spokane;WA;WA;hard;47.67;-117.43
+Fremont;CA;CA;hard;37.49;-121.94
+Tacoma;WA;WA;hard;47.25;-122.46
+Santa Clarita;CA;CA;hard;34.41;-118.49
+San Bernardino;CA;CA;hard;34.14;-117.29
+Hialeah;FL;FL;hard;25.87;-80.30
+Frisco;TX;TX;hard;33.16;-96.82
+Modesto;CA;CA;hard;37.64;-121.00
+Cape Coral;FL;FL;hard;26.65;-81.99
+Fontana;CA;CA;hard;34.11;-117.46
+Moreno Valley;CA;CA;hard;33.92;-117.21
+Rochester;NY;NY;hard;43.17;-77.62
+Fayetteville;NC;NC;hard;35.08;-78.97
+Yonkers;NY;NY;hard;40.95;-73.87
+McKinney;TX;TX;hard;33.20;-96.66
+Worcester;MA;MA;hard;42.27;-71.81
+Columbus;GA;GA;hard;32.51;-84.87
+Augusta;GA;GA;hard;33.37;-82.07
+Grand Prairie;TX;TX;hard;32.69;-97.02
+Amarillo;TX;TX;hard;35.20;-101.83
+Oxnard;CA;CA;hard;34.20;-119.21
+Peoria;AZ;AZ;hard;33.79;-112.31
+Overland Park;KS;KS;hard;38.89;-94.69
+Birmingham;AL;AL;hard;33.53;-86.80
+Grand Rapids;MI;MI;hard;42.96;-85.66
+Knoxville;TN;TN;hard;35.97;-83.95
+Vancouver;WA;WA;hard;45.64;-122.60
+Huntington Beach;CA;CA;hard;33.70;-118.00
+Brownsville;TX;TX;hard;26.00;-97.45
+Glendale;CA;CA;hard;34.18;-118.25
+Akron;OH;OH;hard;41.08;-81.52
+Tempe;AZ;AZ;hard;33.39;-111.93
+Newport News;VA;VA;hard;37.08;-76.52
+Chattanooga;TN;TN;hard;35.07;-85.25
+Mobile;AL;AL;hard;30.67;-88.10
+Fort Lauderdale;FL;FL;hard;26.14;-80.15
+Cary;NC;NC;hard;35.78;-78.82
+Shreveport;LA;LA;hard;32.47;-93.79
+Ontario;CA;CA;hard;34.04;-117.60
+Eugene;OR;OR;hard;44.06;-123.12
+Aurora;IL;IL;hard;41.76;-88.29
+Elk Grove;CA;CA;hard;38.41;-121.38
+Santa Rosa;CA;CA;hard;38.45;-122.71
+Clarksville;TN;TN;hard;36.57;-87.35
+Rancho Cucamonga;CA;CA;hard;34.12;-117.56
+Oceanside;CA;CA;hard;33.22;-117.31
+Springfield;MO;MO;hard;37.19;-93.29
+Pembroke Pines;FL;FL;hard;26.01;-80.34
+Garden Grove;CA;CA;hard;33.78;-117.96
+Fort Collins;CO;CO;hard;40.55;-105.06
+Lancaster;CA;CA;hard;34.69;-118.18
+Palmdale;CA;CA;hard;34.59;-118.11
+Murfreesboro;TN;TN;hard;35.85;-86.42
+Salinas;CA;CA;hard;36.69;-121.63
+Corona;CA;CA;hard;33.86;-117.57
+Killeen;TX;TX;hard;31.08;-97.73
+Hayward;CA;CA;hard;37.63;-122.10
+Paterson;NJ;NJ;hard;40.91;-74.16
+Macon;GA;GA;hard;32.81;-83.69
+Lakewood;CO;CO;hard;39.70;-105.12
+Alexandria;VA;VA;hard;38.82;-77.08
+Roseville;CA;CA;hard;38.77;-121.32
+Surprise;AZ;AZ;hard;33.67;-112.45
+Springfield;MA;MA;hard;42.12;-72.54
+Kansas City;KS;KS;hard;39.12;-94.74
+Sunnyvale;CA;CA;hard;37.39;-122.03
+Bellevue;WA;WA;hard;47.60;-122.16
+Hollywood;FL;FL;hard;26.03;-80.16
+Denton;TX;TX;hard;33.22;-97.14
+Escondido;CA;CA;hard;33.13;-117.07
+Joliet;IL;IL;hard;41.52;-88.15
+Naperville;IL;IL;hard;41.75;-88.16
+Savannah;GA;GA;hard;32.00;-81.15
+Mesquite;TX;TX;hard;32.76;-96.59
+Pasadena;TX;TX;hard;29.65;-95.15
+Rockford;IL;IL;hard;42.26;-89.06
+Pomona;CA;CA;hard;34.06;-117.76
+Olathe;KS;KS;hard;38.88;-94.82
+Gainesville;FL;FL;hard;29.68;-82.35
+McAllen;TX;TX;hard;26.22;-98.25
+Syracuse;NY;NY;hard;43.04;-76.14
+Waco;TX;TX;hard;31.56;-97.19
+Visalia;CA;CA;hard;36.33;-119.33
+Thornton;CO;CO;hard;39.92;-104.94
+Torrance;CA;CA;hard;33.83;-118.36
+Fullerton;CA;CA;hard;33.89;-117.93
+Lakewood;NJ;NJ;hard;40.08;-74.20
+New Haven;CT;CT;hard;41.31;-72.92
+Hampton;VA;VA;hard;37.05;-76.30
+Miramar;FL;FL;hard;25.97;-80.34
+Victorville;CA;CA;hard;34.53;-117.35
+Warren;MI;MI;hard;42.49;-83.03
+West Valley City;UT;UT;hard;40.69;-112.01
+Cedar Rapids;IA;IA;hard;41.97;-91.68
+Stamford;CT;CT;hard;41.08;-73.55
+Orange;CA;CA;hard;33.79;-117.86
+Dayton;OH;OH;hard;39.78;-84.20
+Midland;TX;TX;hard;32.02;-102.11
+Kent;WA;WA;hard;47.39;-122.21
+Elizabeth;NJ;NJ;hard;40.67;-74.19
+Pasadena;CA;CA;hard;34.16;-118.14
+Carrollton;TX;TX;hard;32.99;-96.90
+Coral Springs;FL;FL;hard;26.27;-80.26
+Sterling Heights;MI;MI;hard;42.58;-83.03
+Lewisville;TX;TX;hard;33.05;-96.98
+Meridian;ID;ID;hard;43.61;-116.40
+Norman;OK;OK;hard;35.24;-97.35
+Palm Bay;FL;FL;hard;27.96;-80.66
+Athens;GA;GA;hard;33.95;-83.37
+Columbia;MO;MO;hard;38.95;-92.33
+Abilene;TX;TX;hard;32.45;-99.74
+Pearland;TX;TX;hard;29.56;-95.32
+Santa Clara;CA;CA;hard;37.36;-121.97
+Round Rock;TX;TX;hard;30.53;-97.66
+Allentown;PA;PA;hard;40.59;-75.48
+Clovis;CA;CA;hard;36.83;-119.68
+Simi Valley;CA;CA;hard;34.27;-118.75
+College Station;TX;TX;hard;30.59;-96.30
+Thousand Oaks;CA;CA;hard;34.19;-118.87
+Vallejo;CA;CA;hard;38.11;-122.26
+Concord;CA;CA;hard;37.97;-122.00
+Rochester;MN;MN;hard;44.02;-92.48
+Arvada;CO;CO;hard;39.83;-105.15
+Lafayette;LA;LA;hard;30.21;-92.03
+Independence;MO;MO;hard;39.09;-94.35
+West Palm Beach;FL;FL;hard;26.75;-80.13
+Wilmington;NC;NC;hard;34.21;-77.89
+Lakeland;FL;FL;hard;28.06;-81.95
+Ann Arbor;MI;MI;hard;42.28;-83.73
+Fairfield;CA;CA;hard;38.26;-122.03
+Berkeley;CA;CA;hard;37.87;-122.30
+Richardson;TX;TX;hard;32.97;-96.71
+North Charleston;SC;SC;hard;32.92;-80.07
+Cambridge;MA;MA;hard;42.38;-71.12
+Broken Arrow;OK;OK;hard;36.04;-95.78
+Clearwater;FL;FL;hard;27.98;-82.77
+West Jordan;UT;UT;hard;40.60;-112.00
+Evansville;IN;IN;hard;37.99;-87.53
+League City;TX;TX;hard;29.49;-95.11
+Antioch;CA;CA;hard;37.98;-121.80
+High Point;NC;NC;hard;35.99;-79.99
+Waterbury;CT;CT;hard;41.56;-73.04
+Westminster;CO;CO;hard;39.88;-105.06
+Richmond;CA;CA;hard;37.95;-122.36
+Carlsbad;CA;CA;hard;33.13;-117.28
+Las Cruces;NM;NM;hard;32.33;-106.79
+Murrieta;CA;CA;hard;33.57;-117.19
+Lowell;MA;MA;hard;42.64;-71.32
+Provo;UT;UT;hard;40.25;-111.65
+Elgin;IL;IL;hard;42.04;-88.33
+Odessa;TX;TX;hard;31.88;-102.35
+Pompano Beach;FL;FL;hard;26.24;-80.13
+Beaumont;TX;TX;hard;30.08;-94.15
+Temecula;CA;CA;hard;33.49;-117.13
+Gresham;OR;OR;hard;45.50;-122.44
+Allen;TX;TX;hard;33.11;-96.67
+Pueblo;CO;CO;hard;38.27;-104.61
+Everett;WA;WA;hard;47.95;-122.19
+South Fulton;GA;GA;hard;33.66;-84.57
+Peoria;IL;IL;hard;40.75;-89.62
+Nampa;ID;ID;hard;43.58;-116.56
+Tuscaloosa;AL;AL;hard;33.23;-87.53
+Miami Gardens;FL;FL;hard;25.95;-80.24
+Santa Maria;CA;CA;hard;34.93;-120.44
+Downey;CA;CA;hard;33.94;-118.13
+Concord;NC;NC;hard;35.39;-80.64
+Ventura;CA;CA;hard;34.27;-119.25
+Costa Mesa;CA;CA;hard;33.67;-117.91
+Sugar Land;TX;TX;hard;29.59;-95.63
+Menifee;CA;CA;hard;33.69;-117.18
+Tyler;TX;TX;hard;32.32;-95.31
+Sparks;NV;NV;hard;39.57;-119.72
+Greeley;CO;CO;hard;40.41;-104.77
+Rio Rancho;NM;NM;hard;35.29;-106.70
+Sandy Springs;GA;GA;hard;33.93;-84.37
+Dearborn;MI;MI;hard;42.31;-83.21
+Jurupa Valley;CA;CA;hard;34.00;-117.47
+Edison;NJ;NJ;hard;40.50;-74.35
+Spokane Valley;WA;WA;hard;47.66;-117.23
+Hillsboro;OR;OR;hard;45.53;-122.94
+Davie;FL;FL;hard;26.08;-80.28
+Green Bay;WI;WI;hard;44.52;-87.99
+Centennial;CO;CO;hard;39.59;-104.87
+Buckeye;AZ;AZ;hard;33.43;-112.64
+Boulder;CO;CO;hard;40.02;-105.25
+Goodyear;AZ;AZ;hard;33.25;-112.37
+El Monte;CA;CA;hard;34.07;-118.03
+West Covina;CA;CA;hard;34.06;-117.91
+Brockton;MA;MA;hard;42.08;-71.02
+New Braunfels;TX;TX;hard;29.70;-98.12
+El Cajon;CA;CA;hard;32.80;-116.96
+Edinburg;TX;TX;hard;26.32;-98.16
+Renton;WA;WA;hard;47.48;-122.19
+Burbank;CA;CA;hard;34.19;-118.33
+Inglewood;CA;CA;hard;33.96;-118.34
+Rialto;CA;CA;hard;34.12;-117.39
+Lee's Summit;MO;MO;hard;38.92;-94.38
+Bend;OR;OR;hard;44.06;-121.31
+Woodbridge;NJ;NJ;hard;40.56;-74.29
+South Bend;IN;IN;hard;41.68;-86.27
+Wichita Falls;TX;TX;hard;33.91;-98.53
+St. George;UT;UT;hard;37.08;-113.56
+Fishers;IN;IN;hard;39.96;-85.97
+Carmel;IN;IN;hard;39.97;-86.15
+Vacaville;CA;CA;hard;38.36;-121.97
+Quincy;MA;MA;hard;42.26;-71.01
+Conroe;TX;TX;hard;30.32;-95.49
+Chico;CA;CA;hard;39.76;-121.82
+San Mateo;CA;CA;hard;37.56;-122.31
+Lynn;MA;MA;hard;42.47;-70.96
+Hesperia;CA;CA;hard;34.40;-117.32
+New Bedford;MA;MA;hard;41.66;-70.94
+Davenport;IA;IA;hard;41.56;-90.60
+Daly City;CA;CA;hard;37.69;-122.47`;
