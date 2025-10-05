@@ -116,7 +116,7 @@ if (urlParams.has('lang')) {
 if (urlParams.has('map')) {
 	// Obtenez la valeur du paramètre "map"
 	const urlMap = urlParams.get('map');
-	if (urlMap == "fr" || urlMap == "us" || urlMap == "eu") {
+	if (urlMap in maps) {
 		currentMap = maps[urlMap];
 	}
 	else {

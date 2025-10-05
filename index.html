@@ -13,6 +13,9 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
 	<link rel="manifest" href="site.webmanifest">
+	<script src="assets/js/citydata.js" defer></script>
+	<script src="assets/js/maps.js" defer></script>
+	<script src="assets/js/initpage.js" defer></script>
 	<link rel="stylesheet" href="assets/css/index.css">
 </head>
 
@@ -49,23 +52,7 @@
 			<div class="form-title">
 				Carte / Map
 			</div>
-			<div class="wrapper">
-				<input type="radio" name="map" id="option-map-fr" value="fr" checked>
-				<label for="option-map-fr" class="option">
-					<span class="dot"></span>
-					<span class="option-name">France</span>
-				</label>
-				<input type="radio" name="map" id="option-map-eu" value="eu">
-				<label for="option-map-eu" class="option">
-					<span class="dot"></span>
-					<span class="option-name">Europe</span>
-				</label>
-				<input type="radio" name="map" id="option-map-us" value="us">
-				<label for="option-map-us" class="option">
-					<span class="dot"></span>
-					<span class="option-name">USA</span>
-				</label>
-			</div>
+			<div class="wrapper" id="map-selector"></div>
 
 			<div>
 				<button type="submit">Go!</button>
