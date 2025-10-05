@@ -26,3 +26,32 @@ for (let key in maps) {
     label.appendChild(option_name);
     map_selector_wrapper.appendChild(label);
 }
+
+// Add radio buttons for language selection
+let lang_selector_wrapper = document.getElementById("lang-selector");
+
+is_first = true;
+for (let key in translations) {
+    let input = document.createElement("input");
+    input.type = "radio";
+    input.name = "lang";
+    input.id = "option-lang-" + key;
+    input.setAttribute("value", key);
+    if (is_first) {
+        input.checked = true;
+        is_first = false;
+    }
+    lang_selector_wrapper.appendChild(input);
+
+    let label = document.createElement("label");
+    label.setAttribute("for", "option-lang-" + key);
+    label.className = "option";
+    let dot = document.createElement("span");
+    dot.className = "dot";
+    let option_name = document.createElement("span");
+    option_name.className = "option-name";
+    option_name.innerText = translations[key].selfName;
+    label.appendChild(dot);
+    label.appendChild(option_name);
+    lang_selector_wrapper.appendChild(label);
+}

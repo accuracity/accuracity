@@ -13,6 +13,7 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
 	<link rel="manifest" href="site.webmanifest">
+	<script src="assets/js/i18n.js" defer></script>
 	<script src="assets/js/citydata.js" defer></script>
 	<script src="assets/js/maps.js" defer></script>
 	<script src="assets/js/initpage.js" defer></script>
@@ -36,18 +37,7 @@
 			<div class="form-title">
 				Langue / Language
 			</div>
-			<div class="wrapper">
-				<input type="radio" name="lang" id="option-lang-fr" value="fr" checked>
-				<label for="option-lang-fr" class="option">
-					<span class="dot"></span>
-					<span class="option-name">Français</span>
-				</label>
-				<input type="radio" name="lang" id="option-lang-en" value="en">
-				<label for="option-lang-en" class="option">
-					<span class="dot"></span>
-					<span class="option-name">English</span>
-				</label>
-			</div>
+			<div class="wrapper" id="lang-selector"></div>
 
 			<div class="form-title">
 				Carte / Map

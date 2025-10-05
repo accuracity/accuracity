@@ -102,7 +102,7 @@ class RandGen {
 if (urlParams.has('lang')) {
 	// Obtenez la valeur du paramètre "lang"
 	const urlLang = urlParams.get('lang');
-	if (urlLang == "fr" || urlLang == "en") {
+	if (urlLang in translations) {
 		lang = urlLang;
 	}
 	else {
