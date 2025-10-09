@@ -597,6 +597,35 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 	}
 	// theta is the angle of the line between (x, y) and (targetX, targetY)
 
+	// If the target is far enough from the clicked point, draw an arrox on
+	if (Math.sqrt(deltaX ** 2 + deltaY ** 2) >= 25) {
+		let middleX = (targetX + x) / 2;
+		let middleY = (targetY + y) / 2;
+
+		// angle and length of the arrow
+		let arrow_angle = 0.5;
+		let arrow_length = 10;
+
+		// left end of the arrow
+		let angle_left = Math.PI + theta + arrow_angle;
+		let arrow_leftX = middleX + arrow_length * Math.cos(angle_left);
+		let arrow_leftY = middleY + arrow_length * Math.sin(angle_left);
+
+		// right end of the arrow
+		let angle_right = Math.PI + theta - arrow_angle;
+		let arrow_rightX = middleX + arrow_length * Math.cos(angle_right);
+		let arrow_rightY = middleY + arrow_length * Math.sin(angle_right);
+
+		// draw the arrow
+		canvasCtx.beginPath();
+		canvasCtx.moveTo(arrow_leftX, arrow_leftY);
+		canvasCtx.lineTo(middleX, middleY);
+		canvasCtx.lineTo(arrow_rightX, arrow_rightY);
+		canvasCtx.strokeStyle = 'black';
+		canvasCtx.lineWidth = 0.5;
+		canvasCtx.stroke();
+	}
+
 	// Dessiner le point cliqué
 	canvasCtx.beginPath();
 	canvasCtx.arc(x, y, 5, 0, Math.PI * 2);
