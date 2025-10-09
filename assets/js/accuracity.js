@@ -588,6 +588,15 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 	canvasCtx.lineWidth = 0.5; // Epaisseur de la ligne
 	canvasCtx.stroke();
 
+	let deltaX = targetX - x;
+	let deltaY = targetY - y;
+	if (deltaX == 0) {
+		theta = (deltaY > 0) ? Math.PI / 2 : -Math.PI / 2;
+	} else {
+		theta = (deltaX > 0) ? Math.atan(deltaY / deltaX) : Math.PI + Math.atan(deltaY / deltaX)
+	}
+	// theta is the angle of the line between (x, y) and (targetX, targetY)
+
 	// Dessiner le point cliqué
 	canvasCtx.beginPath();
 	canvasCtx.arc(x, y, 5, 0, Math.PI * 2);
@@ -626,7 +635,11 @@ function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
 	canvasCtx.font = '12px Arial';
 
 	// Dessiner le texte de la distance
-	canvasCtx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y) / 2 - 5);
+	if (theta < Math.PI && theta > Math.PI / 2)
+		canvasCtx.fillText(cityName + ' (' + distance + 'km)', targetX + 5, targetY + 5 + 12);
+	else {
+		canvasCtx.fillText(cityName + ' (' + distance + 'km)', targetX + 5, targetY - 5);
+	}
 }
 
 function drawMapBackground() {
