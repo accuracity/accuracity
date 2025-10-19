@@ -1,4 +1,7 @@
 const map = document.getElementById('map');
+const mapImage = document.getElementById('map-image');
+const canvas = document.getElementById('myCanvas');
+const canvasCtx = canvas.getContext('2d');
 const clickCoordinates = document.getElementById('click-coordinates');
 const scoreLast = document.getElementById('last-score');
 const scoreNb = document.getElementById('nb-score');
@@ -99,7 +102,7 @@ class RandGen {
 if (urlParams.has('lang')) {
 	// Obtenez la valeur du paramètre "lang"
 	const urlLang = urlParams.get('lang');
-	if (urlLang == "fr" || urlLang == "en") {
+	if (urlLang in translations) {
 		lang = urlLang;
 	}
 	else {
@@ -113,7 +116,7 @@ if (urlParams.has('lang')) {
 if (urlParams.has('map')) {
 	// Obtenez la valeur du paramètre "map"
 	const urlMap = urlParams.get('map');
-	if (urlMap == "fr" || urlMap == "us" || urlMap == "eu") {
+	if (urlMap in maps) {
 		currentMap = maps[urlMap];
 	}
 	else {
@@ -130,7 +133,6 @@ const bottomLeftGPS = currentMap.bottomLeftGPS;
 const bottomRightGPS = currentMap.bottomRightGPS;
 const width = currentMap.width;
 const height = currentMap.height;
-const offsetY = 105;
 
 // Image de fond
 const img = new Image();
@@ -138,60 +140,18 @@ img.src = currentMap.img;
 
 document.addEventListener('DOMContentLoaded', function () {
 	// Code JavaScript à exécuter une fois que la page est chargée
-	applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtOr", "change", "txtDifficulty");
+	applyI18nToHtml(lang, "txtChallengeTitle", "txtChallenge", "defi", "txtFreePracticeTitle", "txtEasy", "txtMedium", "txtHard", "txtNbCitiesTitle", "txtCitiesAll", "startGameButton", "finish", "txtLastScore", "txtNumberOfGames", "txtAverageScore", "resetScore", "txtCreditsMap", "txtLegalMentions", "txtCreditsDataset", "txtCreditsGame", "txtCreditsContribution", "txtOr", "change", "txtDifficulty", "txtNoScript");
 
-	document.getElementById("map-image").src = currentMap.img;
-	document.getElementById("map").style.height = currentMap.height + "px"; // not sufficient, to be fixed
-	document.getElementById("map").style.width = currentMap.width + "px";
-
-	if (lang == "fr") document.getElementById("change").style.left = "654px";
-	else if (lang == "en") document.getElementById("change").style.left = "666px";
-
-	const styleSheets = document.styleSheets;
-
-	// Pour chaque feuille de style
-	for (let i = 0; i < styleSheets.length; i++) {
-		const styleSheet = styleSheets[i];
-
-		// Vérifiez si la règle de style est une règle @media
-		if (styleSheet.media && styleSheet.media.mediaText === 'screen and (max-width: 819px)') {
-			// Parcourir les règles de style dans la feuille de style
-			const rules = styleSheet.cssRules || styleSheet.rules;
-			for (let j = 0; j < rules.length; j++) {
-				const rule = rules[j];
-				// Vérifiez si la règle cible l'élément "credits"
-				if (rule.selectorText === '#credits') {
-					// Modifier le top de la règle
-					rule.style.top = (currentMap.height + 650) + "px"; // Nouvelle valeur
-				}
-				// Vérifiez si la règle cible l'élément "credits"
-				if (rule.selectorText === '#score') {
-					// Modifier le top de la règle
-					rule.style.top = (currentMap.height + 205) + "px"; // Nouvelle valeur
-				}
-				// Vérifiez si la règle cible l'élément "click-coordinates"
-				if (rule.selectorText === '#click-coordinates') {
-					// Modifier le top de la règle
-					rule.style.top = (currentMap.height + 135) + "px"; // Nouvelle valeur
-				}
-			}
-		}
-
-		// Recherche de la règle CSS correspondant à l'élément avec l'identifiant "credits"
-		const rules2 = styleSheet.cssRules || styleSheet.rules;
-		for (let k = 0; k < rules2.length; k++) {
-			const rule = rules2[k];
-			if (rule.selectorText === '#credits') {
-				rule.style.top = Math.max(700, currentMap.height + 185) + "px";
-				break;
-			}
-		}
-	}
+	mapImage.src = currentMap.img;
+	map.style.width = currentMap.width + "px";
+	map.style.height = currentMap.height + "px";
+	mapImage.style.height = currentMap.height + "px";
+	mapImage.style.width = currentMap.width + "px";
 
 	document.title = i18n("txtTitle", lang);
 
-	document.getElementById("myCanvas").height = currentMap.height;
-	document.getElementById("myCanvas").width = currentMap.width;
+	canvas.height = currentMap.height;
+	canvas.width = currentMap.width;
 
 	document.getElementById("txtEasy").value = currentMap.categories.easy.totalCount;
 	document.getElementById("txtEasy").innerHTML = currentMap.categories.easy.difficulty;
@@ -219,7 +179,7 @@ scoreReset.onclick = function () {
 	stopGame();
 };
 
-map.addEventListener('click', function (event) {
+canvas.addEventListener('click', function (event) {
 	if (gameOngoing) {
 		const mapRect = map.getBoundingClientRect();
 		const x = event.clientX - mapRect.left;
@@ -227,7 +187,7 @@ map.addEventListener('click', function (event) {
 		console.log(`Clic - X ` + x + ` / Y ` + y);
 
 		// Calcul des coordonnées GPS du point cliqué
-		const gpsCoordinates = xyToGPS(currentMap.projection, x, y - offsetY, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
+		const gpsCoordinates = xyToGPS(currentMap.projection, x, y, width, height, topLeftGPS, topRightGPS, bottomLeftGPS, bottomRightGPS);
 		console.log(`Clic - Long ` + gpsCoordinates.longitude + ` / Lat ` + gpsCoordinates.latitude);
 
 		// Positionnement de la cible
@@ -614,59 +574,108 @@ function drawMapClear() {
 		distanceText.remove();
 	}
 
-	// Récupérer le contexte 2D du canvas
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
 	// Effacer le contenu du canvas
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawMapClicOnCanvas(x, y, targetX, targetY, distance, cityName) {
-	// Récupérer le canvas et son contexte
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
+	// Dessiner la ligne entre les deux points
+	canvasCtx.beginPath();
+	canvasCtx.moveTo(targetX, targetY);
+	canvasCtx.lineTo(x, y);
+	canvasCtx.strokeStyle = '#4444AA'; // Couleur de la ligne
+	canvasCtx.strokeStyle = 'black'; // Couleur de la ligne
+	canvasCtx.lineWidth = 0.5; // Epaisseur de la ligne
+	canvasCtx.stroke();
+
+	let deltaX = targetX - x;
+	let deltaY = targetY - y;
+	if (deltaX == 0) {
+		theta = (deltaY > 0) ? Math.PI / 2 : -Math.PI / 2;
+	} else {
+		theta = (deltaX > 0) ? Math.atan(deltaY / deltaX) : Math.PI + Math.atan(deltaY / deltaX)
+	}
+	// theta is the angle of the line between (x, y) and (targetX, targetY)
+
+	// If the target is far enough from the clicked point, draw an arrox on
+	if (Math.sqrt(deltaX ** 2 + deltaY ** 2) >= 25) {
+		let middleX = (targetX + x) / 2;
+		let middleY = (targetY + y) / 2;
+
+		// angle and length of the arrow
+		let arrow_angle = 0.5;
+		let arrow_length = 10;
+
+		// left end of the arrow
+		let angle_left = Math.PI + theta + arrow_angle;
+		let arrow_leftX = middleX + arrow_length * Math.cos(angle_left);
+		let arrow_leftY = middleY + arrow_length * Math.sin(angle_left);
+
+		// right end of the arrow
+		let angle_right = Math.PI + theta - arrow_angle;
+		let arrow_rightX = middleX + arrow_length * Math.cos(angle_right);
+		let arrow_rightY = middleY + arrow_length * Math.sin(angle_right);
+
+		// draw the arrow
+		canvasCtx.beginPath();
+		canvasCtx.moveTo(arrow_leftX, arrow_leftY);
+		canvasCtx.lineTo(middleX, middleY);
+		canvasCtx.lineTo(arrow_rightX, arrow_rightY);
+		canvasCtx.strokeStyle = 'black';
+		canvasCtx.lineWidth = 0.5;
+		canvasCtx.stroke();
+	}
 
 	// Dessiner le point cliqué
-	ctx.beginPath();
-	ctx.arc(x, y - offsetY, 4, 0, Math.PI * 2);
-	ctx.fillStyle = 'red'; // Couleur du point cliqué
-	ctx.fill();
+	canvasCtx.beginPath();
+	canvasCtx.arc(x, y, 5, 0, Math.PI * 2);
+	canvasCtx.fillStyle = 'red'; // Couleur du point cliqué
+	canvasCtx.fill();
+
+	// croix rouge sur le point cliqué
+	canvasCtx.beginPath();
+	canvasCtx.moveTo(x - 1.8, y - 1.8);
+	canvasCtx.lineTo(x + 1.8, y + 1.8);
+	canvasCtx.lineWidth = 1.5;
+	canvasCtx.strokeStyle = "white";
+	canvasCtx.lineCap = "round";
+	canvasCtx.moveTo(x + 1.8, y - 1.8);
+	canvasCtx.lineTo(x - 1.8, y + 1.8);
+	canvasCtx.stroke();
 
 	// Dessiner la cible
-	ctx.beginPath();
-	ctx.arc(targetX, targetY, 4, 0, Math.PI * 2);
-	ctx.fillStyle = 'green'; // Couleur de la cible
-	ctx.fill();
+	canvasCtx.beginPath();
+	canvasCtx.arc(targetX, targetY, 5, 0, Math.PI * 2);
+	canvasCtx.fillStyle = 'green'; // Couleur de la cible
+	canvasCtx.fill();
+
+	// V vert sur la cible
+	canvasCtx.beginPath();
+	canvasCtx.lineWidth = 1.5;
+	canvasCtx.strokeStyle = "white";
+	canvasCtx.lineCap = "round";
+	canvasCtx.moveTo(targetX - 1.8, targetY + 0.2);
+	canvasCtx.lineTo(targetX - 0.3, targetY + 1.5);
+	canvasCtx.lineTo(targetX + 2.0, targetY - 1.2);
+	canvasCtx.stroke();
 
 	// Dessiner le texte de la cible
-	ctx.fillStyle = 'black'; // Couleur du texte
-	ctx.font = '12px Arial';
+	canvasCtx.fillStyle = 'black'; // Couleur du texte
+	canvasCtx.font = '12px Arial';
 
 	// Dessiner le texte de la distance
-	ctx.fillText(cityName + ' (' + distance + 'km)', (targetX + x) / 2 + 5, (targetY + y - offsetY) / 2 - 5);
-
-	// Dessiner la ligne entre les deux points
-	ctx.beginPath();
-	ctx.moveTo(targetX, targetY);
-	ctx.lineTo(x, y - offsetY);
-	ctx.strokeStyle = 'black'; // Couleur de la ligne
-	ctx.lineWidth = 1; // Epaisseur de la ligne
-	ctx.stroke();
+	if (theta < Math.PI && theta > Math.PI / 2)
+		canvasCtx.fillText(cityName + ' (' + distance + 'km)', targetX + 5, targetY + 5 + 12);
+	else {
+		canvasCtx.fillText(cityName + ' (' + distance + 'km)', targetX + 5, targetY - 5);
+	}
 }
 
 function drawMapBackground() {
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
-	ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Dessinez l'image sur tout le canvas
+	canvasCtx.drawImage(img, 0, 0, canvas.width, canvas.height); // Dessinez l'image sur tout le canvas
 }
 
 function generateAndOpenImage() {
-	// Récupérer le canvas
-	const canvas = document.getElementById('myCanvas');
-	const ctx = canvas.getContext('2d');
-
 	// On efface la carte
 	drawMapClear();
 
@@ -680,16 +689,16 @@ function generateAndOpenImage() {
 
 	// Ecrire la date et le score total
 	// Définir la police et la taille du texte
-	ctx.font = '20px Arial';
-	ctx.fillStyle = 'black';
+	canvasCtx.font = '20px Arial';
+	canvasCtx.fillStyle = 'black';
 	if (isDefi) {
 		// Dessiner le texte sur le canvas
-		ctx.fillText(i18n("txtRecapChallenge", lang, defiDate), 10, 30);
+		canvasCtx.fillText(i18n("txtRecapChallenge", lang, defiDate), 10, 30);
 	}
 	else {
-		ctx.fillText(i18n("txtRecapFreePractice", lang, diffText), 10, 30);
+		canvasCtx.fillText(i18n("txtRecapFreePractice", lang, diffText), 10, 30);
 	}
-	ctx.fillText(i18n("txtRecapScore", lang, totalScore, averageScore, getEvaluationText(averageScore)), 10, 60);
+	canvasCtx.fillText(i18n("txtRecapScore", lang, totalScore, averageScore, getEvaluationText(averageScore)), 10, 60);
 
 	// Convertir le contenu du canvas en Blob (format PNG)
 	canvas.toBlob(function (blob) {
